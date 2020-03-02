@@ -1,7 +1,7 @@
 {
   "private": true,
-  "name": "sanity-gatsby-blog",
-  "version": "1.0.9",
+  "name": "jackieluc-website",
+  "version": "0.1.0",
   "scripts": {
     "build": "lerna run build --parallel",
     "dev": "lerna run dev --parallel",
@@ -9,6 +9,7 @@
     "build-studio": "lerna bootstrap && cd studio && npm run build",
     "build-web": "lerna bootstrap && (cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
     "graphql-deploy": "lerna run graphql-deploy",
+    "sanity-deploy": "lerna run sanity-deploy",
     "lint": "lerna run lint",
     "postinstall": "lerna bootstrap",
     "test": "echo \"Error: no test specified\" && exit 1"
