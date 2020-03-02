@@ -1,0 +1,17 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: GitHub Action for Sanity.io
+      uses: sanity-io/github-action-sanity@v0.1-alpha
+      env:
+        SANITY_DEPLOY_STUDIO_TOKEN: ${{ secrets.SANITY_DEPLOY_STUDIO_TOKEN }}
+    - name: npm run sanity-deploy
+      run: npm run sanity-deploy
