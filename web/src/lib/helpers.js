@@ -1,4 +1,4 @@
-import {format, isFuture} from 'date-fns'
+import { format, isFuture } from 'date-fns'
 
 export function cn (...args) {
   return args.filter(Boolean).join(' ')
@@ -9,11 +9,11 @@ export function mapEdgesToNodes (data) {
   return data.edges.map(edge => edge.node)
 }
 
-export function filterOutDocsWithoutSlugs ({slug}) {
+export function filterOutDocsWithoutSlugs ({ slug }) {
   return (slug || {}).current
 }
 
-export function filterOutDocsPublishedInTheFuture ({publishedAt}) {
+export function filterOutDocsPublishedInTheFuture ({ publishedAt }) {
   return !isFuture(publishedAt)
 }
 
@@ -21,9 +21,9 @@ export function getBlogUrl (publishedAt, slug) {
   return `/blog/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
 }
 
-export function buildImageObj (source = {asset: {}}) {
+export function buildImageObj (source = { asset: {} }) {
   const imageObj = {
-    asset: {_ref: source.asset._ref || source.asset._id}
+    asset: { _ref: source.asset._ref || source.asset._id }
   }
 
   if (source.crop) imageObj.crop = source.crop

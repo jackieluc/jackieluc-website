@@ -1,7 +1,7 @@
 /* global __DEV__ */
 
-import {defer, from as observableFrom, of as observableOf, throwError} from 'rxjs'
-import {mergeMap} from 'rxjs/operators'
+import { defer, from as observableFrom, of as observableOf, throwError } from 'rxjs'
+import { mergeMap } from 'rxjs/operators'
 import StructureBuilder from '@sanity/desk-tool/structure-builder'
 
 let prevStructureError = null

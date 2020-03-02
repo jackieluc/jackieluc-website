@@ -1,4 +1,4 @@
-import {Link} from 'part:@sanity/base/router'
+import { Link } from 'part:@sanity/base/router'
 import FolderIcon from 'part:@sanity/base/folder-icon'
 import FileIcon from 'part:@sanity/base/file-icon'
 import React from 'react'
