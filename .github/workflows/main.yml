@@ -12,6 +12,6 @@ jobs:
     - name: GitHub Action for Sanity.io
       uses: sanity-io/github-action-sanity@v0.1-alpha
     - name: npm run sanity-deploy
-      run: SANITY_DEPLOY_STUDIO_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run sanity-deploy
+      run: npm run sanity-deploy
       env:
-        SANITY_DEPLOY_STUDIO_TOKEN: ${{ secrets.SANITY_DEPLOY_STUDIO_TOKEN }}
+        SANITY_AUTH_TOKEN: ${{ secrets.SANITY_DEPLOY_STUDIO_TOKEN }}
