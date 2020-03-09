@@ -16,14 +16,24 @@ export default {
         { title: 'H2', value: 'h2' },
         { title: 'H3', value: 'h3' },
         { title: 'H4', value: 'h4' },
-        { title: 'Quote', value: 'blockquote' }
+        { title: 'Quote', value: 'blockquote' },
+        { title: 'Code', value: 'code' }
       ],
-      lists: [{ title: 'Bullet', value: 'bullet' }, { title: 'Number', value: 'number' }],
+      lists: [
+        { title: 'Bullet', value: 'bullet' },
+        { title: 'Number', value: 'number' }
+      ],
       // Marks let you mark up inline text in the block editor.
       marks: {
         // Decorators usually describe a single property – e.g. a typographic
         // preference or highlighting by editors.
-        decorators: [{ title: 'Strong', value: 'strong' }, { title: 'Emphasis', value: 'em' }],
+        decorators: [
+          { title: 'Strong', value: 'strong' },
+          { title: 'Emphasis', value: 'em' },
+          { title: 'Underline', value: 'underline' },
+          { title: 'Strike', value: 'strike-through' },
+          { title: 'Code', value: 'code' }
+        ],
         // Annotations can be any object structure – e.g. a link or a footnote.
         annotations: [
           {
@@ -48,6 +58,10 @@ export default {
     {
       type: 'mainImage',
       options: { hotspot: true }
+    },
+    // For Code block
+    {
+      type: 'code'
     }
   ]
 }

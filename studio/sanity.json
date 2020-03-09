@@ -17,7 +17,9 @@
     "dashboard-widget-structure-menu",
     "dashboard-widget-document-list",
     "dashboard-widget-netlify",
-    "@sanity/studio-hints"
+    "@sanity/studio-hints",
+    "@sanity/code-input",
+    "markdown"
   ],
   "parts": [
     {
