@@ -45,3 +45,19 @@ export function toPlainText (blocks) {
     })
     .join('\n\n')
 }
+
+/**
+ * See https://githubcom/rexxars/react-mrkdown#options
+ * @param {*} url
+ * @param {*} text
+ * @param {*} title
+ */
+export function getLinkTargets (url, text, title) {
+  const INTERNAL_ATTRIBUTES = '_blank'
+  const EXTERNAL_ATTRIBUTES = '_blank noopener noreferrer'
+
+  // internal links will start with /
+  if (url.startsWith('/')) return INTERNAL_ATTRIBUTES
+
+  return EXTERNAL_ATTRIBUTES
+}
