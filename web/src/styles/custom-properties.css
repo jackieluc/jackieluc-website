@@ -30,7 +30,7 @@
 
 /* Add external link icon */
 a[target="_blank"]::after {
-  content: url(../assets/external-link.svg);
+  content: url(../assets/icons/external-link.svg);
   display: inline-block;
   margin-left: 0.2em;
   width: 1em;
