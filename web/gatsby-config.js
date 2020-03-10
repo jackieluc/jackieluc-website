@@ -19,6 +19,16 @@ module.exports = {
         watchMode: !isProd,
         overlayDrafts: !isProd
       }
+    },
+    {
+      resolve: 'gatsby-plugin-react-svg',
+      options: {
+        rule: {
+          // exclude this path to enable url-loader on the path
+          // svg-react-loader is used everywhere else
+          exclude: /assets\/icons/
+        }
+      }
     }
   ]
 }
