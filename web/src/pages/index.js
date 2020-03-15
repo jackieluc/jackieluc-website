@@ -1,10 +1,11 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-import Container from '../components/container'
+// import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
-import Image from 'gatsby-image'
+// import Image from 'gatsby-image'
+import styled from 'styled-components'
 
 export const query = graphql`
   query IndexPageQuery {
@@ -16,7 +17,7 @@ export const query = graphql`
     # relativePath is relative to the path provided in gatsby-config.js
     bgImage: file(relativePath: { eq: "index-page-bg.jpg" }) {
       childImageSharp {
-        fluid(maxWidth: 500) {
+        fluid(maxWidth: 2000) {
           ...GatsbyImageSharpFluid
         }
       }
@@ -50,17 +51,21 @@ const IndexPage = props => {
         description={site.description}
         keywords={site.keywords}
       />
-      <Container>
+      <HeroImage bgImageSrc={data.bgImage.childImageSharp.fluid.src}>
         <h1>Welcome to {site.title}'s website</h1>
         <div>
           <p>Make sure you go and checkout the <Link to='/blog'>blog</Link>!</p>
         </div>
-        <div>
-          <Image fluid={data.bgImage.childImageSharp.fluid} />
-        </div>
-      </Container>
+      </HeroImage>
     </Layout>
   )
 }
+
+const HeroImage = styled.main`
+  min-height: 100vh;
+  background-image: url(${props => props.bgImageSrc});
+  background-size: cover;
+  background-position: center;
+`
 
 export default IndexPage
