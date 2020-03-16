@@ -66,6 +66,14 @@ const HeroImage = styled.div`
   background-image: url(${props => props.bgImageSrc});
   background-size: cover;
   background-position: center;
+
+  /*
+    Reset margins and paddings on index page
+  */
+  > * {
+    margin: 0;
+    padding: 0;
+  }
 `
 
 export default IndexPage
