@@ -8,21 +8,20 @@ import styles from './header.module.css'
 const Header = ({ onHideNav, onShowNav, showNav, siteTitle }) => (
   <div className={styles.root}>
     <div className={styles.wrapper}>
-      <div className={styles.branding}>
+      {/* <div className={styles.branding}>
         <Link to='/'>{siteTitle}</Link>
-      </div>
+      </div> */}
 
-      <button className={styles.toggleNavButton} onClick={showNav ? onHideNav : onShowNav}>
-        <Icon symbol='hamburger' />
-      </button>
-
-      <nav className={cn(styles.nav, showNav && styles.showNav)}>
+      <nav className={styles.nav}>
         <ul>
           <li>
-            <Link to='/blog/'>Blog</Link>
+            <Link to='/' activeClassName={styles.active}>Home</Link>
           </li>
           <li>
-            <Link to='/archive/'>Archive</Link>
+            <Link to='/blog/' activeClassName={styles.active} partiallyActive>Blog</Link>
+          </li>
+          <li>
+            <Link to='/archive/' activeClassName={styles.active}>Archive</Link>
           </li>
         </ul>
       </nav>

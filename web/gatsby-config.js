@@ -39,6 +39,7 @@ module.exports = {
           exclude: /assets\/icons/
         }
       }
-    }
+    },
+    'gatsby-plugin-styled-components'
   ]
 }

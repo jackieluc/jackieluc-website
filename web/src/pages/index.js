@@ -61,7 +61,7 @@ const IndexPage = props => {
   )
 }
 
-const HeroImage = styled.main`
+const HeroImage = styled.div`
   min-height: 100vh;
   background-image: url(${props => props.bgImageSrc});
   background-size: cover;

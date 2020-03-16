@@ -14,6 +14,7 @@
   "devDependencies": {
     "@sanity/block-content-to-react": "^2.0.7",
     "@sanity/image-url": "^0.140.17",
+    "babel-plugin-styled-components": "^1.10.7",
     "date-fns": "^1.30.1",
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
@@ -29,6 +30,7 @@
     "gatsby-plugin-react-helmet": "^3.0.12",
     "gatsby-plugin-react-svg": "^3.0.0",
     "gatsby-plugin-sharp": "^2.4.8",
+    "gatsby-plugin-styled-components": "^3.1.20",
     "gatsby-source-filesystem": "^2.1.53",
     "gatsby-source-sanity": "^4.0.3",
     "gatsby-transformer-sharp": "^2.3.18",
