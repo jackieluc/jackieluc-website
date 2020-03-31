@@ -12,6 +12,23 @@
   width: 100%;
   box-sizing: border-box;
   margin: 0 auto;
+
+  @media (--media-min-small) {
+    text-align: left;
+    font-weight: 500;
+    position: fixed;
+    top: -130px;
+    right: 30px;
+    width: 0;
+    height: 100%;
+    /* margin-top: 0; */
+    /* z-index: 100; */
+    /* font-family: 'Open Sans'; */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .20rem;
+    /* display: inline-block; */
+  }
 }
 
 .branding {
@@ -102,13 +119,20 @@ Mobile navigation toolbar and active navigation styles are heavily inspired by g
     display: block;
 
     @nest & ul {
-      list-style: none;
+      position: absolute;
+      left: 0;
+      padding: 0;
+      white-space: nowrap;
+      transform-origin: left bottom;
+      transform: rotate(-90deg);
+      bottom: 30px;
       display: flex;
-      justify-content: flex-end;
     }
 
     @nest & ul li a {
-      padding: 0.5rem;
+      padding: 0 15px;
+      transition: color .3s;
+      color: var(--color-black);
     }
   }
 }
