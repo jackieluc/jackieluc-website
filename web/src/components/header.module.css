@@ -13,21 +13,15 @@
   box-sizing: border-box;
   margin: 0 auto;
 
+  /* Set styles for vertical navbar */
   @media (--media-min-small) {
     text-align: left;
-    /* font-weight: 500; */
     position: fixed;
-    /* top: -130px; */
     right: 30px;
     width: 0;
     height: 100%;
-    /* margin-top: 0; */
-    /* z-index: 100; */
-    /* font-family: 'Open Sans'; */
-    /* font-weight: 600; */
     text-transform: uppercase;
     letter-spacing: .20rem;
-    /* display: inline-block; */
   }
 }
 
@@ -115,6 +109,7 @@ Mobile navigation toolbar and active navigation styles are heavily inspired by g
     }
   }
 
+  /* Vertical navbar styling */
   @media (--media-min-small) {
     display: block;
 
@@ -126,6 +121,7 @@ Mobile navigation toolbar and active navigation styles are heavily inspired by g
       transform-origin: left bottom;
       transform: rotate(-90deg);
       bottom: 30px;
+      /* Unset cascading styles to fix width and layout of navbar */
       -webkit-box-pack: unset;
       -webkit-justify-content: unset;
       -ms-flex-pack: unset;
