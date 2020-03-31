@@ -10,6 +10,18 @@ const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
   plugins: [
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Jackie Luc`,
+        short_name: `Jackie Luc`,
+        start_url: `/`,
+        background_color: `#FFFFFF`,
+        theme_color: `#156dff`,
+        display: `minimal-ui`,
+        icon: `src/assets/icons/favicon.png` // This path is relative to the root of the site.
+      }
+    },
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
     {
