@@ -21,8 +21,14 @@ const Header = ({ siteTitle }) => (
             <Link to='/blog/' activeClassName={styles.active} partiallyActive>Blog</Link>
           </li>
           <li>
-            <Link to='/archive/' activeClassName={styles.active}>Archive</Link>
+            <a href='https://github.com/jackieluc'>Gtihub</a>
           </li>
+          <li>
+            <a href='https://www.linkedin.com/in/jackieluc/'>LinkedIn</a>
+          </li>
+          {/* <li>
+            <Link to='/archive/' activeClassName={styles.active}>Archive</Link>
+          </li> */}
         </ul>
       </nav>
     </div>
