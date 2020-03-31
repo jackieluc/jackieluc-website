@@ -16,7 +16,7 @@ function BlogPost (props) {
   const { body, authors, categories, title, mainImage, publishedAt } = props
   return (
     <article className={styles.root}>
-      {mainImage && mainImage.asset && (
+      {/* {mainImage && mainImage.asset && (
         <div className={styles.mainImage}>
           <img
             src={imageUrlFor(buildImageObj(mainImage))
@@ -28,7 +28,7 @@ function BlogPost (props) {
             alt={mainImage.alt}
           />
         </div>
-      )}
+      )} */}
       <Container>
         <div className={styles.grid}>
           <div className={styles.mainContent}>
