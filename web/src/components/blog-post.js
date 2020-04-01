@@ -1,6 +1,6 @@
 import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React from 'react'
-import { buildImageObj } from '../lib/helpers'
+import { buildImageObj, getReadingTime } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 // import PortableText from './portableText'
 import ReactMarkdown from 'react-markdown'
@@ -41,6 +41,11 @@ function BlogPost (props) {
                 {differenceInDays(new Date(publishedAt), new Date()) > 3
                   ? distanceInWords(new Date(publishedAt), new Date())
                   : format(new Date(publishedAt), 'MMMM Do, YYYY')}
+              </div>
+            )}
+            {body && (
+              <div className={styles.publishedAt}>
+                <em>{getReadingTime(body)}</em>
               </div>
             )}
             {authors && <AuthorList items={authors} title='Author' />}
