@@ -34,7 +34,7 @@ function BlogPostPreview (props) {
           </div>
         )}
         <div className={styles.date}>{format(props.publishedAt, 'MMMM Do, YYYY')}</div>
-        <div className={styles.date}>{getReadingTime(props.body)}</div>
+        <em className={styles.date}>{getReadingTime(props.body)}</em>
       </div>
     </Link>
   )
