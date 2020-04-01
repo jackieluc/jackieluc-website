@@ -22,6 +22,12 @@ module.exports = {
         icon: `src/assets/icons/favicon.png` // This path is relative to the root of the site.
       }
     },
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `https://www.jackieluc.com`
+      }
+    },
     'gatsby-plugin-postcss',
     'gatsby-plugin-react-helmet',
     {
