@@ -1,4 +1,5 @@
 import { format, isFuture } from 'date-fns'
+import calculateReadTime from 'reading-time'
 
 export function cn (...args) {
   return args.filter(Boolean).join(' ')
@@ -44,4 +45,16 @@ export function toPlainText (blocks) {
       return block.children.map(child => child.text).join('')
     })
     .join('\n\n')
+}
+
+/**
+ * Helper that calculates the reading-time and returns metadata on the text
+ *
+ * See package: https://www.npmjs.com/package/reading-time
+ *
+ * @param {text} - markdown or html
+ * @returns {object} - stats on the text
+ */
+export function getReadingTime (text) {
+  return calculateReadTime(text).text
 }

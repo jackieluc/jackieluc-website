@@ -1,7 +1,7 @@
 import { format } from 'date-fns'
 import { Link } from 'gatsby'
 import React from 'react'
-import { buildImageObj, cn, getBlogUrl } from '../lib/helpers'
+import { buildImageObj, cn, getBlogUrl, getReadingTime } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import PortableText from './portableText'
 
@@ -34,6 +34,7 @@ function BlogPostPreview (props) {
           </div>
         )}
         <div className={styles.date}>{format(props.publishedAt, 'MMMM Do, YYYY')}</div>
+        <em className={styles.date}>{getReadingTime(props.body)}</em>
       </div>
     </Link>
   )

@@ -1,6 +1,6 @@
 import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React from 'react'
-import { buildImageObj } from '../lib/helpers'
+import { buildImageObj, getReadingTime } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 // import PortableText from './portableText'
 import ReactMarkdown from 'react-markdown'
@@ -16,7 +16,7 @@ function BlogPost (props) {
   const { body, authors, categories, title, mainImage, publishedAt } = props
   return (
     <article className={styles.root}>
-      {mainImage && mainImage.asset && (
+      {/* {mainImage && mainImage.asset && (
         <div className={styles.mainImage}>
           <img
             src={imageUrlFor(buildImageObj(mainImage))
@@ -28,7 +28,7 @@ function BlogPost (props) {
             alt={mainImage.alt}
           />
         </div>
-      )}
+      )} */}
       <Container>
         <div className={styles.grid}>
           <div className={styles.mainContent}>
@@ -43,7 +43,12 @@ function BlogPost (props) {
                   : format(new Date(publishedAt), 'MMMM Do, YYYY')}
               </div>
             )}
-            {authors && <AuthorList items={authors} title='Authors' />}
+            {body && (
+              <div className={styles.publishedAt}>
+                <em>{getReadingTime(body)}</em>
+              </div>
+            )}
+            {authors && <AuthorList items={authors} title='Author' />}
             {categories && (
               <div className={styles.categories}>
                 <h3 className={styles.categoriesHeadline}>Categories</h3>

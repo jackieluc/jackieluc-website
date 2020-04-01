@@ -55,6 +55,7 @@ export const query = graphql`
           }
           title
           _rawExcerpt
+          body # This is needed in the preview so that we can calculate read time
           slug {
             current
           }
