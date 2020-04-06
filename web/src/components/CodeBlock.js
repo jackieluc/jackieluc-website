@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { Prism as ReactSyntaxHighlighter } from 'react-syntax-highlighter'
-import { xonokai } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 class CodeBlock extends PureComponent {
   render () {
     const { language, value } = this.props
 
     return (
-      <ReactSyntaxHighlighter language={language} style={xonokai}>
+      <ReactSyntaxHighlighter language={language} style={tomorrow}>
         { value }
       </ReactSyntaxHighlighter>
     )
