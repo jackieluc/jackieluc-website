@@ -8,7 +8,7 @@ class CodeBlock extends PureComponent {
     const { language, value } = this.props
 
     return (
-      <ReactSyntaxHighlighter language={language} style={tomorrow}>
+      <ReactSyntaxHighlighter language={language} style={tomorrow} customStyle={{ borderRadius: '5px' }}>
         { value }
       </ReactSyntaxHighlighter>
     )
