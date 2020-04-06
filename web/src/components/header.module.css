@@ -99,7 +99,7 @@ Mobile navigation toolbar and active navigation styles are heavily inspired by g
     text-align: center;
     -webkit-text-decoration: none;
     text-decoration: none;
-    width: 100%;
+    width: 6rem;
     height: 4rem;
   }
 
@@ -132,6 +132,7 @@ Mobile navigation toolbar and active navigation styles are heavily inspired by g
       padding: 0 15px;
       transition: color .3s;
       color: var(--color-black);
+      width: 100%;
     }
   }
 }
