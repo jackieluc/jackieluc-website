@@ -70,28 +70,3 @@
   color: var(--color-gray);
   margin: 0;
 }
-
-.tags {
-  padding: 0;
-  list-style: none;
-  
-  
-  @nest & li {
-    display: inline-block;
-    font-size: 15px;
-    color: hsl(210deg, 25%, 96%);
-    text-decoration: none;
-    padding: 3px 12px;
-  }
-
-  @nest & li p {
-    display: inline-block;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    background-color: var(--color-accent);
-    text-align: center;
-    border-radius: 8px;
-    padding: 4px;
-  }
-}
