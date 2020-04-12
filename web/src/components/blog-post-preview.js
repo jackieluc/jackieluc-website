@@ -33,8 +33,17 @@ function BlogPostPreview (props) {
             <PortableText blocks={props._rawExcerpt} />
           </div>
         )}
-        <div className={styles.date}>{format(props.publishedAt, 'MMMM Do, YYYY')}</div>
+        <p className={styles.date}>{format(props.publishedAt, 'MMMM Do, YYYY')}</p>
         <em className={styles.date}>{getReadingTime(props.body)}</em>
+        <ul className={styles.tags}>
+          {
+            props.tags.map(tag => (
+              <li key={tag._id}>
+                <p>{tag.title}</p>
+              </li>
+            ))
+          }
+        </ul>
       </div>
     </Link>
   )
