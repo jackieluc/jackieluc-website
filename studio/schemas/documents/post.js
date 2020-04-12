@@ -50,9 +50,9 @@ export default {
       ]
     },
     {
-      name: 'categories',
+      name: 'tags',
       type: 'array',
-      title: 'Categories',
+      title: 'Tags',
       of: [
         {
           type: 'reference',

@@ -1,5 +1,6 @@
 import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React from 'react'
+import { Link } from 'gatsby'
 import { buildImageObj, getReadingTime } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 // import PortableText from './portableText'
@@ -13,7 +14,7 @@ import RenderLink from './RenderLink'
 import styles from './blog-post.module.css'
 
 function BlogPost (props) {
-  const { body, authors, categories, title, mainImage, publishedAt } = props
+  const { body, authors, tags, title, mainImage, publishedAt } = props
   return (
     <article className={styles.root}>
       {/* {mainImage && mainImage.asset && (
@@ -49,12 +50,16 @@ function BlogPost (props) {
               </div>
             )}
             {authors && <AuthorList items={authors} title='Author' />}
-            {categories && (
-              <div className={styles.categories}>
-                <h3 className={styles.categoriesHeadline}>Categories</h3>
+            {tags && (
+              <div className={styles.tags}>
+                <h3 className={styles.tagsHeadline}>tags</h3>
                 <ul>
-                  {categories.map(category => (
-                    <li key={category._id}>{category.title}</li>
+                  {tags.map(tag => (
+                    <li key={tag._id}>
+                      {/* <Link to={`/tags/${tag.title}`}> */}
+                      {tag.title}
+                      {/* </Link> */}
+                    </li>
                   ))}
                 </ul>
               </div>

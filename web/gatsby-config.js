@@ -17,7 +17,7 @@ module.exports = {
         short_name: `Jackie Luc`,
         start_url: `/`,
         background_color: `#FFFFFF`,
-        theme_color: `#156dff`,
+        theme_color: `#6C70AD`,
         display: `minimal-ui`,
         icon: `src/assets/icons/favicon.png` // This path is relative to the root of the site.
       }

@@ -68,7 +68,7 @@
   color: var(--color-gray);
 }
 
-.categories {
+.tags {
   border-top: 1px solid var(--color-very-light-gray);
   margin: 1rem 0 1rem;
 
@@ -83,7 +83,7 @@
   }
 }
 
-.categoriesHeadline {
+.tagsHeadline {
   composes: base from './typography.module.css';
   margin: 0.5rem 0 0;
 }
