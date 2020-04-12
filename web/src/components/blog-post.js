@@ -52,7 +52,7 @@ function BlogPost (props) {
             {authors && <AuthorList items={authors} title='Author' />}
             {tags && (
               <div className={styles.tags}>
-                <h3 className={styles.tagsHeadline}>tags</h3>
+                <h3 className={styles.tagsHeadline}>Tags</h3>
                 <ul>
                   {tags.map(tag => (
                     <li key={tag._id}>
