@@ -34,7 +34,7 @@ function BlogPostPreview (props) {
           </div>
         )}
         <p className={styles.date}>{format(props.publishedAt, 'MMMM Do, YYYY')}</p>
-        <em className={styles.date}>{getReadingTime(props.body)}</em>
+        <em className={styles.readingTime}>{getReadingTime(props.body)}</em>
         <ul className={styles.tags}>
           {
             props.tags.map(tag => (

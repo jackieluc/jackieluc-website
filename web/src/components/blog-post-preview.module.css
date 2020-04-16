@@ -65,8 +65,14 @@
 }
 
 .date {
+  display: inline-block;
   font-size: var(--font-small-size);
   line-height: var(--font-small-line-height);
   color: var(--color-gray);
-  margin: 0;
+  margin: 0 0 0.5rem 0;
+}
+
+.readingTime {
+  composes: date;
+  margin-left: 1rem;
 }
