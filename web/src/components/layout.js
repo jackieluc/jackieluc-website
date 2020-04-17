@@ -5,10 +5,8 @@ import '../styles/layout.css'
 import styles from './layout.module.css'
 
 const Layout = ({ children, siteTitle }) => (
-  <div>
-    <Header
-      siteTitle={siteTitle}
-    />
+  <div className={styles.layoutGrid}>
+    <Header siteTitle={siteTitle} />
     <main className={styles.content}>
       {children}
     </main>

@@ -1,7 +1,29 @@
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 
+.layoutGrid {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-areas: "main"
+                        "nav";
+
+  /* force nav to be on the right and don't overlap with content */
+  @media(--media-min-medium) {
+    grid-template-areas: "main nav";
+    grid-template-columns: auto 100px;
+  }
+
+  /* hack: no grid on xl size to center blog post content */
+  @media(--media-min-xlarge) {
+    display: block;
+    grid-template-columns: none;
+  }
+}
+
 .content {
+  grid-area: main;
   background: var(--color-white);
   min-height: calc(100% - 73px - 120px);
 
