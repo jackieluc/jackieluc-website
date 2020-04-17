@@ -13,13 +13,7 @@ const Layout = ({ children, siteTitle }) => (
       {children}
     </main>
     {/* <footer className={styles.footer}>
-      <div className={styles.footerWrapper}>
-        <div className={styles.siteInfo}>
-          &copy; {new Date().getFullYear()}, Built with <a href='https://www.sanity.io'>Sanity</a>{' '}
-          &amp;
-          {` `}
-          <a href='https://www.gatsbyjs.org'>Gatsby</a>
-        </div>
+      <div className={styles.footerWrapper}>v
       </div>
     </footer> */}
   </div>
