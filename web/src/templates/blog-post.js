@@ -61,7 +61,7 @@ const BlogPostTemplate = props => {
   const { data, errors } = props
   const post = data && data.post
   return (
-    <Layout>
+    <Layout page='blog-post'>
       {errors && <SEO title='GraphQL Error' />}
       {post && <SEO title={post.title || 'Untitled'} description={toPlainText(post._rawExcerpt)} image={post.mainImage} />}
 

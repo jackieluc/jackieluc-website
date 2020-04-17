@@ -1,7 +1,7 @@
 @import '../styles/custom-media.css';
 @import '../styles/custom-properties.css';
 
-.layoutGrid {
+.blogPostLayoutGrid {
   margin: 0;
   padding: 0;
   list-style: none;
