@@ -15,17 +15,17 @@ const Header = ({ siteTitle }) => (
       <nav className={styles.nav}>
         <ul>
           <li>
-            <Link to='/' activeClassName={styles.active}>Home</Link>
+            <Link to='/' activeClassName={styles.active}>About</Link>
           </li>
           <li>
             <Link to='/blog/' activeClassName={styles.active} partiallyActive>Blog</Link>
           </li>
-          <li>
+          {/* <li>
             <a href='https://github.com/jackieluc'>Gtihub</a>
           </li>
           <li>
             <a href='https://www.linkedin.com/in/jackieluc/'>LinkedIn</a>
-          </li>
+          </li> */}
           {/* <li>
             <Link to='/archive/' activeClassName={styles.active}>Archive</Link>
           </li> */}

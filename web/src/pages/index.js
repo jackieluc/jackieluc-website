@@ -51,21 +51,67 @@ const IndexPage = props => {
         description={site.description}
         keywords={site.keywords}
       />
-      <HeroImage bgImageSrc={data.bgImage.childImageSharp.fluid.src}>
-        <h1>Welcome to {site.title}'s website</h1>
-        <div>
-          <p>Make sure you go and checkout the <Link to='/blog'>blog</Link>!</p>
-        </div>
-      </HeroImage>
+      <GridLayout>
+        <HeroImage bgImageSrc={data.bgImage.childImageSharp.fluid.src}>
+          <StyledH1>{site.title}</StyledH1>
+          <About>
+            <p>Make sure you go and checkout the <Link to='/blog'>blog</Link>!</p>
+          </About>
+        </HeroImage>
+      </GridLayout>
     </Layout>
   )
 }
 
+const StyledH1 = styled.h1`
+  color: white;
+  line-height: 50px;
+  letter-spacing: 3px;
+  height: 300px;
+  text-transform: uppercase;
+  writing-mode: vertical-lr;
+  text-orientation: upright;
+  grid-column: 2;
+  grid-row: 2;
+  border-right: 1px solid white;
+`
+
+const GridLayout = styled.div`
+  height: 100vh;
+  @media (min-width: 720px) {
+    display: grid;
+    grid-template-columns: 80px auto 80px;
+    grid-template-rows: 80px auto 80px;
+  }
+`
+
+const About = styled.div`
+  grid-column: 3;
+  grid-row: 2;
+
+  > p {
+    margin: 0;
+    padding: 10px;
+  }
+`
+
 const HeroImage = styled.div`
-  min-height: 100vh;
+  height: 100vh;
   background-image: url(${props => props.bgImageSrc});
   background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
+
+  display: grid;
+  grid-template-columns: 1fr auto auto 1fr;
+  grid-template-rows: 1fr auto auto 1fr;
+  grid-gap: 20px;
+  
+  @media (min-width: 720px) {
+    height: unset;
+    grid-column: 2/2;
+    grid-row: 2/2;
+  }
 
   /*
     Reset margins and paddings on index page
