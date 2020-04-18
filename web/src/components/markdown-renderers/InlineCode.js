@@ -1,22 +1,23 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
-const inlineCodeStyle = {
-  fontFamily: '"Inconsolata", monospace',
-  margin: '3px',
-  padding: '1px 6px',
-  backgroundColor: '#f7f7f7',
-  border: '1px solid #ededed',
-  borderRadius: '5px'
-}
+const StyledInlineCode = styled.code`
+  font-family: Inconsolata, monospace;
+  margin: 3px;
+  padding: 1px 6px;
+  background-color: #f7f7f7;
+  border: 1px solid #ededed;
+  border-radius: 5px;
+`
 
 class InlineCode extends PureComponent {
   render () {
     const { value } = this.props
     return (
-      <code style={inlineCodeStyle}>
+      <StyledInlineCode>
         { value }
-      </code>
+      </StyledInlineCode>
     )
   }
 }

@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
-import styles from 'styled-components'
+import styled from 'styled-components'
 
-const StyledBlockquote = styles.blockquote`
+const StyledBlockquote = styled.blockquote`
   font-family: 'Lora';
   margin: 0;
   padding-left: 30px;
