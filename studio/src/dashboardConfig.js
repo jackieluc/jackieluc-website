@@ -2,6 +2,16 @@ export default {
   widgets: [
     { name: 'structure-menu' },
     {
+      name: 'gatsby',
+      options: {
+        sites: [
+          {
+            siteUrl: 'https://www.gatsbyjs.com/dashboard/342583ae-d3a5-4ed8-94f6-b875e8fa4cb7/sites/51c73764-e2cd-47f0-8c50-d15c87bc8385/production'
+          }
+        ]
+      }
+    },
+    {
       name: 'project-info',
       options: {
         __experimental_before: [
