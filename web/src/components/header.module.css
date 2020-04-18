@@ -15,7 +15,7 @@
   margin: 0 auto;
 
   /* Set styles for vertical navbar */
-  @media (--media-min-small) {
+  @media (--media-min-medium) {
     text-align: left;
     position: fixed;
     right: 15px;
@@ -111,7 +111,7 @@ Mobile navigation toolbar and active navigation styles are heavily inspired by g
   }
 
   /* Vertical navbar styling */
-  @media (--media-min-small) {
+  @media (--media-min-medium) {
     display: block;
 
     @nest & ul {

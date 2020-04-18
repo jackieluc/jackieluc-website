@@ -12,7 +12,7 @@
   /* force nav to be on the right and don't overlap with content */
   @media(--media-min-medium) {
     grid-template-areas: "main nav";
-    grid-template-columns: auto 100px;
+    grid-template-columns: auto 70px;
   }
 
   /* hack: no grid on xl size to center blog post content */
