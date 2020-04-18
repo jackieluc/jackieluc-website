@@ -6,8 +6,6 @@
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-areas: "main"
-                        "nav";
 
   /* force nav to be on the right and don't overlap with content */
   @media(--media-min-medium) {
