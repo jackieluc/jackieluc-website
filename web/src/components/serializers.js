@@ -1,6 +1,6 @@
 import React from 'react'
 import Figure from './Figure'
-import CodeBlock from './CodeBlock'
+import CodeBlock from './markdown-renderers/CodeBlock'
 
 const serializers = {
   types: {

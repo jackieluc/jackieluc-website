@@ -1,20 +1,19 @@
 import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React from 'react'
-import { Link } from 'gatsby'
 import { buildImageObj, getReadingTime } from '../lib/helpers'
-import { imageUrlFor } from '../lib/image-url'
+// import { imageUrlFor } from '../lib/image-url'
 // import PortableText from './portableText'
 import ReactMarkdown from 'react-markdown'
 import Container from './container'
-import AuthorList from './author-list'
-import CodeBlock from './CodeBlock'
-import InlineCode from './InlineCode'
-import RenderLink from './RenderLink'
+import CodeBlock from './markdown-renderers/CodeBlock'
+import InlineCode from './markdown-renderers/InlineCode'
+import RenderLink from './markdown-renderers/RenderLink'
+import Blockquote from './markdown-renderers/Blockquote'
 
 import styles from './blog-post.module.css'
 
 function BlogPost (props) {
-  const { body, authors, tags, title, mainImage, publishedAt } = props
+  const { body, tags, title, mainImage, publishedAt } = props
   return (
     <article className={styles.root}>
       {/* {mainImage && mainImage.asset && (
@@ -47,10 +46,8 @@ function BlogPost (props) {
                   <em>{getReadingTime(body)}</em>
                 </div>
               )}
-              {/* {authors && <AuthorList items={authors} title='Author' />} */}
               {tags && (
                 <div className={styles.tagsBlock}>
-                  {/* <h3 className={styles.tagsHeadline}>Tags</h3> */}
                   <ul className={styles.tags}>
                     {tags.map(tag => (
                       <li key={tag._id}>
@@ -61,7 +58,17 @@ function BlogPost (props) {
                 </div>
               )}
             </div>
-            {body && <ReactMarkdown source={body} renderers={{ code: CodeBlock, inlineCode: InlineCode, link: RenderLink }} />}
+            {body &&
+              <ReactMarkdown
+                source={body}
+                renderers={{
+                  code: CodeBlock,
+                  inlineCode: InlineCode,
+                  link: RenderLink,
+                  blockquote: Blockquote
+                }}
+              />
+            }
           </div>
         </div>
       </Container>
