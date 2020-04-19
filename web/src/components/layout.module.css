@@ -5,10 +5,10 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  display: grid;
-
+  
   /* force nav to be on the right and don't overlap with content */
   @media(--media-min-medium) {
+    display: grid;
     grid-template-areas: "main nav";
     grid-template-columns: auto 70px;
   }
