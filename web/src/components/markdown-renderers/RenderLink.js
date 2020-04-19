@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
+import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 class RenderLink extends PureComponent {
   render () {
@@ -9,12 +10,12 @@ class RenderLink extends PureComponent {
     // Internal links on website
     if (href.startsWith('/')) return <Link to={href}>{children}</Link>
 
-    // External links on website
+    // External links on website with Google Analytics
     return (
-      <a href={href} target='_blank' rel='noopener noreferrer'>
+      <OutboundLink href={href} target='_blank' rel='noopener noreferrer' title={href}>
         {children}
         <span className='screen-reader-only'>(opens in a new tab)</span>
-      </a>
+      </OutboundLink>
     )
   }
 }
