@@ -9,6 +9,12 @@ const clientConfig = require('./client-config')
 const isProd = process.env.NODE_ENV === 'production'
 
 module.exports = {
+  siteMetadata: {
+    title: `Jackie Luc`,
+    description: `Jackie Luc is a software developer on a life-long journey to learn how to create better web experiences.`,
+    author: `jackieluc`,
+    siteUrl: `https://www.jackieluc.com`
+  },
   plugins: [
     {
       resolve: `gatsby-plugin-manifest`,
@@ -64,6 +70,53 @@ module.exports = {
       options: {
         google: {
           families: ['Fira Sans', 'Lora']
+        }
+      }
+    },
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        exclude: ['/tags/*'],
+        query: `
+          {
+            site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              edges {
+                node {
+                  path
+                }
+              }
+            }
+          }
+        `,
+        serialize: ({ site, allSitePage }) => {
+          return allSitePage.edges
+            .filter(({ node }) => (
+              node.path.match(/^\/blog\/[a-zA-Z0-9\/\-]+/gi)
+            ))
+            .map(({ node }) => {
+              return {
+                url: site.siteMetadata.siteUrl + node.path,
+                changefreq: 'daily',
+                priority: 0.7
+              }
+            })
+            .concat(
+              {
+                url: site.siteMetadata.siteUrl + '/',
+                changeFreq: 'daily',
+                priority: 0.5
+              },
+              {
+                url: site.siteMetadata.siteUrl + '/blog/',
+                changeFreq: 'daily',
+                priority: 0.5
+              }
+            )
         }
       }
     }
