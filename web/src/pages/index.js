@@ -28,7 +28,7 @@ export const query = graphql`
       }
     }
     featuredBlog: allSanityPost(
-      limit: 1
+      limit: 5
       sort: { fields: [publishedAt], order: DESC }
       filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
     ) {
