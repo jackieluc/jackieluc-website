@@ -65,10 +65,6 @@
   }
 }
 
-.blockQuote {
-  background: var(--color-very-light-gray);
-}
-
 .responsiveTitle1 {
   font-weight: 600;
   font-size: var(--font-title2-size);
@@ -87,6 +83,7 @@
 }
 
 .responsiveTitle2 {
+  color: var(--color-accent);
   font-weight: 600;
   font-size: var(--font-title3-size);
   line-height: var(--font-title3-line-height);
@@ -104,6 +101,7 @@
 }
 
 .responsiveTitle3 {
+  color: var(--color-accent);
   font-weight: 600;
   font-size: var(--font-large-size);
   line-height: var(--font-large-line-height);
@@ -121,6 +119,7 @@
 }
 
 .responsiveTitle4 {
+  color: var(--color-accent);
   font-weight: 600;
   font-size: var(--font-base-size);
   line-height: var(--font-base-line-height);
