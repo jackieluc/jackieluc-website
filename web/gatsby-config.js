@@ -69,7 +69,7 @@ const config = {
       resolve: 'gatsby-plugin-web-font-loader',
       options: {
         google: {
-          families: ['Fira Sans', 'Lora']
+          families: ['Fira Sans', 'Lora&display=swap'] // https://github.com/typekit/webfontloader/issues/409#issuecomment-529248148
         }
       }
     },
