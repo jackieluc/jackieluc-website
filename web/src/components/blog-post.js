@@ -5,6 +5,7 @@ import { buildImageObj, getReadingTime } from '../lib/helpers'
 // import PortableText from './portableText'
 import ReactMarkdown from 'react-markdown'
 import Container from './container'
+import Heading from './markdown-renderers/Heading'
 import CodeBlock from './markdown-renderers/CodeBlock'
 import InlineCode from './markdown-renderers/InlineCode'
 import RenderLink from './markdown-renderers/RenderLink'
@@ -62,6 +63,7 @@ function BlogPost (props) {
               <ReactMarkdown
                 source={body}
                 renderers={{
+                  heading: Heading,
                   code: CodeBlock,
                   inlineCode: InlineCode,
                   link: RenderLink,

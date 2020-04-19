@@ -19,7 +19,8 @@
     "dashboard-widget-netlify",
     "@sanity/studio-hints",
     "@sanity/code-input",
-    "markdown"
+    "markdown",
+    "dashboard-widget-gatsby"
   ],
   "parts": [
     {
@@ -41,6 +42,10 @@
     {
       "implements": "part:@sanity/default-layout/studio-hints-config",
       "path": "./src/studioHintsConfig.js"
+    },
+    {
+      "implements": "part:@sanity/dashboard/config",
+      "path": "./src/dashboardConfig.js"
     }
   ]
 }

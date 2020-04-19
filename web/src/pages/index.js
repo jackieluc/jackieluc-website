@@ -1,11 +1,16 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
-// import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
-// import Image from 'gatsby-image'
 import styled from 'styled-components'
+import BlogPostPreview from '../components/blog-post-preview'
+
+import {
+  mapEdgesToNodes,
+  filterOutDocsWithoutSlugs,
+  filterOutDocsPublishedInTheFuture
+} from '../lib/helpers'
 
 export const query = graphql`
   query IndexPageQuery {
@@ -19,6 +24,32 @@ export const query = graphql`
       childImageSharp {
         fluid(maxWidth: 2000) {
           ...GatsbyImageSharpFluid
+        }
+      }
+    }
+    featuredBlog: allSanityPost(
+      limit: 1
+      sort: { fields: [publishedAt], order: DESC }
+      filter: { slug: { current: { ne: null } }, publishedAt: { ne: null } }
+    ) {
+      edges {
+        node {
+          id
+          publishedAt
+          tags {
+            _id
+            title
+          }
+          mainImage {
+            ...SanityImage
+            alt
+          }
+          title
+          _rawExcerpt
+          body # This is needed in the preview so that we can calculate read time
+          slug {
+            current
+          }
         }
       }
     }
@@ -37,6 +68,11 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site
+  const postNodes = (data || {}).featuredBlog
+    ? mapEdgesToNodes(data.featuredBlog)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterOutDocsPublishedInTheFuture)
+    : []
 
   if (!site) {
     throw new Error(
@@ -55,7 +91,12 @@ const IndexPage = props => {
         <HeroImage bgImageSrc={data.bgImage.childImageSharp.fluid.src}>
           <StyledH1>{site.title}</StyledH1>
           <About>
-            <p>Make sure you go and checkout the <Link to='/blog'>blog</Link>!</p>
+            <h2>Featured Blog</h2>
+            <FeaturedBlogWrapper>
+              {postNodes && (
+                <BlogPostPreview {...postNodes[0]} isInList />
+              )}
+            </FeaturedBlogWrapper>
           </About>
         </HeroImage>
       </GridLayout>
@@ -66,14 +107,18 @@ const IndexPage = props => {
 const StyledH1 = styled.h1`
   color: white;
   line-height: 50px;
-  letter-spacing: 3px;
-  height: 300px;
+  letter-spacing: 10px;
+  height: 100%;
   text-transform: uppercase;
   writing-mode: vertical-lr;
   text-orientation: upright;
   grid-column: 2;
   grid-row: 2;
   border-right: 1px solid white;
+
+  @media (min-width: 720px) {
+    height: 400px;
+  }
 `
 
 const GridLayout = styled.div`
@@ -88,10 +133,35 @@ const GridLayout = styled.div`
 const About = styled.div`
   grid-column: 3;
   grid-row: 2;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  > h2 {
+    margin: 0;
+    margin-bottom: 1rem;
+  }
 
   > p {
     margin: 0;
     padding: 10px;
+  }
+`
+
+const FeaturedBlogWrapper = styled.div`
+  max-width: 600px;
+  border: #ffffff solid 1px;
+  padding: 5px;
+  border-radius: 4px;
+  
+  -webkit-transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  -moz-transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+
+  &:hover {
+    background-color: #ffffff;
+    color: #36313d;
   }
 `
 
