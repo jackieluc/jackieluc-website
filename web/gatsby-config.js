@@ -8,7 +8,7 @@ const clientConfig = require('./client-config')
 
 const isProd = process.env.NODE_ENV === 'production'
 
-module.exports = {
+const config = {
   siteMetadata: {
     title: `Jackie Luc`,
     description: `Jackie Luc is a software developer on a life-long journey to learn how to create better web experiences.`,
@@ -122,3 +122,21 @@ module.exports = {
     }
   ]
 }
+
+// Set Google Analytics in 'production' mode
+if (isProd) {
+  config.plugins.push(
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: 'UA-105322505-1',
+        head: true,
+        respectDNT: true,
+        siteSpeedSampleRate: 10, // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#siteSpeedSampleRate
+        cookieDomain: 'jackieluc.com'
+      }
+    }
+  )
+}
+
+module.exports = config
