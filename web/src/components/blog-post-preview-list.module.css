@@ -6,8 +6,8 @@
 }
 
 .headline {
-  font-size: var(--font-micro-size);
-  line-height: var(--font-micro-line-height);
+  font-size: var(--font-title2-size);
+  line-height: var(--font-title2-line-height);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
