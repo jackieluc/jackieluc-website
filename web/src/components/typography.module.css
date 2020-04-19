@@ -73,7 +73,7 @@
   font-weight: 600;
   font-size: var(--font-title2-size);
   line-height: var(--font-title2-line-height);
-  margin: 1rem 0 2rem;
+  margin: 1rem 0 1rem;
 
   @media (--media-min-small) {
     font-size: var(--font-title2-size);
