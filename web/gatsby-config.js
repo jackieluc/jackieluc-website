@@ -3,10 +3,23 @@ require('dotenv').config({
 })
 
 const path = require('path')
+const PortableText = require('@sanity/block-content-to-html')
+const Marked = require('marked')
 
 const clientConfig = require('./client-config')
 
 const isProd = process.env.NODE_ENV === 'production'
+
+// Helper functions for Portable Text from ./src/lib/helpers.js
+const { format, isFuture } = require('date-fns')
+
+function filterOutDocsPublishedInTheFuture ({ publishedAt }) {
+  return !isFuture(publishedAt)
+}
+
+function getBlogUrl (publishedAt, slug) {
+  return `/blog/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
+}
 
 const config = {
   siteMetadata: {
@@ -118,6 +131,70 @@ const config = {
               }
             )
         }
+      }
+    },
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allSanityPost } }) => {
+              return allSanityPost.edges
+                .filter(({ node }) => filterOutDocsPublishedInTheFuture(node))
+                .filter(({ node }) => node.slug)
+                .map(({ node }) => {
+                  const { title, publishedAt, slug, body, _rawExcerpt } = node
+                  const url = site.siteMetadata.siteUrl + getBlogUrl(publishedAt, slug.current)
+
+                  console.log('here')
+                  console.log(Marked(body))
+
+                  return {
+                    title,
+                    date: publishedAt,
+                    url,
+                    guid: url,
+                    description: PortableText({ blocks: _rawExcerpt }),
+                    custom_elements: [
+                      {
+                        'content:encoded': Marked(body)
+                      }
+                    ]
+                  }
+                })
+            },
+            query: `
+              {
+                allSanityPost(sort: {fields: publishedAt, order: DESC}) {
+                  edges {
+                    node {
+                      title
+                      slug {
+                        current
+                      }
+                      publishedAt
+                      _rawExcerpt
+                      body
+                    }
+                  }
+                }
+              }
+            `,
+            output: '/rss.xml'
+          }
+        ]
       }
     }
   ]
