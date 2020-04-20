@@ -158,9 +158,6 @@ const config = {
                   const { title, publishedAt, slug, body, _rawExcerpt } = node
                   const url = site.siteMetadata.siteUrl + getBlogUrl(publishedAt, slug.current)
 
-                  console.log('here')
-                  console.log(Marked(body))
-
                   return {
                     title,
                     date: publishedAt,
