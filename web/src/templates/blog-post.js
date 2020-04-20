@@ -5,6 +5,7 @@ import GraphQLErrorList from '../components/graphql-error-list'
 import BlogPost from '../components/blog-post'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
+import Footer from '../components/Footer'
 import { toPlainText } from '../lib/helpers'
 
 export const query = graphql`
@@ -72,6 +73,7 @@ const BlogPostTemplate = props => {
       )}
 
       {post && <BlogPost {...post} />}
+      <Footer />
     </Layout>
   )
 }

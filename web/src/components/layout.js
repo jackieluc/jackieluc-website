@@ -10,10 +10,6 @@ const Layout = ({ children, siteTitle, page }) => (
     <main className={styles.content}>
       {children}
     </main>
-    {/* <footer className={styles.footer}>
-      <div className={styles.footerWrapper}>v
-      </div>
-    </footer> */}
   </div>
 )
 
