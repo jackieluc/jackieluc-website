@@ -29,7 +29,7 @@ const config = {
       }
     },
     {
-      resolve: `gatsby-plugin-canonical-urls`,
+      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
       options: {
         siteUrl: `https://www.jackieluc.com`
       }
