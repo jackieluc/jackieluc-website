@@ -192,7 +192,8 @@ const config = {
                 }
               }
             `,
-            output: '/rss.xml'
+            output: '/rss.xml',
+            title: `Jackie Luc's Blog Website`
           }
         ]
       }
