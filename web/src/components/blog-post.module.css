@@ -12,6 +12,7 @@
   position: relative;
   background: var(--color-very-light-gray);
   padding-bottom: calc(9 / 16 * 100%);
+  margin-bottom: 2rem;
 
   @nest & img {
     display: block;
@@ -26,12 +27,6 @@
 }
 
 .grid {
-  @media (--media-min-medium) {
-    /* display: grid; */
-    /* grid-template-columns: 1fr; */
-    /* grid-column-gap: 2em; */
-    /* grid-template-columns: 5fr; */
-  }
 }
 
 .mainContent {
