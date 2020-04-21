@@ -28,10 +28,10 @@ const Footer = () => (
   <StyledFooter>
     <div className='footerWrapper'>
       <div>
-        &copy; {new Date().getFullYear()}, Jackie Luc. Built with <a href='https://www.sanity.io'>Sanity</a>{' '}
+        &copy; {new Date().getFullYear()}, Jackie Luc. Built with <a href='https://www.gatsbyjs.org' target='_blank'>Gatsby</a>{' '}
         &amp;
         {` `}
-        <a href='https://www.gatsbyjs.org'>Gatsby</a>
+        <a href='https://www.sanity.io' target='_blank'>Sanity</a>
       </div>
     </div>
   </StyledFooter>
