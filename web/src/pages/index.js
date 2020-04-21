@@ -152,7 +152,7 @@ const About = styled.div`
 const FeaturedBlogWrapper = styled.div`
   max-width: 600px;
   border: #ffffff solid 1px;
-  padding: 5px;
+  padding: 1rem;
   border-radius: 4px;
   
   -webkit-transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;

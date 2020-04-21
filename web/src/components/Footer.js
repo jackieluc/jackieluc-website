@@ -21,10 +21,6 @@ const StyledFooter = styled.footer`
     max-width: 960px;
     padding: 4.5em 1.5em 1.5em;
     margin: 0 auto 3.5rem;
-
-    @media (--media-min-small) {
-      padding: 6em 2em 2em;
-    }
   }
 `
 

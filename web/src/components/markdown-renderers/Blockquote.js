@@ -4,9 +4,9 @@ import styled from 'styled-components'
 const StyledBlockquote = styled.blockquote`
   font-family: 'Lora';
   margin: 0;
-  padding-left: 30px;
-  color: #697a90; // gray from ../../styles/custom-properties.css
-  border-left: 5px solid #697a90;
+  padding-left: 20px;
+  color: var(--color-gray);
+  border-left: 2px solid #697a90;
 `
 
 class Blockquote extends PureComponent {
@@ -14,9 +14,13 @@ class Blockquote extends PureComponent {
     const { children } = this.props
 
     return (
-      <StyledBlockquote>
-        { children }
-      </StyledBlockquote>
+      <div style={{ paddingLeft: '10px' }}>
+        <StyledBlockquote>
+          <em>
+            { children }
+          </em>
+        </StyledBlockquote>
+      </div>
     )
   }
 }
