@@ -24,7 +24,13 @@
   grid-row-gap: 2em;
 }
 
-.browseMoreNav {
+.blogList {
+  padding: 1rem;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+}
+
+/* .browseMoreNav {
   composes: small from './typography.module.css';
   margin-top: 2rem;
   text-align: center;
@@ -41,4 +47,4 @@
       }
     }
   }
-}
+} */

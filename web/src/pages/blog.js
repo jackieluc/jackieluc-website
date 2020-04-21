@@ -95,7 +95,7 @@ const BlogPreviewPage = props => {
   }
 
   return (
-    <Layout>
+    <Layout page='blog-post'>
       <SEO
         title={site.title}
         description={site.description}
