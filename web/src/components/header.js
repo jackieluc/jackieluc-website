@@ -1,10 +1,11 @@
 import { Link } from 'gatsby'
 import React from 'react'
 import { createGlobalStyle } from 'styled-components'
-// import Icon from './icon'
-// import { cn } from '../lib/helpers'
 
 import styles from './header.module.css'
+import externalLinkIcon from '../assets/icons/external-link.svg'
+// import Icon from './icon'
+// import { cn } from '../lib/helpers'
 
 const GlobalStyle = createGlobalStyle`
   :root {
@@ -39,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
 
   /* Add external link icon */
   a[target="_blank"]::after {
-    content: url(../assets/icons/external-link.svg);
+    content: url(${externalLinkIcon});
     display: inline-block;
     margin-left: 0.2em;
     width: 1em;

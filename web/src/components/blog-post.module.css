@@ -76,10 +76,6 @@
 
 .tags {
   composes: base from '../styles/custom-properties.css';
-  
-  @nest & li {
-    margin: 3px;
-  }
 
   @nest & li:last-child {
     margin-left: 1rem;
