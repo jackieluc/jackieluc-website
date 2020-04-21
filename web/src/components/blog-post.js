@@ -10,6 +10,7 @@ import CodeBlock from './markdown-renderers/CodeBlock'
 import InlineCode from './markdown-renderers/InlineCode'
 import RenderLink from './markdown-renderers/RenderLink'
 import Blockquote from './markdown-renderers/Blockquote'
+import ThematicBreak from './markdown-renderers/ThematicBreak'
 
 import styles from './blog-post.module.css'
 
@@ -68,7 +69,8 @@ function BlogPost (props) {
                   code: CodeBlock,
                   inlineCode: InlineCode,
                   link: RenderLink,
-                  blockquote: Blockquote
+                  blockquote: Blockquote,
+                  thematicBreak: ThematicBreak
                 }}
               />
             }
