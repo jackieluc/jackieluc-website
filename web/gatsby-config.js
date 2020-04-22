@@ -194,6 +194,28 @@ const config = {
           }
         ]
       }
+    },
+    {
+      resolve: 'gatsby-plugin-robots-txt',
+      options: {
+        host: 'https://www.jackieluc.com',
+        sitemap: 'https://www.jackieluc.com/sitemap.xml',
+        env: {
+          production: {
+            policy: [{ userAgent: '*', allow: '/' }]
+          },
+          'branch-deploy': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: '*', disallow: ['/'] }],
+            sitemap: null,
+            host: null
+          }
+        }
+      }
     }
   ]
 }
