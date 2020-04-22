@@ -21,6 +21,15 @@ function getBlogUrl (publishedAt, slug) {
   return `/blog/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
 }
 
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = 'https://jackieluc-website.netlify.app',
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV
+} = process.env
+const isNetlifyProduction = NETLIFY_ENV === 'production'
+const realSiteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+
 const config = {
   siteMetadata: {
     title: `Jackie Luc`,
@@ -198,11 +207,15 @@ const config = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://www.jackieluc.com',
-        sitemap: 'https://www.jackieluc.com/sitemap.xml',
+        host: realSiteUrl,
+        sitemap: `${realSiteUrl}/sitemap.xml`,
+        resolveEnv: () => NETLIFY_ENV,
         env: {
           production: {
             policy: [{ userAgent: '*', allow: '/' }]
+          },
+          development: {
+            policy: [{ userAgent: '*', disallow: ['/'] }]
           },
           'branch-deploy': {
             policy: [{ userAgent: '*', disallow: ['/'] }],
