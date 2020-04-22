@@ -23,12 +23,12 @@ function getBlogUrl (publishedAt, slug) {
 
 const {
   NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://jackieluc-website.netlify.app',
+  URL: NETLIFY_SITE_URL = 'https://www.jackieluc.com',
   DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
   CONTEXT: NETLIFY_ENV = NODE_ENV
 } = process.env
 const isNetlifyProduction = NETLIFY_ENV === 'production'
-const realSiteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+const siteUrlForRobots = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
 
 const config = {
   siteMetadata: {
@@ -207,8 +207,8 @@ const config = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: realSiteUrl,
-        sitemap: `${realSiteUrl}/sitemap.xml`,
+        host: siteUrlForRobots,
+        sitemap: `${siteUrlForRobots}/sitemap.xml`,
         resolveEnv: () => NETLIFY_ENV,
         env: {
           production: {
