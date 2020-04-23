@@ -164,8 +164,9 @@ const config = {
                 .filter(({ node }) => filterOutDocsPublishedInTheFuture(node))
                 .filter(({ node }) => node.slug)
                 .map(({ node }) => {
-                  const { title, publishedAt, slug, body, _rawExcerpt } = node
+                  const { title, slug, publishedAt, tags, _rawExcerpt, body } = node
                   const url = site.siteMetadata.siteUrl + getBlogUrl(publishedAt, slug.current)
+                  const categories = node.tags.map(tag => tag.title)
 
                   return {
                     title,
@@ -173,6 +174,7 @@ const config = {
                     url,
                     guid: url,
                     description: PortableText({ blocks: _rawExcerpt }),
+                    categories: tags.map(tag => tag.title),
                     custom_elements: [
                       {
                         'content:encoded': Marked(body)
@@ -191,6 +193,9 @@ const config = {
                         current
                       }
                       publishedAt
+                      tags {
+                        title
+                      }
                       _rawExcerpt
                       body
                     }

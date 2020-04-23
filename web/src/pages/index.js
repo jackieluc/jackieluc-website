@@ -171,6 +171,7 @@ const HeroImage = styled.div`
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  opacity: 0.9;
 
   display: grid;
   grid-template-columns: 1fr auto auto 1fr;
