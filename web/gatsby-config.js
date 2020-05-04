@@ -11,14 +11,14 @@ const clientConfig = require('./client-config')
 const isProd = process.env.NODE_ENV === 'production'
 
 // Helper functions for Portable Text from ./src/lib/helpers.js
-const { format, isFuture } = require('date-fns')
+const { isFuture } = require('date-fns')
 
 function filterOutDocsPublishedInTheFuture ({ publishedAt }) {
   return !isFuture(publishedAt)
 }
 
-function getBlogUrl (publishedAt, slug) {
-  return `/blog/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
+function getBlogUrl (slug) {
+  return `/blog/${slug.current || slug}/`
 }
 
 const {
@@ -33,7 +33,7 @@ const siteUrlForRobots = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY
 const config = {
   siteMetadata: {
     title: `Jackie Luc`,
-    description: `Jackie Luc is a software developer on a life-long journey to learn how to create better web experiences.`,
+    description: `Embark on a life-long journey to grow your career in software development and create great web experiences with me.`,
     author: `jackieluc`,
     siteUrl: `https://www.jackieluc.com`
   },
@@ -165,8 +165,7 @@ const config = {
                 .filter(({ node }) => node.slug)
                 .map(({ node }) => {
                   const { title, slug, publishedAt, tags, _rawExcerpt, body } = node
-                  const url = site.siteMetadata.siteUrl + getBlogUrl(publishedAt, slug.current)
-                  const categories = node.tags.map(tag => tag.title)
+                  const url = site.siteMetadata.siteUrl + getBlogUrl(slug.current)
 
                   return {
                     title,
