@@ -57,6 +57,7 @@ function BlogPost (props) {
                     .auto('format')
                     .url()}
                   alt={mainImage.alt}
+                  title={mainImage.alt}
                 />
               </div>
             )}

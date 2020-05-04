@@ -1,4 +1,4 @@
-import { format, isFuture } from 'date-fns'
+import { isFuture } from 'date-fns'
 import calculateReadTime from 'reading-time'
 
 export function cn (...args) {
