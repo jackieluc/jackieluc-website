@@ -19,8 +19,12 @@ const StyledFooter = styled.footer`
   .footerWrapper {
     box-sizing: border-box;
     max-width: 960px;
-    padding: 4.5em 1.5em 1.5em;
-    margin: 0 auto 3.5rem;
+    margin: 4rem auto;
+    padding-bottom: 3rem;
+
+    @media(min-width: 450px) {
+      padding-bottom: unset;
+    }
   }
 `
 
