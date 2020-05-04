@@ -94,19 +94,21 @@ const BlogPreviewPage = props => {
     )
   }
 
+  const blogTitle = 'Latest thoughts'
+  const blogDescription = `Latest thoughts for software developers and people looking to grow their careers.`
+
   return (
     <Layout page='blog-post'>
       <SEO
-        title={site.title}
-        description={site.description}
+        title={blogTitle}
+        description={blogDescription}
         keywords={site.keywords}
       />
       <Container>
         {postNodes && (
           <BlogPostPreviewList
-            title='Latest thoughts'
+            title={blogTitle}
             nodes={postNodes}
-            browseMoreHref='/archive/'
           />
         )}
       </Container>
