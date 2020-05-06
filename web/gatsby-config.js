@@ -34,7 +34,7 @@ const config = {
   siteMetadata: {
     title: `Jackie Luc`,
     description: `Embark on a life-long journey to grow your career in software development and create great web experiences with me.`,
-    author: `jackieluc`,
+    author: `Jackie Luc`,
     siteUrl: `https://www.jackieluc.com`
   },
   plugins: [
