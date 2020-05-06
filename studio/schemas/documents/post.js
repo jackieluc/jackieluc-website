@@ -1,5 +1,3 @@
-import { format } from 'date-fns'
-
 export default {
   name: 'post',
   type: 'document',
@@ -40,16 +38,6 @@ export default {
         'This ends up on summary pages, on Google, when people share your post in social media.'
     },
     {
-      name: 'authors',
-      title: 'Authors',
-      type: 'array',
-      of: [
-        {
-          type: 'authorReference'
-        }
-      ]
-    },
-    {
       name: 'tags',
       type: 'array',
       title: 'Tags',
@@ -67,6 +55,11 @@ export default {
       // type: 'bodyPortableText',
       type: 'markdown',
       title: 'Body'
+    },
+    {
+      name: 'sickPick',
+      type: 'markdown',
+      title: 'Sick Pick'
     }
   ],
   orderings: [
@@ -107,8 +100,7 @@ export default {
       media: 'mainImage'
     },
     prepare ({ title = 'No title', publishedAt, slug = {}, media }) {
-      const dateSegment = format(publishedAt, 'YYYY/MM')
-      const path = `/${dateSegment}/${slug.current}/`
+      const path = `/${slug.current}/`
       return {
         title,
         media,

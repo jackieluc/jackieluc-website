@@ -12,10 +12,12 @@ import RenderLink from './markdown-renderers/RenderLink'
 import Blockquote from './markdown-renderers/Blockquote'
 import ThematicBreak from './markdown-renderers/ThematicBreak'
 
+import SickPick from './SickPick'
+
 import styles from './blog-post.module.css'
 
 function BlogPost (props) {
-  const { body, tags, title, mainImage, publishedAt } = props
+  const { body, tags, title, mainImage, publishedAt, sickPick } = props
   return (
     <article className={styles.root}>
       <Container>
@@ -74,6 +76,11 @@ function BlogPost (props) {
                   thematicBreak: ThematicBreak
                 }}
               />
+            }
+            {sickPick &&
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <SickPick sickPick={sickPick} />
+              </div>
             }
           </div>
         </div>
