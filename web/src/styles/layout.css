@@ -14,8 +14,6 @@ body {
 }
 
 html,
-body,
-body > div,
-body > div > div {
+body {
   height: 100%;
 }
