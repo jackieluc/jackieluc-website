@@ -58,3 +58,9 @@ export function toPlainText (blocks) {
 export function getReadingTime (text) {
   return calculateReadTime(text).text
 }
+
+export function generateSlug (text) {
+  return text.toLowerCase()
+    .replace(/[^\w ]+/g, '')
+    .replace(/ +/g, '-')
+}
