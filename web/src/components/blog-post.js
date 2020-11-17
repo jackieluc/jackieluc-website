@@ -11,6 +11,7 @@ import InlineCode from './markdown-renderers/InlineCode'
 import RenderLink from './markdown-renderers/RenderLink'
 import Blockquote from './markdown-renderers/Blockquote'
 import ThematicBreak from './markdown-renderers/ThematicBreak'
+import Image from './markdown-renderers/Image'
 
 import SickPick from './SickPick'
 
@@ -73,7 +74,8 @@ function BlogPost (props) {
                   inlineCode: InlineCode,
                   link: RenderLink,
                   blockquote: Blockquote,
-                  thematicBreak: ThematicBreak
+                  thematicBreak: ThematicBreak,
+                  image: Image
                 }}
               />
             }
