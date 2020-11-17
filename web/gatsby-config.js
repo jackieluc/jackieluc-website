@@ -239,7 +239,7 @@ const config = {
 
 // Set Google Analytics in 'production' mode
 if (isProd) {
-  config.plugins.push(
+  config.plugins.unshift(
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
