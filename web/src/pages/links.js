@@ -3,7 +3,6 @@ import React from 'react'
 import Layout from '../components/layout'
 import SEO from '../components/seo'
 import styled from 'styled-components'
-import { OutboundLink } from 'gatsby-plugin-google-analytics'
 
 const Container = styled.div`
   display: flex;
@@ -32,7 +31,7 @@ const LinkWrapper = styled.div`
   border: 2px solid var(--color-black);
 `
 
-const StyledLink = styled(OutboundLink)`
+const StyledLink = styled.a`
   display: inline-flex;
   -webkit-box-align: center;
   align-items: center;

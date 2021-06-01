@@ -28,7 +28,6 @@
     "eslint-plugin-standard": "^4.0.0",
     "gatsby": "^2.20.29",
     "gatsby-plugin-feed": "^2.4.3",
-    "gatsby-plugin-google-analytics": "^2.2.4",
     "gatsby-plugin-manifest": "^2.3.4",
     "gatsby-plugin-postcss": "^2.0.7",
     "gatsby-plugin-react-helmet": "^3.0.12",
@@ -52,6 +51,7 @@
   },
   "dependencies": {
     "gatsby-image": "^2.0.41",
+    "gatsby-plugin-plausible": "0.0.7",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",

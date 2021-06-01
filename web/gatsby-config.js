@@ -39,6 +39,12 @@ const config = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-plausible`,
+      options: {
+        domain: `jackieluc.com`
+      }
+    },
+    {
       resolve: `gatsby-plugin-manifest`,
       options: {
         name: `Jackie Luc`,
@@ -235,22 +241,6 @@ const config = {
       }
     }
   ]
-}
-
-// Set Google Analytics in 'production' mode
-if (isProd) {
-  config.plugins.unshift(
-    {
-      resolve: `gatsby-plugin-google-analytics`,
-      options: {
-        trackingId: 'UA-105322505-1',
-        head: true,
-        respectDNT: true,
-        siteSpeedSampleRate: 10, // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#siteSpeedSampleRate
-        cookieDomain: 'jackieluc.com'
-      }
-    }
-  )
 }
 
 module.exports = config
