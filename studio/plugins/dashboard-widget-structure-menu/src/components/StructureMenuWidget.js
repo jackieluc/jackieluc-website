@@ -2,7 +2,7 @@ import { Link } from 'part:@sanity/base/router'
 import FolderIcon from 'part:@sanity/base/folder-icon'
 import FileIcon from 'part:@sanity/base/file-icon'
 import React from 'react'
-import styles from './StructureMenuWidget.css'
+import * as styles from './StructureMenuWidget.css'
 
 function getIconComponent (item) {
   if (item.icon) return item.icon

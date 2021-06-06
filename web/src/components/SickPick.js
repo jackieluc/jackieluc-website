@@ -7,7 +7,7 @@ import Paragraph from './markdown-renderers/Paragraph'
 import RenderLink from './markdown-renderers/RenderLink'
 import Blockquote from './markdown-renderers/Blockquote'
 
-import styles from './typography.module.css'
+import * as styles from './typography.module.css'
 
 const StyledSickPick = styled.section`
   margin-top: 4em;
@@ -35,8 +35,8 @@ const SickPick = ({ sickPick }) => (
     </small>
     <hr />
     <ReactMarkdown
-      source={sickPick}
-      renderers={{
+      children={sickPick}
+      components={{
         heading: Heading,
         paragraph: Paragraph,
         link: RenderLink,

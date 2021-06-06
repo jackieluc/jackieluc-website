@@ -2,7 +2,7 @@ import { Link } from 'gatsby'
 import React from 'react'
 import { createGlobalStyle } from 'styled-components'
 
-import styles from './header.module.css'
+import * as styles from './header.module.css'
 import externalLinkIcon from '../assets/icons/external-link.svg'
 // import Icon from './icon'
 // import { cn } from '../lib/helpers'

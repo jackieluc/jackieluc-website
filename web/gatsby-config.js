@@ -63,6 +63,9 @@ const config = {
       }
     },
     'gatsby-plugin-postcss',
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`, // Needed for dynamic images
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
