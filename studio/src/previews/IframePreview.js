@@ -2,7 +2,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { format } from 'date-fns'
-import styles from './IframePreview.module.css'
+import * as styles from './IframePreview.module.css'
 
 /**
  * Explore more examples of previews:

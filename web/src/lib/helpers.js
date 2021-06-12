@@ -1,4 +1,4 @@
-import { isFuture } from 'date-fns'
+import { isFuture, parseISO } from 'date-fns'
 import calculateReadTime from 'reading-time'
 
 export function cn (...args) {
@@ -15,7 +15,7 @@ export function filterOutDocsWithoutSlugs ({ slug }) {
 }
 
 export function filterOutDocsPublishedInTheFuture ({ publishedAt }) {
-  return !isFuture(publishedAt)
+  return !isFuture(parseISO(publishedAt))
 }
 
 export function getBlogUrl (slug) {

@@ -1,4 +1,4 @@
-import { format, distanceInWords, differenceInDays } from 'date-fns'
+import { format, formatDistance, differenceInDays, parseISO } from 'date-fns'
 import React from 'react'
 import { buildImageObj, getReadingTime } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
@@ -14,7 +14,7 @@ import ThematicBreak from './markdown-renderers/ThematicBreak'
 
 import SickPick from './SickPick'
 
-import styles from './blog-post.module.css'
+import * as styles from './blog-post.module.css'
 
 function BlogPost (props) {
   const { body, tags, title, mainImage, publishedAt, sickPick } = props
@@ -28,8 +28,8 @@ function BlogPost (props) {
               {publishedAt && (
                 <div className={styles.publishedAt}>
                   {differenceInDays(new Date(publishedAt), new Date()) > 3
-                    ? distanceInWords(new Date(publishedAt), new Date())
-                    : format(new Date(publishedAt), 'MMMM Do, YYYY')}
+                    ? formatDistance(new Date(publishedAt), new Date())
+                    : format(parseISO(publishedAt), 'MMMM do, yyyy')}
                 </div>
               )}
               {body && (
@@ -65,8 +65,8 @@ function BlogPost (props) {
             )}
             {body &&
               <ReactMarkdown
-                source={body}
-                renderers={{
+                children={body}
+                components={{
                   heading: Heading,
                   paragraph: Paragraph,
                   code: CodeBlock,

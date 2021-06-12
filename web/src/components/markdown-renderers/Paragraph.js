@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import styles from '../typography.module.css'
+import * as styles from '../typography.module.css'
 
 class Paragraph extends PureComponent {
   render () {

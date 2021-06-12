@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 
-import styles from '../../components/typography.module.css'
+import * as styles from '../../components/typography.module.css'
 
 class Heading extends PureComponent {
   render () {

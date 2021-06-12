@@ -8,61 +8,57 @@ const Marked = require('marked')
 
 const clientConfig = require('./client-config')
 
-const isProd = process.env.NODE_ENV === 'production'
+const { NODE_ENV } = process.env
+const isProd = NODE_ENV === 'production'
+const siteUrl = 'https://www.jackieluc.com'
 
 // Helper functions for Portable Text from ./src/lib/helpers.js
-const { isFuture } = require('date-fns')
+const { isFuture, parseISO } = require('date-fns')
 
 function filterOutDocsPublishedInTheFuture ({ publishedAt }) {
-  return !isFuture(publishedAt)
+  return !isFuture(parseISO(publishedAt))
 }
 
 function getBlogUrl (slug) {
   return `/blog/${slug.current || slug}/`
 }
 
-const {
-  NODE_ENV,
-  URL: NETLIFY_SITE_URL = 'https://www.jackieluc.com',
-  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
-  CONTEXT: NETLIFY_ENV = NODE_ENV
-} = process.env
-const isNetlifyProduction = NETLIFY_ENV === 'production'
-const siteUrlForRobots = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
-
 const config = {
   siteMetadata: {
-    title: `Jackie Luc`,
-    description: `Embark on a life-long journey to grow your career in software development and create great web experiences with me.`,
-    author: `Jackie Luc`,
-    siteUrl: `https://www.jackieluc.com`
+    title: 'Jackie Luc',
+    description: 'Embark on a life-long journey to grow your career in software development and create great web experiences with me.',
+    author: 'Jackie Luc',
+    siteUrl: siteUrl
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-plausible`,
+      resolve: 'gatsby-plugin-plausible',
       options: {
-        domain: `jackieluc.com`
+        domain: 'jackieluc.com'
       }
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: 'gatsby-plugin-manifest',
       options: {
-        name: `Jackie Luc`,
-        short_name: `Jackie Luc`,
-        start_url: `/`,
-        background_color: `#FFFFFF`,
-        theme_color: `#6C70AD`,
-        display: `minimal-ui`,
-        icon: `src/assets/icons/favicon.png` // This path is relative to the root of the site.
+        name: 'Jackie Luc',
+        short_name: 'Jackie Luc',
+        start_url: '/',
+        background_color: '#FFFFFF',
+        theme_color: '#6C70AD',
+        display: 'minimal-ui',
+        icon: 'src/assets/icons/favicon.png' // This path is relative to the root of the site.
       }
     },
     {
-      resolve: `gatsby-plugin-react-helmet-canonical-urls`,
+      resolve: 'gatsby-plugin-react-helmet-canonical-urls',
       options: {
-        siteUrl: `https://www.jackieluc.com`
+        siteUrl: 'https://www.jackieluc.com'
       }
     },
     'gatsby-plugin-postcss',
+    'gatsby-plugin-image',
+    'gatsby-plugin-sharp',
+    'gatsby-transformer-sharp', // Needed for dynamic images
     'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-source-filesystem',
@@ -101,55 +97,9 @@ const config = {
         }
       }
     },
+    'gatsby-plugin-sitemap',
     {
-      resolve: 'gatsby-plugin-sitemap',
-      options: {
-        exclude: ['/tags/*'],
-        query: `
-          {
-            site {
-              siteMetadata {
-                siteUrl
-              }
-            }
-            allSitePage {
-              edges {
-                node {
-                  path
-                }
-              }
-            }
-          }
-        `,
-        serialize: ({ site, allSitePage }) => {
-          return allSitePage.edges
-            .filter(({ node }) => (
-              node.path.match(/^\/blog\/[a-zA-Z0-9\/\-]+/gi)
-            ))
-            .map(({ node }) => {
-              return {
-                url: site.siteMetadata.siteUrl + node.path,
-                changefreq: 'daily',
-                priority: 0.7
-              }
-            })
-            .concat(
-              {
-                url: site.siteMetadata.siteUrl + '/',
-                changeFreq: 'daily',
-                priority: 0.5
-              },
-              {
-                url: site.siteMetadata.siteUrl + '/blog/',
-                changeFreq: 'daily',
-                priority: 0.5
-              }
-            )
-        }
-      }
-    },
-    {
-      resolve: `gatsby-plugin-feed`,
+      resolve: 'gatsby-plugin-feed',
       options: {
         query: `
           {
@@ -209,7 +159,7 @@ const config = {
               }
             `,
             output: '/rss.xml',
-            title: `Jackie Luc's Blog Website`
+            title: 'Jackie Luc\'s Blog Website'
           }
         ]
       }
@@ -217,25 +167,15 @@ const config = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: siteUrlForRobots,
-        sitemap: `${siteUrlForRobots}/sitemap.xml`,
-        resolveEnv: () => NETLIFY_ENV,
+        host: siteUrl,
+        sitemap: `${siteUrl}/sitemap/sitemap-0.xml`,
+        resolveEnv: () => NODE_ENV,
         env: {
           production: {
             policy: [{ userAgent: '*', allow: '/' }]
           },
           development: {
             policy: [{ userAgent: '*', disallow: ['/'] }]
-          },
-          'branch-deploy': {
-            policy: [{ userAgent: '*', disallow: ['/'] }],
-            sitemap: null,
-            host: null
-          },
-          'deploy-preview': {
-            policy: [{ userAgent: '*', disallow: ['/'] }],
-            sitemap: null,
-            host: null
           }
         }
       }
