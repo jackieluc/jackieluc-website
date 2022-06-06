@@ -1,8 +1,11 @@
-# Mac files
-.DS_Store
+node_modules
 
-# Dependency directories
-/node_modules
+.cache
+.env
+.vercel
+.output
 
-# lerna files
-/lerna-debug.log
+/build/
+/public/build
+/api/index.js
+/api/index.js.map

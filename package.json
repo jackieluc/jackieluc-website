@@ -1,21 +1,28 @@
 {
   "private": true,
-  "name": "jackieluc-website",
-  "version": "0.2.0",
+  "sideEffects": false,
   "scripts": {
-    "build": "lerna run build --parallel",
-    "dev": "lerna run dev --parallel",
-    "format": "lerna run format",
-    "build-studio": "lerna bootstrap && cd studio && npm run build",
-    "build-web": "lerna bootstrap && (cd studio && SANITY_AUTH_TOKEN=$SANITY_DEPLOY_STUDIO_TOKEN npm run graphql-deploy) && (cd web && npm run build)",
-    "graphql-deploy": "lerna run graphql-deploy",
-    "sanity-deploy": "lerna run sanity-deploy",
-    "lint": "lerna run lint",
-    "postinstall": "lerna bootstrap",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "remix build",
+    "dev": "remix dev"
+  },
+  "dependencies": {
+    "@remix-run/node": "^1.5.1",
+    "@remix-run/react": "^1.5.1",
+    "@remix-run/vercel": "^1.5.1",
+    "@vercel/node": "^2.0.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@sanity/cli": "^2.10.5",
-    "lerna": "^4.0.0"
+    "@remix-run/dev": "^1.5.1",
+    "@remix-run/eslint-config": "^1.5.1",
+    "@remix-run/serve": "^1.5.1",
+    "@types/react": "^17.0.45",
+    "@types/react-dom": "^17.0.17",
+    "eslint": "^8.15.0",
+    "typescript": "^4.6.4"
+  },
+  "engines": {
+    "node": ">=14"
   }
 }

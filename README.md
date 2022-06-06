@@ -1,25 +1,34 @@
-# Personal Website
+# Welcome to Remix!
 
-_Fully customizable blog template with a React.js front-end._
+- [Remix Docs](https://remix.run/docs)
 
-## Quick start
+## Deployment
 
-1. Clone this repository
-2. `npm install` in the project root folder on local
-3. `npm run dev` to start the studio and frontend locally
-   - Your studio should be running on [http://localhost:3333](http://localhost:3333)
-   - Your frontend should be running on [http://localhost:8000](http://localhost:8000)
-4. `npm run build` to build to production locally
+After having run the `create-remix` command and selected "Vercel" as a deployment target, you only need to [import your Git repository](https://vercel.com/new) into Vercel, and it will be deployed.
 
-## Enable real-time content preview on development
+If you'd like to avoid using a Git repository, you can also deploy the directory by running [Vercel CLI](https://vercel.com/cli):
 
-1. Go to your [project’s API settings on manage.sanity.io](https://manage.sanity.io/projects/xgteyr15/settings/api) and create a token with read rights.
-2. Rename `.env.development.template` to `.env.development` and paste in the token: `SANITY_READ_TOKEN="yourTokenHere"`.
-3. Restart the development server (`ctrl + C` and `npm run dev`).
+```sh
+npm i -g vercel
+vercel
+```
 
-If you want to turn off preview you can set `watchMode: false` in gatsby-config.js. If you just want to preview published changes you can set `overlayDrafts: false` in gatsby-config.js.
+It is generally recommended to use a Git repository, because future commits will then automatically be deployed by Vercel, through its [Git Integration](https://vercel.com/docs/concepts/git).
 
-## Deploy changes
+## Development
 
-- Netlify automatically deploys new changes commited to master on GitHub.
-- GtiHub Actions automatically deploys new changes committed to master on GitHub to deploy Sanity Studio.
+To run your Remix app locally, make sure your project's local dependencies are installed:
+
+```sh
+npm install
+```
+
+Afterwards, start the Remix development server like so:
+
+```sh
+npm run dev
+```
+
+Open up [http://localhost:3000](http://localhost:3000) and you should be ready to go!
+
+If you're used to using the `vercel dev` command provided by [Vercel CLI](https://vercel.com/cli) instead, you can also use that, but it's not needed.
