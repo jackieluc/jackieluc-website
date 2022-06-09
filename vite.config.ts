@@ -9,6 +9,23 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     globals: true,
+    exclude: [
+      // default
+      'node_modules',
+      'dist',
+      '.idea',
+      '.git',
+      '.cache',
+      // misc.
+      '.vscode',
+      'coverage',
+      'public',
+      // playwright e2e
+      'tests',
+      'test-results',
+      'playwright-report',
+      '/playwright',
+    ],
     environment: 'happy-dom',
     setupFiles: ['./test/setup-test-env.ts'],
     coverage: {
