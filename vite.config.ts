@@ -21,7 +21,7 @@ export default defineConfig({
       'coverage',
       'public',
       // playwright e2e
-      'tests',
+      'e2e',
       'test-results',
       'playwright-report',
       '/playwright',
