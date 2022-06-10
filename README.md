@@ -4,7 +4,7 @@
 
 ## Project Setup
 
-Largely inspired by Remix's Indie Stack, but with simpler.
+Largely inspired by Remix's Indie Stack, but simpler.
 
 - create-remix@latest
 - Tailwindcss
