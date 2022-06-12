@@ -24,7 +24,7 @@ export default defineConfig({
       'e2e',
       'test-results',
       'playwright-report',
-      '/playwright',
+      'playwright',
     ],
     environment: 'happy-dom',
     setupFiles: ['./test/setup-test-env.ts'],
