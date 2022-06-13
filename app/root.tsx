@@ -8,7 +8,9 @@ import styles from './tailwind.css';
 
 export const links: LinksFunction = () => [
   { rel: 'icon', href: favicon },
+  // tailwind
   { rel: 'stylesheet', href: styles },
+  // google fonts
   {
     rel: 'preconnect',
     href: 'https://fonts.googleapis.com',
