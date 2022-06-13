@@ -1,30 +1,22 @@
-import React from 'react';
 import { json, LoaderFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
-import renderMarkdoc from '~/utils/markdoc';
-
-import Markdoc from '@markdoc/markdoc';
-import Callout from '~/components/markdoc/tags/callout';
+import { buildMarkdocContent, renderMarkdoc } from '~/utils/markdoc';
 
 export const loader: LoaderFunction = async () => {
-  let content = renderMarkdoc('test.mdoc');
+  let blogContent = buildMarkdocContent('test.mdoc');
 
-  return json(content);
+  return json(blogContent);
 };
 
 export default function About() {
-  const content = useLoaderData();
+  const blogContent = useLoaderData();
 
-  let doc = Markdoc.renderers.react(content, React, {
-    components: {
-      Callout: Callout,
-    },
-  });
+  let markdoc = renderMarkdoc(blogContent);
 
   return (
     <div>
       <h1>About</h1>
-      {doc}
+      {markdoc}
     </div>
   );
 }
