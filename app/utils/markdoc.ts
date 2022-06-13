@@ -13,9 +13,8 @@ const tags = {
 };
 
 export function buildMarkdocContent(file: string): RenderableTreeNode {
-  let blogPath = path.join(__dirname, '../app/blog-posts');
-  let fullPath = path.resolve(`${blogPath}/${file}`);
-  const markdoc = fs.readFileSync(fullPath, 'utf8');
+  let blogPostPath = path.join(__dirname, '..', 'app', 'blog-posts', file);
+  const markdoc = fs.readFileSync(blogPostPath, 'utf8');
 
   const ast = Markdoc.parse(markdoc);
   const content = Markdoc.transform(ast, { tags });
