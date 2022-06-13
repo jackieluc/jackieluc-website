@@ -69,7 +69,7 @@ export default function App() {
       <body className='container mx-auto font-poppins lg:px-16'>
         <div className='flex'>
           <SideNav />
-          <main className='flex-1'>
+          <main className='flex-1 lg:px-12 lg:pt-32'>
             <Outlet />
           </main>
         </div>
@@ -92,7 +92,7 @@ export function CatchBoundary() {
       <body className='container mx-auto font-poppins lg:px-16'>
         <div className='flex'>
           <SideNav />
-          <main className='flex-1'>
+          <main className='flex-1 lg:px-12 lg:pt-32'>
             <h1 className='text-3xl'>
               {caught.status} {caught.statusText}
             </h1>
