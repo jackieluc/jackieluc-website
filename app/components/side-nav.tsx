@@ -20,7 +20,7 @@ export default function SideNav() {
           <Link to='/uses'>Uses</Link>
         </li>
         <li>
-          <Link to='/products-i-like'>Products I Like</Link>
+          <Link to='/things-i-like'>Things I Like</Link>
         </li>
       </ul>
     </nav>
