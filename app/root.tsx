@@ -8,6 +8,19 @@ import styles from './tailwind.css';
 export const links: LinksFunction = () => [
   { rel: 'icon', href: favicon },
   { rel: 'stylesheet', href: styles },
+  {
+    rel: 'preconnect',
+    href: 'https://fonts.googleapis.com',
+  },
+  {
+    rel: 'preconnect',
+    href: 'https://fonts.gstatic.com',
+    crossOrigin: 'anonymous',
+  },
+  {
+    rel: 'stylesheet',
+    href: 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap',
+  },
 ];
 
 // !TODO: add SEO images
