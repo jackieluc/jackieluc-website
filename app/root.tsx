@@ -79,3 +79,25 @@ export default function App() {
   );
 }
 
+export function CatchBoundary() {
+  const caught = useCatch();
+  return (
+    <html lang='en'>
+      <head>
+        <Meta />
+        <Links />
+      </head>
+      <body className='container mx-auto font-poppins lg:px-16'>
+        <div className='flex'>
+          <SideNav />
+          <main className='flex-1'>
+            <h1 className='text-3xl'>
+              {caught.status} {caught.statusText}
+            </h1>
+          </main>
+        </div>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
