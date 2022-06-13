@@ -12,6 +12,11 @@ const tags = {
   },
 };
 
+/**
+ * Builds the blog post markdoc as a markdoc content
+ * @param file Blog post file name
+ * @returns RenderableTreeNode - the content to be rendered by markdoc
+ */
 export function buildMarkdocContent(file: string): RenderableTreeNode {
   let blogPostPath = path.join(__dirname, '..', 'app', 'blog-posts', file);
   const markdoc = fs.readFileSync(blogPostPath, 'utf8');
@@ -21,6 +26,11 @@ export function buildMarkdocContent(file: string): RenderableTreeNode {
   return content;
 }
 
+/**
+ * Renders the markdoc content on the client side. Cannot run this on the server.
+ * @param content The markdoc content to render
+ * @returns React.ReactNode - the actual React-rendered component
+ */
 export function renderMarkdoc(content: RenderableTreeNode): React.ReactNode {
   return Markdoc.renderers.react(content, React, {
     components: {
