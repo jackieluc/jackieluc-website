@@ -8,11 +8,14 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "daisyui": "^2.20.0",
     "next": "latest",
     "react": "18.0.0",
-    "react-dom": "18.0.0"
+    "react-dom": "18.0.0",
+    "react-icons": "^4.4.0"
   },
   "devDependencies": {
+    "@tailwindcss/typography": "^0.5.4",
     "@testing-library/react": "^12.1.4",
     "@types/node": "17.0.23",
     "@types/react": "17.0.43",

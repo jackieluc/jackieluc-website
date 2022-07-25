@@ -72,6 +72,15 @@
   font-style: italic;
 }
 
+@layer base {
+  a {
+    @apply text-secondary;
+
+  }
+  a:hover {
+    @apply text-secondary-focus;
+  }
+}
 
 html,
 body {
@@ -79,12 +88,18 @@ body {
   margin: 0;
   font-family: 'Gustavo', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    font-size: 17.64px; /* ref: https://twitter.com/romanshamin_en/status/1546920413908942852 */
+  font-size: 17.64px; /* ref: https://twitter.com/romanshamin_en/status/1546920413908942852 */
+  @apply text-primary;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+  @apply text-secondary;
+  @apply font-medium;
+  text-decoration: underline;
+}
+
+a:hover {
+  color: '#fff'
 }
 
 * {

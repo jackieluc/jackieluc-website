@@ -34,7 +34,7 @@ const Home: NextPage = () => {
             <p>Learn about Next.js in an interactive course with quizzes!</p>
           </a>
 
-          <a href='https://github.com/vercel/next.js/tree/canary/examples' className=''>
+          <a href='https://github.com/vercel/next.js/tree/canary/examples' className='text-secondary underline'>
             <h2>Examples &rarr;</h2>
             <p>Discover and deploy boilerplate example Next.js projects.</p>
           </a>
@@ -47,6 +47,18 @@ const Home: NextPage = () => {
             <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
           </a>
         </div>
+        <article className='prose'>
+          <h1>Garlic bread with cheese: What the science tells us</h1>
+          <p>
+            For years <strong>parents</strong> have espoused the health benefits of eating garlic bread with cheese to
+            their children, with the food earning such an iconic status in our culture that kids will often dress up as
+            warm, cheesy loaf for Halloween. <a href='/'>read more...</a>
+          </p>
+          <p>
+            But a recent study shows that the celebrated appetizer may be linked to a series of rabies cases springing
+            up around the country.
+          </p>
+        </article>
       </main>
 
       <footer className=''>
