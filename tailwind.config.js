@@ -44,7 +44,7 @@ module.exports = {
           neutral: '#C1C7D1',
           'base-100': '#FFF3E7',
           '.btn': {
-            'text-transform': 'none',
+            'text-transform': 'none', // remove all-caps on buttons
           },
         },
       },

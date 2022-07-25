@@ -75,6 +75,8 @@
 @layer base {
   a {
     @apply text-secondary;
+    @apply font-medium;
+    text-decoration: underline;
 
   }
   a:hover {
@@ -90,16 +92,7 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
   font-size: 17.64px; /* ref: https://twitter.com/romanshamin_en/status/1546920413908942852 */
   @apply text-primary;
-}
-
-a {
-  @apply text-secondary;
-  @apply font-medium;
-  text-decoration: underline;
-}
-
-a:hover {
-  color: '#fff'
+  @apply tracking-wide; /* letter spacing for font */
 }
 
 * {
