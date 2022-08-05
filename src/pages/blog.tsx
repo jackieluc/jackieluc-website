@@ -1,14 +1,12 @@
 import Link from 'next/link';
-import parseProperty from '@/utils/notion/parseProperty';
-import { getPageProperties } from '@/clients/notion';
 import slugify from 'slugify';
-import { getAllPublishedBlogPosts } from '@/clients/notion';
 import { BlogProperties, NotionTag } from 'src/types/notion';
+import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 
 export default function Blog({
-  blogPostProperties,
+  allBlogPostProperties,
 }: {
-  blogPostProperties: {
+  allBlogPostProperties: {
     properties: BlogProperties;
   }[];
 }) {
@@ -18,7 +16,7 @@ export default function Blog({
       <Link href='/'>what</Link>
       <div>
         <ul>
-          {blogPostProperties.map(({ properties }) => {
+          {allBlogPostProperties.map(({ properties }: { properties: BlogProperties }) => {
             return (
               <li
                 className='cursor-pointer border-4 border-cyan-200 p-4'
@@ -70,44 +68,11 @@ export default function Blog({
 }
 
 export async function getStaticProps() {
-  const { pageIds, properties } = await getAllPublishedBlogPosts();
-
-  const metadata = await Promise.all(
-    pageIds.map((pageId: string) =>
-      getPageProperties(pageId, [
-        properties.Title.id,
-        properties.Subtitle.id,
-        properties.Category.id,
-        properties.Tags.id,
-        properties.Views.id,
-        properties.Upvotes.id,
-        properties.Published.id,
-      ])
-    )
-  );
-
-  let blogPostProperties: { properties: BlogProperties }[] = [];
-  pageIds.forEach((_, index) => {
-    let [title, subtitle, category, tags, views, upvotes, published] = metadata[index];
-
-    const mappedProperties: BlogProperties = {
-      title: parseProperty(title),
-      subtitle: parseProperty(subtitle),
-      category: parseProperty(category),
-      tags: JSON.parse(parseProperty(tags)),
-      views: parseProperty(views),
-      upvotes: parseProperty(upvotes),
-      published: parseProperty(published),
-    };
-
-    blogPostProperties.push({
-      properties: mappedProperties,
-    });
-  });
+  const allBlogPostProperties = await getBlogPostProperties();
 
   return {
     props: {
-      blogPostProperties,
+      allBlogPostProperties,
     },
   };
 }
