@@ -1,21 +1,30 @@
 import {
   BlockObjectResponse,
-  PageObjectResponse,
   PropertyItemListResponse,
   TitlePropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 import { Fragment } from 'react';
-import { getAllPublishedBlogPosts, getPage, getBlocks, getPageProperty } from '@/clients/notion';
+import { getAllPublishedBlogPosts, getBlocks, getPageProperty } from '@/clients/notion';
 import { renderBlock } from '@/utils/notion/render';
 import slugify from 'slugify';
+import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
+import { BlogProperties } from 'src/types/notion';
+import BlogHeader from '@/components/blog/header';
 
-export default function Post({ page, blocks }: { page: PageObjectResponse; blocks: BlockObjectResponse[] }) {
-  if (!page || !blocks) {
+export default function Post({
+  blogPostProperties,
+  blocks,
+}: {
+  blogPostProperties: { properties: BlogProperties }[];
+  blocks: BlockObjectResponse[];
+}) {
+  if (!blocks) {
     return null;
   }
   return (
     <main className='grid place-items-center'>
       <article className='prose'>
+        <BlogHeader blogPostProperties={blogPostProperties} />
         <section>
           {blocks.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
@@ -70,7 +79,7 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
 
   const pageId = pageIds[pageIdIndex];
 
-  const [page, blocks] = await Promise.all([getPage(pageId), getBlocks(pageId)]);
+  const [blogPostProperties, blocks] = await Promise.all([getBlogPostProperties(pageId), getBlocks(pageId)]);
 
   // Retrieve block children for nested blocks (one level deep), for example toggle blocks
   // https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
@@ -94,7 +103,7 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
 
   return {
     props: {
-      page,
+      blogPostProperties,
       blocks: blocksWithChildren,
     },
     revalidate: 1,
