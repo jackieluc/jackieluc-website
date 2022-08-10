@@ -4,29 +4,30 @@ import {
   TitlePropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 import { Fragment } from 'react';
-import { getAllPublishedBlogPosts, getBlocks, getPageProperty } from '@/clients/notion';
+import { getAllPublishedBlogPosts, getPageProperty } from '@/clients/notion';
 import { renderBlock } from '@/utils/notion/render';
 import slugify from 'slugify';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import { BlogProperties } from 'src/types/notion';
 import BlogHeader from '@/components/blog/header';
+import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
 
 export default function Post({
-  blogPostProperties,
-  blocks,
+  properties,
+  content,
 }: {
-  blogPostProperties: { properties: BlogProperties }[];
-  blocks: BlockObjectResponse[];
+  properties: { properties: BlogProperties }[];
+  content: BlockObjectResponse[];
 }) {
-  if (!blocks) {
+  if (!content) {
     return null;
   }
   return (
     <main className='grid place-items-center'>
       <article className='prose'>
-        <BlogHeader blogPostProperties={blogPostProperties} />
+        <BlogHeader blogPostProperties={properties} />
         <section>
-          {blocks.map((block) => (
+          {content.map((block) => (
             <Fragment key={block.id}>{renderBlock(block)}</Fragment>
           ))}
         </section>
@@ -56,55 +57,38 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false,
+    fallback: false, // false: 404s if can't find blog post
   };
 };
 
+/**
+ * Gets the specific blog post properties and content from all published blog post IDs and properties
+ * and then filters down based on the slug from getStaticPaths.
+ * @param slug - slug of the blog post from getStaticPaths
+ * @returns
+ */
 export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
-  console.group('getStaticProps');
-  console.log(slug);
-  console.groupEnd();
-  const { pageIds, properties } = await getAllPublishedBlogPosts();
+  const { pageIds, properties: notionProperties } = await getAllPublishedBlogPosts();
 
   const titles = await Promise.all(
     pageIds.map((pageId: string) => {
-      return getPageProperty(pageId, properties.Title.id) as Promise<PropertyItemListResponse>;
+      return getPageProperty(pageId, notionProperties.Title.id) as Promise<PropertyItemListResponse>;
     })
   );
 
-  const pageIdIndex = titles.findIndex((path: PropertyItemListResponse, index: number) => {
+  const pageIdIndex = titles.findIndex((path: PropertyItemListResponse) => {
     const slugTitle = slugify((path.results[0] as TitlePropertyItemObjectResponse).title.plain_text).toLowerCase();
     return slugTitle === slug;
   });
 
   const pageId = pageIds[pageIdIndex];
 
-  const [blogPostProperties, blocks] = await Promise.all([getBlogPostProperties(pageId), getBlocks(pageId)]);
-
-  // Retrieve block children for nested blocks (one level deep), for example toggle blocks
-  // https://developers.notion.com/docs/working-with-page-content#reading-nested-blocks
-  const childBlocks = await Promise.all(
-    blocks
-      .filter((block) => block.has_children)
-      .map(async (block) => {
-        return {
-          id: block.id,
-          children: await getBlocks(block.id),
-        };
-      })
-  );
-  const blocksWithChildren = blocks.map((block: any) => {
-    // Add child blocks if the block should contain children but none exists
-    if (block.has_children && !block[block.type].children) {
-      block[block.type]['children'] = childBlocks.find((x) => x.id === block.id)?.children;
-    }
-    return block;
-  });
+  const [properties, content] = await Promise.all([getBlogPostProperties(pageId), getBlogPostContent(pageId)]);
 
   return {
     props: {
-      blogPostProperties,
-      blocks: blocksWithChildren,
+      properties,
+      content,
     },
     revalidate: 1,
   };

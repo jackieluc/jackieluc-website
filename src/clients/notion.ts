@@ -9,19 +9,12 @@ export default notion;
 import {
   PageObjectResponse,
   GetPageResponse,
-  BlockObjectResponse,
   GetPagePropertyResponse,
   ListBlockChildrenResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 import { NotionBlogProperties, Database } from 'src/types/notion';
 
 const DATABASE_ID = process.env.NOTION_DATABASE_ID as string;
-
-export async function getBlogPostContent(page_id: string): Promise<ListBlockChildrenResponse> {
-  const pages = await notion.blocks.children.list({ block_id: page_id });
-
-  return pages;
-}
 
 export async function getPage(page_id: string): Promise<GetPageResponse> {
   const pages = await notion.pages.retrieve({ page_id });
@@ -42,13 +35,14 @@ export async function getPageProperties(page_id: string, propertyIds: string[]):
   return pageProperties;
 }
 
-export async function getBlocks(block_id: string): Promise<BlockObjectResponse[]> {
+export async function getBlocks(block_id: string, start_cursor?: string): Promise<ListBlockChildrenResponse> {
   const blocks = await notion.blocks.children.list({
     block_id,
-    page_size: 50,
+    page_size: 100,
+    start_cursor,
   });
 
-  return blocks.results as BlockObjectResponse[];
+  return blocks;
 }
 
 export async function getAllPublishedBlogPosts(): Promise<Database> {
