@@ -5,7 +5,7 @@ import {
 } from '@notionhq/client/build/src/api-endpoints';
 import { Fragment } from 'react';
 import { getAllPublishedBlogPosts, getPageProperty } from '@/clients/notion';
-import { renderBlock } from '@/utils/notion/render';
+import { renderContent } from '@/utils/notion/renderContent';
 import slugify from 'slugify';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import { BlogProperties } from 'src/types/notion';
@@ -28,7 +28,7 @@ export default function Post({
         <BlogHeader blogPostProperties={properties} />
         <section>
           {content.map((block) => (
-            <Fragment key={block.id}>{renderBlock(block)}</Fragment>
+            <Fragment key={block.id}>{renderContent(block)}</Fragment>
           ))}
         </section>
       </article>
