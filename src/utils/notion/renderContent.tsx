@@ -1,26 +1,13 @@
 import { Fragment } from 'react';
 
-const renderNestedList = (block: any) => {
-  const { type } = block;
-  const value = block[type];
-  if (!value) return null;
-
-  const isNumberedList = value.children[0].type === 'numbered_list_item';
-
-  if (isNumberedList) {
-    return <ol>{value.children.map((block: any) => renderContent(block))}</ol>;
-  }
-  return <ul>{value.children.map((block: any) => renderContent(block))}</ul>;
-};
-
 export const renderContent = (block: any) => {
   const { type, id } = block;
-  // let richText = block[type].rich_text;
-  const value = block[type].rich_text[0]?.plain_text;
+
+  const value = getRenderValue(block);
 
   switch (type) {
     case 'paragraph':
-      return <p>{value}</p>;
+      return <p className='pb-2'>{value}</p>;
     case 'heading_1':
       return <h1>{value}</h1>;
     case 'heading_2':
@@ -32,7 +19,7 @@ export const renderContent = (block: any) => {
       return (
         <li>
           {value}
-          {!!value.children && renderNestedList(block)}
+          {!!value.children && _renderNestedList(block)}
         </li>
       );
     case 'to_do':
@@ -99,3 +86,50 @@ export const renderContent = (block: any) => {
       return `❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`;
   }
 };
+
+const _renderNestedList = (block: any) => {
+  const { type } = block;
+  const value = block[type];
+  if (!value) return null;
+
+  const isNumberedList = value.children[0].type === 'numbered_list_item';
+
+  if (isNumberedList) {
+    return <ol>{value.children.map((block: any) => renderContent(block))}</ol>;
+  }
+  return <ul>{value.children.map((block: any) => renderContent(block))}</ul>;
+};
+
+const _renderParagraph = (block: any) => {
+  const { type } = block;
+  const { rich_text: rich_text_list } = block[type];
+  if (rich_text_list.length === 0) return null;
+
+  const renderedText = rich_text_list.map((rich_text: any) => {
+    if (rich_text.text.link) {
+      return (
+        <a href={rich_text.text.link.url} target='_blank'>
+          {rich_text.text.content}
+        </a>
+      );
+    }
+
+    return rich_text.plain_text;
+  });
+
+  return renderedText;
+};
+
+function getRenderValue(block: any) {
+  const { type } = block;
+
+  switch (type) {
+    case 'divider':
+    case 'image':
+      return block[type];
+    case 'paragraph':
+      return _renderParagraph(block);
+    default:
+      return block[type].rich_text[0]?.plain_text;
+  }
+}
