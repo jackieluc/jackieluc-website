@@ -3,6 +3,10 @@ import { Fragment } from 'react';
 export const renderContent = (block: any) => {
   const { type, id } = block;
 
+  console.group('-'.repeat(40));
+  console.log(JSON.stringify(block, null, 2));
+  console.groupEnd();
+
   const value = getRenderValue(block);
 
   switch (type) {
@@ -103,18 +107,30 @@ const _renderNestedList = (block: any) => {
 const _renderParagraph = (block: any) => {
   const { type } = block;
   const { rich_text: rich_text_list } = block[type];
-  if (rich_text_list.length === 0) return null;
+
+  if (rich_text_list.length === 0) {
+    return null;
+  }
 
   const renderedText = rich_text_list.map((rich_text: any) => {
-    if (rich_text.text.link) {
+    if (rich_text.href) {
       return (
-        <a href={rich_text.text.link.url} target='_blank'>
-          {rich_text.text.content}
+        <a href={rich_text.href} target='_blank'>
+          {rich_text.plain_text}
         </a>
       );
     }
+    const { bold, italic, code } = rich_text.annotations;
 
-    return rich_text.plain_text;
+    if (!bold && !italic && !code) {
+      return rich_text.plain_text;
+    }
+
+    if (code) {
+      return <code>{rich_text.plain_text}</code>;
+    }
+
+    return <span className={`${bold ? 'font-bold' : null} ${italic ? 'italic' : null}`}>{rich_text.plain_text}</span>;
   });
 
   return renderedText;
