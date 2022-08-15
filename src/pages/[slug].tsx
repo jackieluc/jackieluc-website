@@ -23,8 +23,8 @@ export default function Post({
     return null;
   }
   return (
-    <main className='grid place-items-center'>
-      <article className='prose'>
+    <main className='grid place-items-center px-6'>
+      <article className='prose mx-auto'>
         <BlogHeader blogPostProperties={properties} />
         <section>
           {content.map((block) => (
