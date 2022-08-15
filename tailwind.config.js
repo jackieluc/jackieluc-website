@@ -38,6 +38,9 @@ module.exports = {
               borderLeftColor: theme('colors.accent'),
               marginLeft: '1rem',
             },
+            // list style color override
+            'ol > li::marker': theme('colors.primary'),
+            'ul > li::marker': theme('colors.primary'),
           },
         },
       }),

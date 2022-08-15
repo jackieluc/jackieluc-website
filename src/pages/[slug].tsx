@@ -27,8 +27,8 @@ export default function Post({
       <article className='prose mx-auto'>
         <BlogHeader blogPostProperties={properties} />
         <section>
-          {content.map((block) => (
-            <Fragment key={block.id}>{renderContent(block)}</Fragment>
+          {content.map((block, index) => (
+            <Fragment key={block.id}>{renderContent(block, index, content)}</Fragment>
           ))}
         </section>
       </article>

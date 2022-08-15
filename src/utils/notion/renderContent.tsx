@@ -1,9 +1,10 @@
-import { Fragment } from 'react';
+import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { Fragment, ReactNode } from 'react';
 
-export const renderContent = (block: any) => {
+export const renderContent = (block: any, index?: number, content?: BlockObjectResponse[]) => {
   const { type, id } = block;
 
-  const value = getRenderValue(block);
+  const value = _getRenderValue(block);
 
   switch (type) {
     case 'paragraph':
@@ -16,12 +17,12 @@ export const renderContent = (block: any) => {
       return <h3>{value}</h3>;
     case 'bulleted_list_item':
     case 'numbered_list_item':
-      return (
-        <li>
-          {value}
-          {!!value.children && _renderNestedList(block)}
-        </li>
-      );
+      if (!index || typeof content === 'undefined') {
+        return;
+      }
+
+      const list = _renderList(block, index, content);
+      return list;
     case 'to_do':
       return (
         <div>
@@ -85,19 +86,6 @@ export const renderContent = (block: any) => {
   }
 };
 
-const _renderNestedList = (block: any) => {
-  const { type } = block;
-  const value = block[type];
-  if (!value) return null;
-
-  const isNumberedList = value.children[0].type === 'numbered_list_item';
-
-  if (isNumberedList) {
-    return <ol>{value.children.map((block: any) => renderContent(block))}</ol>;
-  }
-  return <ul>{value.children.map((block: any) => renderContent(block))}</ul>;
-};
-
 const _renderParagraph = (block: any) => {
   const { type } = block;
   const { rich_text: rich_text_list } = block[type];
@@ -130,16 +118,38 @@ const _renderParagraph = (block: any) => {
   return renderedText;
 };
 
-function getRenderValue(block: any) {
+function _getRenderValue(block: any) {
   const { type } = block;
 
   switch (type) {
     case 'divider':
     case 'image':
       return block[type];
+    case 'bulleted_list_item':
+    case 'numbered_list_item':
     case 'paragraph':
       return _renderParagraph(block);
     default:
       return block[type].rich_text[0]?.plain_text;
   }
+}
+
+function _renderList(block: any, index: number, content: BlockObjectResponse[]) {
+  const prevBlock = content[index - 1];
+
+  // if the current block matches prev block type, then ignore it
+  if (block.type === prevBlock?.type) {
+    return;
+  }
+
+  const list: ReactNode[] = [<li>{_getRenderValue(block)}</li>];
+
+  // while we find list items, add to the list
+  // list is never too long so don't need to worry about optimizing
+  while (content[index + 1]?.type === block.type) {
+    list.push(<li>{_getRenderValue(content[index + 1])}</li>);
+    index++;
+  }
+
+  return block.type === 'bulleted_list_item' ? <ul>{list}</ul> : <ol>{list}</ol>;
 }
