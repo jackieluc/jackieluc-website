@@ -60,10 +60,8 @@ export const renderContent = (block: any) => {
       return <blockquote key={id}>{value}</blockquote>;
     case 'code':
       return (
-        <pre className='language-js'>
-          <code className='' key={id}>
-            {value}
-          </code>
+        <pre className='language-js' key={id}>
+          {value}
         </pre>
       );
     case 'file':
