@@ -28,6 +28,16 @@ module.exports = {
             strong: {
               color: theme('colors.primary'),
             },
+            code: {
+              backgroundColor: theme('colors.gray.200'),
+              color: theme('colors.secondary'),
+              borderRadius: '0.25rem',
+            },
+            blockquote: {
+              color: theme('colors.accent'),
+              borderLeftColor: theme('colors.accent'),
+              marginLeft: '1rem',
+            },
           },
         },
       }),
@@ -38,7 +48,7 @@ module.exports = {
       {
         mytheme: {
           primary: '#779D83',
-          secondary: '#2D4A43',
+          secondary: '#065f46', // emerald.800
           'secondary-focus': '#4d8072',
           accent: '#6C70AD',
           neutral: '#C1C7D1',
