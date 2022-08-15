@@ -3,10 +3,6 @@ import { Fragment } from 'react';
 export const renderContent = (block: any) => {
   const { type, id } = block;
 
-  console.group('-'.repeat(40));
-  console.log(JSON.stringify(block, null, 2));
-  console.groupEnd();
-
   const value = getRenderValue(block);
 
   switch (type) {
