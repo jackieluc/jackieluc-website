@@ -37,10 +37,15 @@ module.exports = {
               color: theme('colors.accent'),
               borderLeftColor: theme('colors.accent'),
               marginLeft: '1rem',
+              fontWeight: '400',
             },
             // list style color override
             'ol > li::marker': theme('colors.primary'),
             'ul > li::marker': theme('colors.primary'),
+            figcaption: {
+              color: theme('colors.accent'),
+              opacity: 0.7,
+            },
           },
         },
       }),
