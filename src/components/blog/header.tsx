@@ -16,9 +16,9 @@ export default function BlogHeader({
           return (
             <li
               className='cursor-pointer border-4 border-cyan-200 p-4'
-              key={slugify(properties.title).trim().toLocaleLowerCase()}
+              key={slugify(properties.title).trim().toLowerCase()}
             >
-              <Link href={`/${slugify(properties.title).trim().toLocaleLowerCase()}`}>
+              <Link href={`/${slugify(properties.title).trim().toLowerCase()}`}>
                 <div>
                   <h2 className='text-xl font-bold'>{properties.title}</h2>
                   <h3 className='text-md'>{properties.subtitle}</h3>
@@ -34,7 +34,7 @@ export default function BlogHeader({
                       {properties.tags.map((tag: NotionTag) => (
                         <Link
                           href={`/tags/${slugify(tag.name).trim().toLowerCase()}`}
-                          key={slugify(tag.name).trim().toLocaleLowerCase()}
+                          key={slugify(tag.name).trim().toLowerCase()}
                         >
                           <li className='max-w-fit rounded-full bg-gray-100 px-4 py-2 text-xs font-medium text-gray-800 hover:bg-gray-300'>
                             {tag.name}
