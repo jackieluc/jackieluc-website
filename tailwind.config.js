@@ -3,6 +3,9 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      colors: {
+        beige: '#FFF3E7',
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
@@ -60,7 +63,7 @@ module.exports = {
           'secondary-focus': '#4d8072',
           accent: '#6C70AD',
           neutral: '#C1C7D1',
-          'base-100': '#FFF3E7',
+          'base-100': '#FFF3E7', // daisyui default blank background
           '.btn': {
             'text-transform': 'none', // remove all-caps on buttons
           },
