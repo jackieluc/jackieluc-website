@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import { ReactNode } from 'react';
 import useMediaQuery from '@/utils/layout/useMediaQuery';
 
 const SITE_URLS = [
@@ -12,23 +11,6 @@ export default function Nav() {
   const isSmallScreen = useMediaQuery(1024); // laptop
 
   return <>{isSmallScreen ? <SmallScreenNav /> : <BigScreenNav />}</>;
-}
-
-function NavItem({ to, children }: { to: string; children: ReactNode }) {
-  const router = useRouter();
-  const active = router.pathname === to;
-
-  return (
-    <Link href={to}>
-      <a
-        className={`hover:bg-secondary w-full justify-center p-4 text-white hover:text-white ${
-          active ? `bg-secondary` : `no-underline`
-        }`}
-      >
-        {children}
-      </a>
-    </Link>
-  );
 }
 
 function SmallScreenNav() {
