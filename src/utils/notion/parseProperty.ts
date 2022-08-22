@@ -4,6 +4,7 @@ import {
   MultiSelectPropertyItemObjectResponse,
   NumberPropertyItemObjectResponse,
   RichTextPropertyItemObjectResponse,
+  SelectPropertyItemObjectResponse,
   TitlePropertyItemObjectResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 
@@ -21,6 +22,8 @@ export default function parseProperty(prop: GetPagePropertyResponse): string {
       return (prop as TitlePropertyItemObjectResponse)?.title?.plain_text ?? '';
     case 'rich_text':
       return (prop as RichTextPropertyItemObjectResponse)?.rich_text?.plain_text ?? '';
+    case 'select':
+      return (prop as SelectPropertyItemObjectResponse).select?.name ?? '';
     case 'multi_select':
       return JSON.stringify((prop as MultiSelectPropertyItemObjectResponse)?.multi_select) ?? '[]';
     case 'number':
