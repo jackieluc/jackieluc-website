@@ -1,10 +1,11 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import useMediaQuery from '@/utils/layout/useMediaQuery';
+import { BiRss } from 'react-icons/bi';
 
 const SITE_LINKS = [
-  ['Home', '/'],
-  ['Blog', '/blog'],
+  ['about', '/about'],
+  ['blog', '/blog'],
 ];
 
 export default function Nav() {
@@ -17,6 +18,17 @@ function SmallScreenNav() {
   return (
     <nav className='fixed bottom-0 w-full'>
       <ul className='menu menu-horizontal bg-primary flex justify-evenly divide-x-2'>
+        <li className='w-full'>
+          <Link href='/'>
+            <a
+              className={`hover:bg-secondary w-full justify-center p-4 text-white hover:text-white ${
+                getActiveRoute('/') ? `bg-secondary underline` : `no-underline`
+              }`}
+            >
+              Jackie Luc
+            </a>
+          </Link>
+        </li>
         {SITE_LINKS.map(([title, url]) => (
           <li className='w-full' key={title}>
             <Link href={url}>
@@ -37,27 +49,54 @@ function SmallScreenNav() {
 
 function BigScreenNav() {
   return (
-    <nav className='navbar text-secondary bg-beige fixed top-0 max-w-5xl justify-center text-lg'>
-      <ul className='flex list-none gap-4'>
-        {SITE_LINKS.map(([title, url]) => (
-          <li className='w-full' key={title}>
-            <Link href={url}>
-              <a
-                className={`w-full justify-center rounded-md py-3 px-6  ${
-                  getActiveRoute(url) ? `bg-secondary text-white underline hover:text-white` : `no-underline`
-                }`}
-              >
-                {title}
-              </a>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <header className='navbar bg-base-100 sticky top-0 p-0'>
+      <div className='navbar-start'>
+        <Link href='/'>
+          <a
+            className={`btn btn-ghost text-xl normal-case ${
+              getActiveRoute('/')
+                ? `bg-secondary hover:bg-secondary text-white underline hover:text-white`
+                : `no-underline`
+            }`}
+          >
+            Jackie Luc
+          </a>
+        </Link>
+      </div>
+      <div className='navbar-center flex'>
+        <ul className='menu menu-horizontal gap-4 p-0'>
+          {SITE_LINKS.map(([title, url]) => (
+            <li className='w-full' tabIndex={0} key={title}>
+              <Link href={url}>
+                <a
+                  className={`active:bg-secondary w-full justify-center rounded-md py-3 px-6 active:text-white ${
+                    getActiveRoute(url) ? `bg-secondary text-white underline hover:text-white` : `no-underline`
+                  }`}
+                >
+                  {title}
+                </a>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className='navbar-end'>
+        <Link href='/rss.xml'>
+          <a>
+            <BiRss size='2.5rem' />
+          </a>
+        </Link>
+      </div>
+    </header>
   );
 }
 
 function getActiveRoute(to: string) {
   const router = useRouter();
-  return router.pathname === to;
+
+  if (router.pathname !== '/' && to === '/') {
+    return false;
+  }
+
+  return router.pathname.startsWith(to);
 }
