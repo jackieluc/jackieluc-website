@@ -6,7 +6,7 @@ import {
 import { Fragment } from 'react';
 import { getAllPublishedBlogPosts, getPageProperty } from '@/clients/notion';
 import { renderContent } from '@/utils/notion/renderContent';
-import slugify from 'slugify';
+import getSlug from '@/utils/getSlug';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import { BlogProperties } from 'src/types/notion';
 import BlogHeader from '@/components/blog/header';
@@ -15,13 +15,16 @@ import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
 export default function Post({
   properties,
   content,
+  pageId,
 }: {
   properties: { properties: BlogProperties }[];
   content: BlockObjectResponse[];
+  pageId: string;
 }) {
   if (!content) {
     return null;
   }
+
   return (
     <main className='grid place-items-center px-6'>
       <article className='prose mx-auto'>
@@ -46,7 +49,7 @@ export const getStaticPaths = async () => {
   );
 
   let paths = titles.map((path: PropertyItemListResponse) => {
-    let slug = slugify((path.results[0] as TitlePropertyItemObjectResponse).title.plain_text).toLowerCase();
+    let slug = getSlug((path.results[0] as TitlePropertyItemObjectResponse).title.plain_text);
 
     return {
       params: {
@@ -77,7 +80,7 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
   );
 
   const pageIdIndex = titles.findIndex((path: PropertyItemListResponse) => {
-    const slugTitle = slugify((path.results[0] as TitlePropertyItemObjectResponse).title.plain_text).toLowerCase();
+    const slugTitle = getSlug((path.results[0] as TitlePropertyItemObjectResponse).title.plain_text);
     return slugTitle === slug;
   });
 
@@ -89,7 +92,8 @@ export const getStaticProps = async ({ params: { slug } }: { params: { slug: str
     props: {
       properties,
       content,
+      pageId,
     },
-    revalidate: 1,
+    revalidate: 1, // TODO write a function to get a revalidate time based on when the blog post was published. eg. recently published: revalidate every hour for a day, blog posts > 7 days old, revalidate weekly/monthly
   };
 };
