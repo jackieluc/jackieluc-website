@@ -16,6 +16,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
+      "@/config/*": ["src/config/*"],
       "@/clients/*": ["src/clients/*"],
       "@/components/*": ["src/components/*"],
       "@/pages/*": ["src/pages/*"],

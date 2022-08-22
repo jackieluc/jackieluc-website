@@ -2,6 +2,7 @@ import Link from 'next/link';
 import getSlug from '@/utils/getSlug';
 import { BlogProperties, NotionTag } from 'src/types/notion';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
+import generateRSS from '@/utils/rss/generate';
 
 export default function Blog({
   allBlogPostProperties,
@@ -65,6 +66,8 @@ export default function Blog({
 
 export async function getStaticProps() {
   const allBlogPostProperties = await getBlogPostProperties();
+
+  generateRSS(allBlogPostProperties);
 
   return {
     props: {
