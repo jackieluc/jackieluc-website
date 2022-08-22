@@ -18,26 +18,28 @@ export default function Blog({
         <ul>
           {allBlogPostProperties.map(({ properties }: { properties: BlogProperties }) => {
             return (
-              <li className='cursor-pointer border-4 border-cyan-200 p-4' key={getSlug(properties.title)}>
+              <li className='cursor-pointer gap-2 border-4 border-cyan-200 p-4' key={getSlug(properties.title)}>
                 <Link href={`/blog/${getSlug(properties.title)}`}>
-                  <a className='no-underline'>
+                  <div className='flex flex-col gap-y-2'>
                     <h2 className='text-xl font-bold'>{properties.title}</h2>
-                    <h3 className='text-md'>{properties.subtitle}</h3>
+                    <h3 className='text-md text-primary font-normal'>{properties.subtitle}</h3>
                     {properties.category ? (
                       <Link href={`/category/${getSlug(properties.category)}`}>
-                        <div className='rounded-full bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300'>
+                        <a className='max-w-fit rounded-full bg-red-200 px-4 py-2 text-sm font-medium text-gray-800 no-underline hover:bg-gray-300'>
                           {properties.category}
-                        </div>
+                        </a>
                       </Link>
                     ) : null}
                     {properties.tags.length > 0 ? (
-                      <ul>
+                      <ul className='flex'>
                         {properties.tags.map((tag: NotionTag) => (
-                          <Link href={`/tags/${getSlug(tag.name)}`} key={getSlug(tag.name)}>
-                            <li className='max-w-fit rounded-full bg-gray-100 px-4 py-2 text-xs font-medium text-gray-800 hover:bg-gray-300'>
+                          <li key={getSlug(tag.name)}>
+                            <Link href={`/tags/${getSlug(tag.name)}`}>
+                              <a className='max-w-fit rounded-full bg-gray-100 px-4 py-2 text-xs font-medium text-gray-800 no-underline hover:bg-gray-300'>
                               {tag.name}
-                            </li>
+                              </a>
                           </Link>
+                          </li>
                         ))}
                       </ul>
                     ) : null}
@@ -50,7 +52,7 @@ export default function Blog({
                     <div>
                       <p>Published: {properties.published}</p>
                     </div>
-                  </a>
+                  </div>
                 </Link>
               </li>
             );
