@@ -27,7 +27,7 @@ export default function Post({
 
   return (
     <main className='grid place-items-center px-6'>
-      <article className='prose mx-auto'>
+      <article className='prose'>
         <BlogHeader blogPostProperties={properties} />
         <section>
           {content.map((block, index) => (
