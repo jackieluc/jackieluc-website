@@ -20,6 +20,7 @@ export default function Blog({
             return (
               <li className='cursor-pointer border-4 border-cyan-200 p-4' key={getSlug(properties.title)}>
                 <Link href={`/blog/${getSlug(properties.title)}`}>
+                  <a className='no-underline'>
                     <h2 className='text-xl font-bold'>{properties.title}</h2>
                     <h3 className='text-md'>{properties.subtitle}</h3>
                     {properties.category ? (
@@ -49,7 +50,7 @@ export default function Blog({
                     <div>
                       <p>Published: {properties.published}</p>
                     </div>
-                  </div>
+                  </a>
                 </Link>
               </li>
             );
