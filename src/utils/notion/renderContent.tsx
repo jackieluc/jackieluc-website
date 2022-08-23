@@ -46,9 +46,9 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
       const src = value.type === 'external' ? value.external.url : value.file.url;
       const caption = value.caption ? value.caption[0]?.plain_text : '';
       return (
-        <figure>
+        <figure className='flex flex-col items-center'>
           <img src={src} alt={caption} />
-          {caption && <figcaption>{caption}</figcaption>}
+          {caption && <figcaption className='italic'>{caption}</figcaption>}
         </figure>
       );
     case 'divider':

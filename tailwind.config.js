@@ -47,7 +47,6 @@ module.exports = {
             'ul > li::marker': theme('colors.primary'),
             figcaption: {
               color: theme('colors.accent'),
-              opacity: 0.7,
             },
           },
         },

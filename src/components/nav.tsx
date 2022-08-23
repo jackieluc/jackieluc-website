@@ -49,7 +49,7 @@ function SmallScreenNav() {
 
 function BigScreenNav() {
   return (
-    <header className='navbar bg-base-100 sticky top-0 p-0'>
+    <header className='navbar bg-beige sticky top-0 p-0'>
       <div className='navbar-start'>
         <Link href='/'>
           <a
