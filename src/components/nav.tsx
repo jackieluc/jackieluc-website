@@ -83,7 +83,7 @@ function BigScreenNav() {
       <div className='navbar-end'>
         <Link href='/rss.xml'>
           <a>
-            <BiRss size='2.5rem' />
+            <BiRss size='2rem' />
           </a>
         </Link>
       </div>
