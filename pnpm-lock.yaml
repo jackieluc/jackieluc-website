@@ -12,6 +12,7 @@ specifiers:
   daisyui: ^2.20.0
   jsdom: ^19.0.0
   next: latest
+  next-plausible: ^3.2.0
   postcss: ^8.4.14
   react: 18.0.0
   react-dom: 18.0.0
@@ -28,6 +29,7 @@ dependencies:
   '@notionhq/client': 2.1.0
   daisyui: 2.20.0_ugi4xkrfysqkt4c4y6hkyfj344
   next: 12.2.5_zpnidt7m3osuk7shl3s4oenomq
+  next-plausible: 3.2.0_spkgb6ldxmcd7v3k5vcnv5e46u
   react: 18.0.0
   react-dom: 18.0.0_react@18.0.0
   react-icons: 4.4.0_react@18.0.0
@@ -1557,6 +1559,18 @@ packages:
     resolution: {integrity: sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
+
+  /next-plausible/3.2.0_spkgb6ldxmcd7v3k5vcnv5e46u:
+    resolution: {integrity: sha512-OlYcLXBG3kKd/fKMpm8SZ5IkUKSFm1/8t7cv6e5bewIqlpdZpdWuSrjbdJpbmutb2KPLXHzilKp09zmDGjy9KQ==}
+    peerDependencies:
+      next: ^11.1.0 || ^12.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      next: 12.2.5_zpnidt7m3osuk7shl3s4oenomq
+      react: 18.0.0
+      react-dom: 18.0.0_react@18.0.0
+    dev: false
 
   /next/12.2.5_zpnidt7m3osuk7shl3s4oenomq:
     resolution: {integrity: sha512-tBdjqX5XC/oFs/6gxrZhjmiq90YWizUYU6qOWAfat7zJwrwapJ+BYgX2PmiacunXMaRpeVT4vz5MSPSLgNkrpA==}
