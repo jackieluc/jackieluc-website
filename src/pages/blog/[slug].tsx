@@ -1,16 +1,14 @@
-import {
-  BlockObjectResponse,
-  PropertyItemListResponse,
-  TitlePropertyItemObjectResponse,
-} from '@notionhq/client/build/src/api-endpoints';
+import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import { Fragment } from 'react';
-import { getAllPublishedBlogPosts, getPageProperty } from '@/clients/notion';
+import { getAllPublishedBlogPosts, getPageProperties } from '@/clients/notion';
 import { renderContent } from '@/utils/notion/renderContent';
 import getSlug from '@/utils/getSlug';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import { BlogProperties } from 'src/types/notion';
 import BlogHeader from '@/components/blog/header';
 import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
+import parseProperty from '@/utils/notion/parseProperty';
+import { SlugParams } from 'src/types/next';
 
 export default function Post({
   properties,
@@ -42,20 +40,36 @@ export default function Post({
 export const getStaticPaths = async () => {
   const { pageIds, properties } = await getAllPublishedBlogPosts();
 
-  const titles = await Promise.all(
+  const metadata = await Promise.all(
     pageIds.map((pageId: string) => {
-      return getPageProperty(pageId, properties.Title.id) as Promise<PropertyItemListResponse>;
+      return getPageProperties(pageId, [properties.Title.id, properties.PathOverride.id]);
     })
   );
 
-  let paths = titles.map((path: PropertyItemListResponse) => {
-    let slug = getSlug((path.results[0] as TitlePropertyItemObjectResponse).title.plain_text);
+  const paths: SlugParams[] = [];
 
-    return {
-      params: {
-        slug,
-      },
+  pageIds.forEach((_, index) => {
+    let [title, pathoverride] = metadata[index];
+
+    const mappedProperties: Pick<BlogProperties, 'title' | 'pathoverride'> = {
+      title: parseProperty(title),
+      pathoverride: parseProperty(pathoverride),
     };
+
+    // if there is no url path override, use the blog post's title as the url path
+    if (mappedProperties.pathoverride) {
+      paths.push({
+        params: {
+          slug: getSlug(mappedProperties.pathoverride),
+        },
+      });
+    } else {
+      paths.push({
+        params: {
+          slug: getSlug(mappedProperties.title),
+        },
+      });
+    }
   });
 
   return {
@@ -70,19 +84,37 @@ export const getStaticPaths = async () => {
  * @param slug - slug of the blog post from getStaticPaths
  * @returns
  */
-export const getStaticProps = async ({ params: { slug } }: { params: { slug: string } }) => {
+export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
   const { pageIds, properties: notionProperties } = await getAllPublishedBlogPosts();
 
-  const titles = await Promise.all(
+  const metadata = await Promise.all(
     pageIds.map((pageId: string) => {
-      return getPageProperty(pageId, notionProperties.Title.id) as Promise<PropertyItemListResponse>;
+      return getPageProperties(pageId, [notionProperties.Title.id, notionProperties.PathOverride.id]);
     })
   );
 
-  const pageIdIndex = titles.findIndex((path: PropertyItemListResponse) => {
-    const slugTitle = getSlug((path.results[0] as TitlePropertyItemObjectResponse).title.plain_text);
-    return slugTitle === slug;
-  });
+  let pageIdIndex: number = -1;
+
+  for (let i = 0; i < pageIds.length; i++) {
+    let [title, pathoverride] = metadata[i];
+
+    const mappedProperties: Pick<BlogProperties, 'title' | 'pathoverride'> = {
+      title: parseProperty(title),
+      pathoverride: parseProperty(pathoverride),
+    };
+
+    if (mappedProperties.pathoverride && getSlug(mappedProperties.pathoverride) === slug) {
+      pageIdIndex = i;
+      break;
+    } else if (getSlug(mappedProperties.title) === slug) {
+      pageIdIndex = i;
+      break;
+    }
+  }
+
+  if (pageIdIndex === -1) {
+    throw Error(`Can't find page index that matches slug`);
+  }
 
   const pageId = pageIds[pageIdIndex];
 
