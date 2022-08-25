@@ -11,11 +11,11 @@ import parseProperty from '@/utils/notion/parseProperty';
 import { SlugParams } from 'src/types/next';
 
 export default function Post({
-  properties,
+  blogProperties,
   content,
   pageId,
 }: {
-  properties: { properties: BlogProperties }[];
+  blogProperties: { properties: BlogProperties }[];
   content: BlockObjectResponse[];
   pageId: string;
 }) {
@@ -26,7 +26,7 @@ export default function Post({
   return (
     <main className='grid place-items-center px-6'>
       <article className='prose'>
-        <BlogHeader blogPostProperties={properties} />
+        <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
         <section>
           {content.map((block, index) => (
             <Fragment key={block.id}>{renderContent(block, index, content)}</Fragment>
@@ -122,7 +122,7 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
 
   return {
     props: {
-      properties,
+      blogProperties: properties,
       content,
       pageId,
     },
