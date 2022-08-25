@@ -27,7 +27,7 @@ export default function parseProperty(prop: GetPagePropertyResponse): string {
     case 'multi_select':
       return JSON.stringify((prop as MultiSelectPropertyItemObjectResponse)?.multi_select) ?? '[]';
     case 'number':
-      return String((prop as NumberPropertyItemObjectResponse)?.number) ?? '0';
+      return String((prop as NumberPropertyItemObjectResponse)?.number ?? 0);
     case 'date':
       return (prop as DatePropertyItemObjectResponse).date?.start ?? '';
     default:
