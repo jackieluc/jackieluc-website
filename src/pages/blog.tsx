@@ -12,7 +12,7 @@ export default function Blog({
   }[];
 }) {
   return (
-    <main className='mt-16'>
+    <main className='my-16'>
       <ul className='mx-auto grid max-w-prose gap-4'>
         {allBlogPostProperties.map(({ properties }: { properties: BlogProperties }) => {
           return (
@@ -20,7 +20,7 @@ export default function Blog({
               <Link href={`/blog/${getSlug(properties.title)}`}>
                 <a className='flex flex-col gap-y-2 no-underline'>
                   <h2 className='text-xl font-bold'>{properties.title}</h2>
-                  <h3 className='text-md'>{properties.subtitle}</h3>
+                  <h3 className='text-md'>{properties.excerpt}</h3>
                   {properties.tags.length > 0 ? (
                     <ul className='flex'>
                       {properties.tags.map((tag: NotionTag) => (

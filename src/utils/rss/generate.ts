@@ -19,7 +19,7 @@ export default function generateRSS(allBlogPostProperties: { properties: BlogPro
   allBlogPostProperties.map(({ properties }: { properties: BlogProperties }) => {
     feed.item({
       title: properties.title,
-      description: properties.subtitle,
+      description: properties.excerpt,
       date: properties.published,
       url: `${SITE_URL}/${getSlug(properties.title)}`,
       categories: properties.tags.map((tag) => tag.name),

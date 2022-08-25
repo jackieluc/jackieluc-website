@@ -3,10 +3,10 @@ import parseProperty from './parseProperty';
 import { BlogProperties } from 'src/types/notion';
 
 /**
- * Get all blog post properties unless a pageId is provided to get one blog post's properties. Properties include title, subtitle, category, tags, views, upvotes, published date.
+ * Get all blog post properties unless a pageId is provided to get one blog post's properties. Properties include title, excerpt, category, tags, views, upvotes, published date.
  *
  * @param pageId get a specific page's blog post property
- * @returns blogPostProperties (ie. title, subtitle, category, tags, views, upvotes, published date)
+ * @returns blogPostProperties (ie. title, excerpt, category, tags, views, upvotes, published date)
  */
 export default async function getBlogPostProperties(pageId?: string): Promise<{ properties: BlogProperties }[]> {
   let { pageIds, properties } = await getAllPublishedBlogPosts();
@@ -20,7 +20,8 @@ export default async function getBlogPostProperties(pageId?: string): Promise<{ 
     pageIds.map((pageId: string) =>
       getPageProperties(pageId, [
         properties.Title.id,
-        properties.Subtitle.id,
+        properties.PathOverride.id,
+        properties.Excerpt.id,
         properties.Category.id,
         properties.Tags.id,
         properties.Views.id,
@@ -32,11 +33,12 @@ export default async function getBlogPostProperties(pageId?: string): Promise<{ 
 
   let blogPostProperties: { properties: BlogProperties }[] = [];
   pageIds.forEach((_, index) => {
-    let [title, subtitle, category, tags, views, upvotes, published] = metadata[index];
+    let [title, pathoverride, excerpt, category, tags, views, upvotes, published] = metadata[index];
 
     const mappedProperties: BlogProperties = {
       title: parseProperty(title),
-      subtitle: parseProperty(subtitle),
+      pathoverride: parseProperty(pathoverride),
+      excerpt: parseProperty(excerpt),
       category: parseProperty(category),
       tags: JSON.parse(parseProperty(tags)),
       views: parseProperty(views),

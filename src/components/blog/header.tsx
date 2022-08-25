@@ -18,14 +18,7 @@ export default function BlogHeader({
               <Link href={`/${getSlug(properties.title)}`}>
                 <div>
                   <h2 className='text-xl font-bold'>{properties.title}</h2>
-                  <h3 className='text-md'>{properties.subtitle}</h3>
-                  {properties.category ? (
-                    <Link href={`/category/${slugify(properties.category).trim().toLowerCase()}`}>
-                      <div className='rounded-full bg-gray-200 px-4 py-2 text-sm font-medium text-gray-800 hover:bg-gray-300'>
-                        {properties.category}
-                      </div>
-                    </Link>
-                  ) : null}
+                  <h3 className='text-md'>{properties.excerpt}</h3>
                   {properties.tags.length > 0 ? (
                     <ul>
                       {properties.tags.map((tag: NotionTag) => (

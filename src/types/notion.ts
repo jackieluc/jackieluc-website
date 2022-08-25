@@ -1,6 +1,7 @@
 export enum BlogPropertyKeys {
   Title = 'Title',
-  Subtitle = 'Subtitle',
+  PathOverride = 'PathOverride',
+  Excerpt = 'Excerpt',
   Category = 'Category',
   Tags = 'Tags',
   Views = 'Views',
@@ -26,7 +27,8 @@ export interface NotionTag {
 
 export type BlogProperties = {
   title: string;
-  subtitle: string;
+  pathoverride?: string;
+  excerpt: string;
   category: string;
   tags: NotionTag[];
   views: string;
