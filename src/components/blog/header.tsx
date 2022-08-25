@@ -1,5 +1,5 @@
+import getSlug from '@/utils/getSlug';
 import Link from 'next/link';
-import slugify from 'slugify';
 import { BlogProperties, NotionTag } from 'src/types/notion';
 
 export default function BlogHeader({
@@ -14,11 +14,8 @@ export default function BlogHeader({
       <ul>
         {blogPostProperties.map(({ properties }: { properties: BlogProperties }) => {
           return (
-            <li
-              className='cursor-pointer border-4 border-cyan-200 p-4'
-              key={slugify(properties.title).trim().toLowerCase()}
-            >
-              <Link href={`/${slugify(properties.title).trim().toLowerCase()}`}>
+            <li className='cursor-pointer border-4 border-cyan-200 p-4' key={getSlug(properties.title)}>
+              <Link href={`/${getSlug(properties.title)}`}>
                 <div>
                   <h2 className='text-xl font-bold'>{properties.title}</h2>
                   <h3 className='text-md'>{properties.subtitle}</h3>
@@ -32,10 +29,7 @@ export default function BlogHeader({
                   {properties.tags.length > 0 ? (
                     <ul>
                       {properties.tags.map((tag: NotionTag) => (
-                        <Link
-                          href={`/tags/${slugify(tag.name).trim().toLowerCase()}`}
-                          key={slugify(tag.name).trim().toLowerCase()}
-                        >
+                        <Link href={`/tags/${getSlug(tag.name)}`} key={getSlug(tag.name)}>
                           <li className='max-w-fit rounded-full bg-gray-100 px-4 py-2 text-xs font-medium text-gray-800 hover:bg-gray-300'>
                             {tag.name}
                           </li>
