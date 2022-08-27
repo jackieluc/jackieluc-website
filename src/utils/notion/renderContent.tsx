@@ -1,4 +1,5 @@
 import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import Link from 'next/link';
 import { Fragment, ReactNode } from 'react';
 
 export const renderContent = (block: any, index?: number, content?: BlockObjectResponse[]) => {
@@ -8,7 +9,7 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
 
   switch (type) {
     case 'paragraph':
-      return <p className='pb-2'>{value}</p>;
+      return <p>{value}</p>;
     case 'heading_1':
       return <h1>{value}</h1>;
     case 'heading_2':
@@ -40,8 +41,6 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           ))}
         </details>
       );
-    case 'child_page':
-      return <p>{value.title}</p>;
     case 'image':
       const src = value.type === 'external' ? value.external.url : value.file.url;
       const caption = value.caption ? value.caption[0]?.plain_text : '';
@@ -52,15 +51,11 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
         </figure>
       );
     case 'divider':
-      return <hr key={id} />;
+      return <hr />;
     case 'quote':
-      return <blockquote key={id}>{value}</blockquote>;
+      return <blockquote>{value}</blockquote>;
     case 'code':
-      return (
-        <pre className='language-js' key={id}>
-          {value}
-        </pre>
-      );
+      return <pre className='language-js'>{value}</pre>;
     case 'file':
       const src_file = value.type === 'external' ? value.external.url : value.file.url;
       const splitSourceArray = src_file.split('/');
@@ -68,18 +63,18 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
       const caption_file = value.caption ? value.caption[0]?.plain_text : '';
       return (
         <figure>
-          <div>
-            📎 <a href={src_file}>{lastElementInArray.split('?')[0]}</a>
-          </div>
+          <Link href={src_file}>
+            📎 <a>{lastElementInArray.split('?')[0]}</a>
+          </Link>
           {caption_file && <figcaption>{caption_file}</figcaption>}
         </figure>
       );
     case 'bookmark':
       const href = value.url;
       return (
-        <a href={href} target='_brank'>
-          {href}
-        </a>
+        <Link href={href}>
+          <a target='_blank'>{href}</a>
+        </Link>
       );
     default:
       return `❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`;
@@ -94,12 +89,12 @@ const _renderParagraph = (block: any) => {
     return null;
   }
 
-  const renderedText = rich_text_list.map((rich_text: any) => {
+  const renderedText = rich_text_list.map((rich_text: any, index: number) => {
     if (rich_text.href) {
       return (
-        <a href={rich_text.href} target='_blank'>
-          {rich_text.plain_text}
-        </a>
+        <Link href={rich_text.href} key={index}>
+          <a target='_blank'>{rich_text.plain_text}</a>
+        </Link>
       );
     }
     const { bold, italic, code } = rich_text.annotations;
@@ -109,10 +104,14 @@ const _renderParagraph = (block: any) => {
     }
 
     if (code) {
-      return <code>{rich_text.plain_text}</code>;
+      return <code key={index}>{rich_text.plain_text}</code>;
     }
 
-    return <span className={`${bold ? 'font-bold' : null} ${italic ? 'italic' : null}`}>{rich_text.plain_text}</span>;
+    return (
+      <span className={`${bold ? 'font-bold' : null} ${italic ? 'italic' : null}`} key={index}>
+        {rich_text.plain_text}
+      </span>
+    );
   });
 
   return renderedText;
@@ -142,14 +141,14 @@ function _renderList(block: any, index: number, content: BlockObjectResponse[]) 
     return;
   }
 
-  const list: ReactNode[] = [<li>{_getRenderValue(block)}</li>];
+  const list: ReactNode[] = [<li key={index.toString()}>{_getRenderValue(block)}</li>];
 
   // while we find list items, add to the list
   // list is never too long so don't need to worry about optimizing
   while (content[index + 1]?.type === block.type) {
-    list.push(<li>{_getRenderValue(content[index + 1])}</li>);
+    list.push(<li key={(index + 1).toString()}>{_getRenderValue(content[index + 1])}</li>);
     index++;
   }
 
-  return block.type === 'bulleted_list_item' ? <ul>{list}</ul> : <ol>{list}</ol>;
+  return block.type === 'bulleted_list_item' ? <ul key={block.id}>{list}</ul> : <ol>{list}</ol>;
 }
