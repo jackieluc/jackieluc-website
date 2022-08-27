@@ -13,18 +13,16 @@ import { SlugParams } from 'src/types/next';
 export default function Post({
   blogProperties,
   content,
-  pageId,
 }: {
   blogProperties: { properties: BlogProperties }[];
   content: BlockObjectResponse[];
-  pageId: string;
 }) {
   if (!content) {
     return null;
   }
 
   return (
-    <main className='grid place-items-center px-6'>
+    <main className='my-4 grid place-items-center px-6 lg:mt-8 lg:mb-16'>
       <article className='prose'>
         <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
         <section>
@@ -124,7 +122,6 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
     props: {
       blogProperties: properties,
       content,
-      pageId,
     },
     revalidate: 1, // TODO write a function to get a revalidate time based on when the blog post was published. eg. recently published: revalidate every hour for a day, blog posts > 7 days old, revalidate weekly/monthly
   };

@@ -12,19 +12,19 @@ export default function BlogHeader({
 }) {
   const { properties } = blogProperties;
   return (
-    <section className='mt-16 mb-8'>
+    <section className='my-8'>
       <h1 className='mb-2'>{properties.title}</h1>
-      <div className='flex items-center gap-8'>
+      <div className='flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-8'>
         <div className='[&>p]:m-0 flex gap-4'>
           <p>{getHumanReadableDate(properties.published)}</p>
           <p>{properties.views ?? 0} views</p>
         </div>
         {properties.tags.length > 0 ? (
-          <ul className='[&>*]:m-0 [&>*]:p-0 m-0 flex list-none p-0 '>
+          <ul className='[&>*]:m-0 [&>*]:p-0 m-0 flex list-none p-0'>
             {properties.tags.map((tag: NotionTag) => (
-              <li>
-                <Link href={`/tags/${getSlug(tag.name)}`} key={getSlug(tag.name)}>
-                  <a className='hover:text-secondary max-w-fit rounded-full bg-gray-100 px-4 py-2 text-xs font-medium text-gray-800 no-underline hover:bg-gray-200'>
+              <li key={tag.name}>
+                <Link href={`/tags/${getSlug(tag.name)}`}>
+                  <a className='hover:text-secondary max-w-fit rounded-full bg-gray-100 px-4 py-2 text-xs text-gray-800 no-underline hover:bg-gray-200'>
                     {tag.name}
                   </a>
                 </Link>
