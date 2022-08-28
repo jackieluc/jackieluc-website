@@ -63,17 +63,15 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
       const caption_file = value.caption ? value.caption[0]?.plain_text : '';
       return (
         <figure>
-          <Link href={src_file}>
-            📎 <a>{lastElementInArray.split('?')[0]}</a>
-          </Link>
+          <Link href={src_file}>📎 {lastElementInArray.split('?')[0]}</Link>
           {caption_file && <figcaption>{caption_file}</figcaption>}
         </figure>
       );
     case 'bookmark':
       const href = value.url;
       return (
-        <Link href={href}>
-          <a target='_blank'>{href}</a>
+        <Link href={href} target='_blank'>
+          {href}
         </Link>
       );
     default:
@@ -92,8 +90,8 @@ const _renderParagraph = (block: any) => {
   const renderedText = rich_text_list.map((rich_text: any, index: number) => {
     if (rich_text.href) {
       return (
-        <Link href={rich_text.href} key={index}>
-          <a target='_blank'>{rich_text.plain_text}</a>
+        <Link href={rich_text.href} key={index} target='_blank'>
+          {rich_text.plain_text}
         </Link>
       );
     }

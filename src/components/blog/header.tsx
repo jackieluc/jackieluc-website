@@ -23,10 +23,11 @@ export default function BlogHeader({
           <ul className='[&>*]:m-0 [&>*]:p-0 m-0 flex list-none p-0'>
             {properties.tags.map((tag: NotionTag) => (
               <li key={tag.name}>
-                <Link href={`/tags/${getSlug(tag.name)}`}>
-                  <a className='hover:text-secondary max-w-fit rounded-full bg-gray-100 px-4 py-2 text-xs text-gray-800 no-underline hover:bg-gray-200'>
-                    {tag.name}
-                  </a>
+                <Link
+                  href={`/tags/${getSlug(tag.name)}`}
+                  className='hover:text-secondary cursor-pointer rounded-full bg-gray-100 px-4 py-2 text-xs text-gray-800 no-underline hover:bg-gray-200'
+                >
+                  {tag.name}
                 </Link>
               </li>
             ))}
