@@ -1,4 +1,4 @@
-import getSlug from '@/utils/getSlug';
+import { getSlug } from '@/utils/getSlug';
 import Link from 'next/link';
 import { getHumanReadableDate } from '@/utils/date';
 import { BlogProperties, NotionTag } from 'src/types/notion';
