@@ -43,8 +43,11 @@ module.exports = {
               fontWeight: '400',
             },
             // list style color override
-            'ol > li::marker': theme('colors.primary'),
-            'ul > li::marker': theme('colors.primary'),
+            li: {
+              '&::marker': {
+                color: theme('colors.primary'),
+              },
+            },
             figcaption: {
               color: theme('colors.accent'),
             },
@@ -53,6 +56,7 @@ module.exports = {
       }),
     },
   },
+  plugins: [require('@tailwindcss/typography'), require('daisyui')],
   daisyui: {
     themes: [
       {
@@ -70,5 +74,4 @@ module.exports = {
       },
     ],
   },
-  plugins: [require('@tailwindcss/typography'), require('daisyui')],
 };
