@@ -1,6 +1,8 @@
-import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { Fragment } from 'react';
 import Link from 'next/link';
-import { Fragment, ReactNode } from 'react';
+
+import type { ReactNode } from 'react';
+import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export const renderContent = (block: any, index?: number, content?: BlockObjectResponse[]) => {
   const { type, id } = block;

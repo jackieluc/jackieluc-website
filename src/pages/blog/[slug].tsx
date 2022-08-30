@@ -8,7 +8,10 @@ import { BlogProperties } from 'src/types/notion';
 import BlogHeader from '@/components/blog/header';
 import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
 import parseProperty from '@/utils/notion/parseProperty';
-import { SlugParams } from 'src/types/next';
+
+import type { BlogProperties } from 'src/types/notion';
+import type { SlugParams } from 'src/types/next';
+import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export default function Post({
   blogProperties,

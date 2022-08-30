@@ -1,18 +1,18 @@
 import { Client } from '@notionhq/client';
 
-const notion = new Client({
-  auth: process.env.NOTION_AUTH_TOKEN,
-});
-
-export default notion;
-
-import {
+import type {
   PageObjectResponse,
   GetPageResponse,
   GetPagePropertyResponse,
   ListBlockChildrenResponse,
 } from '@notionhq/client/build/src/api-endpoints';
-import { NotionBlogProperties, Database } from 'src/types/notion';
+import type { NotionBlogProperties, Database } from 'src/types/notion';
+
+const notion = new Client({
+  auth: process.env.NOTION_AUTH_TOKEN,
+});
+
+export default notion;
 
 const DATABASE_ID = process.env.NOTION_DATABASE_ID as string;
 

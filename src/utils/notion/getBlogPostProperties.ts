@@ -1,6 +1,7 @@
 import { getAllPublishedBlogPosts, getPageProperties } from '@/clients/notion';
 import parseProperty from './parseProperty';
-import { BlogProperties } from 'src/types/notion';
+
+import type { BlogProperties } from 'src/types/notion';
 
 /**
  * Get all blog post properties unless a pageId is provided to get one blog post's properties. Properties include title, excerpt, category, tags, views, upvotes, published date.

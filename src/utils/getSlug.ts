@@ -1,5 +1,6 @@
-import { BlogProperties } from 'src/types/notion';
 import slugify from 'slugify';
+
+import type { BlogProperties } from 'src/types/notion';
 
 export function getSlug(string: string) {
   return slugify(string.trim().toLowerCase());

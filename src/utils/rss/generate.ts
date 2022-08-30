@@ -3,7 +3,7 @@ import RSS from 'rss';
 import { writeFileSync } from 'fs';
 import { getSlugFromProperties } from '@/utils/getSlug';
 import { NAME, SITE_URL, SITE_DESCRIPTION } from '@/config/constants';
-import { BlogProperties } from 'src/types/notion';
+import type { BlogProperties } from 'src/types/notion';
 
 export default function generateRSS(allBlogPostProperties: { properties: BlogProperties }[]) {
   const feed = new RSS({

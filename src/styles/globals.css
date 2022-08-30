@@ -84,6 +84,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body {
   padding: 0;
@@ -93,8 +97,4 @@ body {
   font-size: 17.64px; /* ref: https://twitter.com/romanshamin_en/status/1546920413908942852 */
   @apply text-primary;
   @apply tracking-wide; /* letter spacing for font */
-}
-
-* {
-  box-sizing: border-box;
 }

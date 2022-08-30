@@ -5,6 +5,8 @@ import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import generateRSS from '@/utils/rss/generate';
 import { getHumanReadableDate } from '@/utils/date';
 
+import type { BlogProperties, NotionTag } from 'src/types/notion';
+
 export default function Blog({
   allBlogPostProperties,
 }: {

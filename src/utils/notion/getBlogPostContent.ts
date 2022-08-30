@@ -1,5 +1,6 @@
 import { getBlocks } from '@/clients/notion';
-import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+
+import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export async function getBlogPostContent(page_id: string): Promise<BlockObjectResponse[]> {
   let page = await getBlocks(page_id);

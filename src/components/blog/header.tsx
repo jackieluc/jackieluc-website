@@ -1,7 +1,8 @@
 import { getSlug } from '@/utils/getSlug';
 import Link from 'next/link';
 import { getHumanReadableDate } from '@/utils/date';
-import { BlogProperties, NotionTag } from 'src/types/notion';
+
+import type { BlogProperties, NotionTag } from 'src/types/notion';
 
 export default function BlogHeader({
   blogProperties,
