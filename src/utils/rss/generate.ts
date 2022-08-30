@@ -1,5 +1,5 @@
-import { getBlogPostUrl } from '@/utils/url';
 import RSS from 'rss';
+import { getBlogPostUrl } from '@/utils/url';
 import { writeFileSync } from 'fs';
 import { getSlugFromProperties } from '@/utils/getSlug';
 import { NAME, SITE_URL, SITE_DESCRIPTION } from '@/config/constants';
@@ -17,7 +17,7 @@ export default function generateRSS(allBlogPostProperties: { properties: BlogPro
     copyright: `All rights reserved ${new Date().getFullYear()}`,
   });
 
-  allBlogPostProperties.map(({ properties }: { properties: BlogProperties }) => {
+  allBlogPostProperties.forEach(({ properties }: { properties: BlogProperties }) => {
     feed.item({
       title: properties.title,
       description: properties.excerpt,
