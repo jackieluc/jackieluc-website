@@ -21,7 +21,7 @@ export default function useMediaQuery(width: number) {
     }
 
     return () => media.removeEventListener('change', (e) => updateTarget(e));
-  });
+  }, [width, breakpointReached, updateTarget]);
 
   return breakpointReached;
 }
