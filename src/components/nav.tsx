@@ -27,7 +27,7 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
               getActiveRoute('/', router) ? `bg-secondary underline` : `no-underline`
             }`}
           >
-            Jackie Luc
+            jackie luc
           </Link>
         </li>
         {SITE_LINKS.map(([title, url]) => (
@@ -59,7 +59,7 @@ function BigScreenNav({ router }: { router: NextRouter }) {
               : `no-underline`
           }`}
         >
-          Jackie Luc
+          jackie luc
         </Link>
       </div>
       <div className='navbar-center flex'>
