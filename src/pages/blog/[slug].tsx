@@ -45,11 +45,10 @@ export default function Post({
         <meta property='og:title' content={title} />
         <meta property='og:description' content={excerpt} />
         <meta property='og:image' content={seoimage} />
+        <meta property='og:image:alt' content={seoimagealt} />
+        <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site' content='@jackiesthinking' />
         <meta name='twitter:creator' content='@jackiesthinking' />
-        <meta property='twitter:card' content='summary_large_image' />
-        <meta property='twitter:image' content={seoimage} />
-        <meta property='twitter:alt' content={seoimagealt} />
       </Head>
       <main className='my-4 grid place-items-center px-6 lg:mt-8 lg:mb-16'>
         <article className='prose'>

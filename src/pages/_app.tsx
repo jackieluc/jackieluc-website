@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Nav from '@/components/nav';
-import { DOMAIN, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_IMAGE, SITE_URL } from '@/config/constants';
+import { DOMAIN, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_IMAGE, SITE_URL, SITE_IMAGE_ALT } from '@/config/constants';
 import '@/styles/globals.css';
 import PlausibleProvider from 'next-plausible';
 import type { AppProps } from 'next/app';
@@ -19,6 +19,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <meta property='og:title' content='Jackie Luc' />
         <meta property='og:description' content={SITE_DESCRIPTION} />
         <meta property='og:image' content={SITE_IMAGE} />
+        <meta property='og:image:alt' content={SITE_IMAGE_ALT} />
+        <meta name='twitter:card' content='summary_large_image' />
         <meta name='twitter:site' content='@jackiesthinking' />
         <meta name='twitter:creator' content='@jackiesthinking' />
       </Head>
