@@ -69,13 +69,8 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           {caption_file && <figcaption>{caption_file}</figcaption>}
         </figure>
       );
-    case 'bookmark':
-      const href = value.url;
-      return (
-        <Link href={href} target='_blank'>
-          {href}
-        </Link>
-      );
+    // TODO: Add callout
+    // TODO: Add child_page
     default:
       return `❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`;
   }
