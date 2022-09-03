@@ -37,10 +37,10 @@ export default function Blog({
                       <p>{properties.views ?? 0} views</p>
                     </div>
                     {properties.tags.length > 0 ? (
-                      <ul className='flex list-none'>
+                      <ul className='flex list-none gap-2'>
                         {properties.tags.map((tag: NotionTag) => (
                           <li
-                            className='rounded-full bg-gray-100 px-4 py-2 text-xs text-gray-800 no-underline'
+                            className='rounded-full bg-gray-200 px-4 py-2 text-xs text-gray-800 no-underline'
                             key={tag.name}
                           >
                             {tag.name}
