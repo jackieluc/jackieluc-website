@@ -28,13 +28,17 @@ export default async function getBlogPostProperties(pageId?: string): Promise<{ 
         properties.Views.id,
         properties.Upvotes.id,
         properties.Published.id,
+        properties.SeoImage.id,
+        properties.SeoImageAlt.id,
+        properties.SeoKeywords.id,
       ])
     )
   );
 
   let blogPostProperties: { properties: BlogProperties }[] = [];
   pageIds.forEach((_, index) => {
-    let [title, pathoverride, excerpt, category, tags, views, upvotes, published] = metadata[index];
+    let [title, pathoverride, excerpt, category, tags, views, upvotes, published, seoimage, seoimagealt, seokeywords] =
+      metadata[index];
 
     const mappedProperties: BlogProperties = {
       title: parseProperty(title),
@@ -45,6 +49,9 @@ export default async function getBlogPostProperties(pageId?: string): Promise<{ 
       views: parseProperty(views),
       upvotes: parseProperty(upvotes),
       published: parseProperty(published),
+      seoimage: parseProperty(seoimage),
+      seoimagealt: parseProperty(seoimagealt),
+      seokeywords: parseProperty(seokeywords),
     };
 
     blogPostProperties.push({

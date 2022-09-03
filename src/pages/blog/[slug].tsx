@@ -1,22 +1,25 @@
-import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import Head from 'next/head';
 import { Fragment } from 'react';
 import { getAllPublishedBlogPosts, getPageProperties } from '@/clients/notion';
 import { renderContent } from '@/utils/notion/renderContent';
-import getSlug from '@/utils/getSlug';
+import { getSlug } from '@/utils/getSlug';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
-import { BlogProperties } from 'src/types/notion';
 import BlogHeader from '@/components/blog/header';
 import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
 import parseProperty from '@/utils/notion/parseProperty';
+import { getBlogPostUrl } from '@/utils/url';
+import getSeoImage from '@/utils/seo/image';
 
 import type { BlogProperties } from 'src/types/notion';
 import type { SlugParams } from 'src/types/next';
 import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export default function Post({
+  slug,
   blogProperties,
   content,
 }: {
+  slug: string;
   blogProperties: { properties: BlogProperties }[];
   content: BlockObjectResponse[];
 }) {
@@ -24,17 +27,41 @@ export default function Post({
     return null;
   }
 
+  const { title, excerpt, seokeywords } = blogProperties[0].properties;
+  const blogPostUrl = getBlogPostUrl(slug);
+  const { seoimage, seoimagealt } = getSeoImage(blogProperties[0].properties);
+
   return (
-    <main className='my-4 grid place-items-center px-6 lg:mt-8 lg:mb-16'>
-      <article className='prose'>
-        <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
-        <section>
-          {content.map((block, index) => (
-            <Fragment key={block.id}>{renderContent(block, index, content)}</Fragment>
-          ))}
-        </section>
-      </article>
-    </main>
+    <>
+      <Head>
+        <link rel='canonical' href={blogPostUrl} />
+        <title>{title}</title>
+        <meta name='description' content={excerpt} />
+        {seokeywords ? <meta name='keywords' content={seokeywords} /> : null}
+        <meta name='image' content={seoimage} />
+        <meta name='author' content='Jackie Luc' />
+        <meta property='og:type' content='article' />
+        <meta property='og:url' content={blogPostUrl} />
+        <meta property='og:title' content={title} />
+        <meta property='og:description' content={excerpt} />
+        <meta property='og:image' content={seoimage} />
+        <meta name='twitter:site' content='@jackiesthinking' />
+        <meta name='twitter:creator' content='@jackiesthinking' />
+        <meta property='twitter:card' content='summary_large_image' />
+        <meta property='twitter:image' content={seoimage} />
+        <meta property='twitter:alt' content={seoimagealt} />
+      </Head>
+      <main className='my-4 grid place-items-center px-6 lg:mt-8 lg:mb-16'>
+        <article className='prose'>
+          <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
+          <section>
+            {content.map((block, index) => (
+              <Fragment key={block.id}>{renderContent(block, index, content)}</Fragment>
+            ))}
+          </section>
+        </article>
+      </main>
+    </>
   );
 }
 
@@ -123,6 +150,7 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
 
   return {
     props: {
+      slug,
       blogProperties: properties,
       content,
     },

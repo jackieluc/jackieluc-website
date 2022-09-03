@@ -1,5 +1,6 @@
 import type {
   DatePropertyItemObjectResponse,
+  FilesPropertyItemObjectResponse,
   GetPagePropertyResponse,
   MultiSelectPropertyItemObjectResponse,
   NumberPropertyItemObjectResponse,
@@ -30,6 +31,19 @@ export default function parseProperty(prop: GetPagePropertyResponse): string {
       return String((prop as NumberPropertyItemObjectResponse)?.number ?? 0);
     case 'date':
       return (prop as DatePropertyItemObjectResponse).date?.start ?? '';
+    case 'files':
+      const file = (prop as FilesPropertyItemObjectResponse)?.files[0];
+
+      if (typeof file === 'undefined') {
+        return '';
+      }
+
+      switch (file.type) {
+        case 'external':
+          return file.external.url;
+        case 'file':
+          return file.file.url;
+      }
     default:
       return '';
   }

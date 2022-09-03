@@ -10,6 +10,9 @@ export enum BlogPropertyKeys {
   Created = 'Created',
   Updated = 'Updated',
   Author = 'Author',
+  SeoImage = 'SeoImage',
+  SeoImageAlt = 'SeoImageAlt',
+  SeoKeyWords = 'SeoKeywords',
 }
 
 export interface Database {
@@ -37,4 +40,7 @@ export type BlogProperties = {
   created?: string;
   updated?: string;
   author?: string;
+  seoimage: string;
+  seoimagealt: string;
+  seokeywords: string;
 };
