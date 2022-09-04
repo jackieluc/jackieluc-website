@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import { getAllPublishedBlogPosts, getPageProperties } from '@/clients/notion';
 import { renderContent } from '@/utils/notion/renderContent';
 import { getSlug } from '@/utils/getSlug';
@@ -23,6 +23,15 @@ export default function Post({
   blogProperties: { properties: BlogProperties }[];
   content: BlockObjectResponse[];
 }) {
+  useEffect(() => {
+    const registerView = () => {
+      fetch(`/api/views/${slug}`, {
+        method: 'POST',
+      });
+    };
+    registerView();
+  }, [slug]);
+
   if (!content) {
     return null;
   }

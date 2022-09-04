@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
+import PageViews from '@/components/page-view';
 import { getSlugFromProperties } from '@/utils/getSlug';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import generateRSS from '@/utils/rss/generate';
@@ -34,7 +35,7 @@ export default function Blog({
                   <div className='flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-8'>
                     <div className='[&>p]:m-0 flex gap-4'>
                       <p>{getHumanReadableDate(properties.published)}</p>
-                      <p>{properties.views ?? 0} views</p>
+                      <PageViews slug={getSlugFromProperties(properties)} />
                     </div>
                     {properties.tags.length > 0 ? (
                       <ul className='flex list-none gap-2'>
