@@ -2,6 +2,7 @@ import Link from 'next/link';
 import useMediaQuery from '@/utils/layout/useMediaQuery';
 import { BiRss } from 'react-icons/bi';
 import { useRouter } from 'next/router';
+
 import type { NextRouter } from 'next/router';
 
 const SITE_LINKS = [
@@ -13,7 +14,7 @@ export default function Nav() {
   const isSmallScreen = useMediaQuery(1024); // laptop
   const router = useRouter();
 
-  return <>{isSmallScreen ? <SmallScreenNav router={router} /> : <BigScreenNav router={router} />}</>;
+  return isSmallScreen ? <SmallScreenNav router={router} /> : <BigScreenNav router={router} />;
 }
 
 function SmallScreenNav({ router }: { router: NextRouter }) {
@@ -49,7 +50,7 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
 
 function BigScreenNav({ router }: { router: NextRouter }) {
   return (
-    <header className='navbar bg-beige sticky top-0 p-0'>
+    <nav className='navbar bg-beige sticky top-0 p-0'>
       <div className='navbar-start'>
         <Link
           href='/'
@@ -83,7 +84,7 @@ function BigScreenNav({ router }: { router: NextRouter }) {
           <BiRss size='2rem' />
         </Link>
       </div>
-    </header>
+    </nav>
   );
 }
 
