@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
+import Image from 'next/future/image';
 
 import type { ReactNode } from 'react';
 import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
@@ -48,7 +49,7 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
       const caption = value.caption ? value.caption[0]?.plain_text : '';
       return (
         <figure className='flex flex-col items-center'>
-          <img src={src} alt={caption} />
+          <Image src={src} alt={caption} width={825} height={500} />
           {caption && <figcaption className='italic'>{caption}</figcaption>}
         </figure>
       );
