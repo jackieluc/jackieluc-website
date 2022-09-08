@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 interface PageViewsProps {
   slug: string;
@@ -12,9 +12,9 @@ const fetcher = async (input: RequestInfo) => {
 
 const PageViews: FC<PageViewsProps> = ({ slug }) => {
   const { data } = useSWR(`/api/views/${slug}`, fetcher);
-  const views = new Number(data?.views);
+  const views = Number(data?.views);
 
-  return <>{`${views > 0 ? views.toLocaleString() : '---'} views`}</>;
+  return <>{`${views > -1 ? views.toLocaleString() : '---'} views`}</>;
 };
 
 export default PageViews;

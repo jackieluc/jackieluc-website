@@ -5,6 +5,7 @@ import { renderContent } from '@/utils/notion/renderContent';
 import { getSlug } from '@/utils/getSlug';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import BlogHeader from '@/components/blog/header';
+import BlogFooter from '@/components/blog/footer';
 import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
 import parseProperty from '@/utils/notion/parseProperty';
 import { getBlogPostUrl } from '@/utils/url';
@@ -24,8 +25,8 @@ export default function Post({
   content: BlockObjectResponse[];
 }) {
   useEffect(() => {
-    const registerView = () => {
-      fetch(`/api/views/${slug}`, {
+    const registerView = async () => {
+      await fetch(`/api/views/${slug}`, {
         method: 'POST',
       });
     };
@@ -67,6 +68,7 @@ export default function Post({
               <Fragment key={block.id}>{renderContent(block, index, content)}</Fragment>
             ))}
           </section>
+          <BlogFooter blogProperties={blogProperties[0]} />
         </article>
       </main>
     </>
