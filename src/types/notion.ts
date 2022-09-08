@@ -5,7 +5,7 @@ export enum BlogPropertyKeys {
   Category = 'Category',
   Tags = 'Tags',
   Views = 'Views',
-  Upvotes = 'Upvotes',
+  Likes = 'Likes',
   Published = 'Published',
   Created = 'Created',
   Updated = 'Updated',
@@ -35,7 +35,7 @@ export type BlogProperties = {
   category: string;
   tags: NotionTag[];
   views: string;
-  upvotes: string;
+  likes: string;
   published: string;
   created?: string;
   updated?: string;

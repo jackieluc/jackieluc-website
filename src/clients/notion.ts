@@ -105,7 +105,7 @@ export async function getHighestUpvotedBlogPosts(): Promise<any> {
     },
     sorts: [
       {
-        property: 'Upvotes',
+        property: 'Likes',
         direction: 'descending',
       },
     ],
