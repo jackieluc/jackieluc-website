@@ -60,7 +60,7 @@ export default function Post({
         <meta name='twitter:site' content='@jackiesthinking' />
         <meta name='twitter:creator' content='@jackiesthinking' />
       </Head>
-      <main className='my-4 grid place-items-center px-6 lg:mt-8 lg:mb-16'>
+      <main className='my-4 mb-16 grid place-items-center px-6 lg:mt-8'>
         <article className='prose'>
           <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
           <section>

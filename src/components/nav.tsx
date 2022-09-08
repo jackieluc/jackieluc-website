@@ -50,7 +50,7 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
 
 function BigScreenNav({ router }: { router: NextRouter }) {
   return (
-    <nav className='navbar bg-beige sticky top-0 p-0'>
+    <header className='navbar bg-beige sticky top-0 p-0'>
       <div className='navbar-start'>
         <Link
           href='/'
@@ -63,7 +63,7 @@ function BigScreenNav({ router }: { router: NextRouter }) {
           jackie luc
         </Link>
       </div>
-      <div className='navbar-center flex'>
+      <nav className='navbar-center flex'>
         <ul className='menu menu-horizontal gap-4 p-0'>
           {SITE_LINKS.map(([title, url]) => (
             <li className='w-full' tabIndex={0} key={title}>
@@ -78,13 +78,13 @@ function BigScreenNav({ router }: { router: NextRouter }) {
             </li>
           ))}
         </ul>
-      </div>
+      </nav>
       <div className='navbar-end'>
         <Link href='/rss.xml'>
           <BiRss size='2rem' />
         </Link>
       </div>
-    </nav>
+    </header>
   );
 }
 
