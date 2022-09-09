@@ -1,8 +1,10 @@
-import Head from 'next/head';
-import Nav from '@/components/nav';
-import { DOMAIN, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_IMAGE, SITE_URL, SITE_IMAGE_ALT } from '@/config/constants';
 import '@/styles/globals.css';
+import Head from 'next/head';
 import PlausibleProvider from 'next-plausible';
+import Nav from '@/components/nav';
+import Footer from '@/components/footer';
+import { DOMAIN, SITE_DESCRIPTION, SITE_KEYWORDS, SITE_IMAGE, SITE_URL, SITE_IMAGE_ALT } from '@/config/constants';
+
 import type { AppProps } from 'next/app';
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -26,6 +28,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       <Nav />
       <Component {...pageProps} />
+      <Footer />
     </PlausibleProvider>
   );
 }
