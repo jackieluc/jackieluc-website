@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 
 interface PageViewsProps {
   slug: string;
