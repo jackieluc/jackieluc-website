@@ -11,7 +11,7 @@ const SITE_LINKS = [
 ];
 
 export default function Nav() {
-  const isSmallScreen = useMediaQuery(1024); // laptop
+  const isSmallScreen = useMediaQuery(768); // tablet
   const router = useRouter();
 
   return isSmallScreen ? <SmallScreenNav router={router} /> : <BigScreenNav router={router} />;
@@ -50,7 +50,7 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
 
 function BigScreenNav({ router }: { router: NextRouter }) {
   return (
-    <header className='navbar bg-beige sticky top-0 p-0'>
+    <header className='navbar bg-beige sticky top-0 py-0 px-8'>
       <div className='navbar-start'>
         <Link
           href='/'
