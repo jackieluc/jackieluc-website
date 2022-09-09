@@ -156,7 +156,7 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
 
   const pageId = pageIds[pageIdIndex];
 
-  const [properties, content] = await Promise.all([getBlogPostProperties(pageId), getBlogPostContent(pageId)]);
+  const [properties, content] = await Promise.all([getBlogPostProperties({ pageId }), getBlogPostContent(pageId)]);
 
   return {
     props: {

@@ -4,8 +4,6 @@ export enum BlogPropertyKeys {
   Excerpt = 'Excerpt',
   Category = 'Category',
   Tags = 'Tags',
-  Views = 'Views',
-  Likes = 'Likes',
   Published = 'Published',
   Created = 'Created',
   Updated = 'Updated',
@@ -34,8 +32,6 @@ export type BlogProperties = {
   excerpt: string;
   category: string;
   tags: NotionTag[];
-  views: string;
-  likes: string;
   published: string;
   created?: string;
   updated?: string;
@@ -44,3 +40,8 @@ export type BlogProperties = {
   seoimagealt: string;
   seokeywords: string;
 };
+
+export interface FilterBlogPostProperties {
+  pageId?: string;
+  length?: number;
+}

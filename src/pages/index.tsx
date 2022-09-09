@@ -1,70 +1,75 @@
-import type { NextPage } from 'next';
-import Image from 'next/image';
-import Button from '@/components/button';
+import Link from 'next/link';
+import Image from 'next/future/image';
+import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { CgArrowRight } from 'react-icons/cg';
+import BlogPostList from '@/components/blog/blogPostList';
+import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 
-const Home: NextPage = () => {
+import { BlogProperties } from 'src/types/notion';
+
+export default function Home({
+  recentBlogPostProperties,
+}: {
+  recentBlogPostProperties: {
+    properties: BlogProperties;
+  }[];
+}) {
   return (
-    <div className='grid h-screen w-full place-items-center'>
-      <main>
-        <h1 className='text-3xl font-bold underline'>Hello world!</h1>
-        <Button />
-        <h1>
-          Welcome to <a href='https://nextjs.org'>Next.js!</a>
-        </h1>
-
-        <p>
-          Get started by editing <code>pages/index.tsx</code>
-        </p>
-
-        <div>
-          <a href='https://nextjs.org/docs'>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href='https://nextjs.org/learn'>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a href='https://github.com/vercel/next.js/tree/canary/examples' className='text-secondary underline'>
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a href='https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'>
-            <h2>Deploy &rarr;</h2>
-            <p>Instantly deploy your Next.js site to a public URL with Vercel.</p>
-          </a>
+    <main className='mx-auto py-16 md:grid'>
+      <div className='prose mx-auto px-8'>
+        <div className='flex flex-col items-center gap-8 md:flex-row'>
+          <div className='md:w-1/2'>
+            <Image
+              className='ring-secondary m-0 w-32 rounded-full object-cover ring-2 md:ml-auto'
+              src='/me.jpg'
+              width='512'
+              height='512'
+              loading='eager'
+              alt={`Jackie Luc's profile picture.`}
+            />
+          </div>
+          <h1 className='text-secondary mb-0 px-4 text-center md:px-0 md:text-left lg:px-6'>
+            software engineer, learn-it-all, punthusiest.
+          </h1>
         </div>
-        <article className='prose'>
-          <h1>Garlic bread with cheese: What the science tells us</h1>
+        <div className='md:px-8 lg:px-16'>
           <p>
-            For years <strong>parents</strong> have espoused the health benefits of eating garlic bread with cheese to
-            their children, with the food earning such an iconic status in our culture that kids will often dress up as
-            warm, cheesy loaf for Halloween. <a href='/'>read more...</a>
+            I'm Jackie, a software engneer and entrepreneur based in Seattle. I'm a life-long learner and enjoy building
+            solutions that magnify the impact of others.
           </p>
-          <p>
-            But a recent study shows that the celebrated appetizer may be linked to a series of rabies cases springing
-            up around the country.
-          </p>
-        </article>
-      </main>
-
-      <footer>
-        <a
-          href='https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app'
-          target='_blank'
-          rel='noopener noreferrer'
-        >
-          Powered by{' '}
-          <span>
-            <Image src='/vercel.svg' alt='Vercel Logo' width={72} height={16} />
+          <div className='flex gap-4'>
+            <Link href='https://github.com/jackieluc' target='_blank' title='GitHub' aria-label='GitHub'>
+              <FaGithub size='1.5rem' />
+            </Link>
+            <Link href='https://linkedin.com/in/jackieluc' target='_blank' title='LinkedIn' aria-label='LinkedIn'>
+              <FaLinkedin size='1.5rem' />
+            </Link>
+            <Link href='https://twitter.com/jackiesthinking' target='_blank' title='Twtitter' aria-label='Twitter'>
+              <FaTwitter size='1.5rem' />
+            </Link>
+          </div>
+        </div>
+      </div>
+      <div className='mt-8 flex max-w-prose flex-col gap-8 px-4 md:mx-auto md:p-8'>
+        <h2 className='text-secondary text-2xl font-bold'>latest posts</h2>
+        <BlogPostList blogPostProperties={recentBlogPostProperties} />
+        <Link href='/blog' className='flex items-center justify-center no-underline hover:underline'>
+          <span className='flex'>
+            see all posts <CgArrowRight size='1.5rem' />
           </span>
-        </a>
-      </footer>
-    </div>
+        </Link>
+      </div>
+    </main>
   );
-};
+}
 
-export default Home;
+export async function getStaticProps() {
+  const recentBlogPostProperties = await getBlogPostProperties({ length: 3 });
+
+  return {
+    props: {
+      recentBlogPostProperties,
+    },
+    // TODO: add revalidate for every day
+  };
+}

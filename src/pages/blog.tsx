@@ -1,12 +1,9 @@
 import Head from 'next/head';
-import Link from 'next/link';
-import PageViews from '@/components/page-view';
-import { getSlugFromProperties } from '@/utils/getSlug';
+import BlogPostList from '@/components/blog/blogPostList';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import generateRSS from '@/utils/rss/generate';
-import { getHumanReadableDate } from '@/utils/date';
 
-import type { BlogProperties, NotionTag } from 'src/types/notion';
+import type { BlogProperties } from 'src/types/notion';
 
 export default function Blog({
   allBlogPostProperties,
@@ -21,40 +18,8 @@ export default function Blog({
         <title>Blog | Jackie Luc</title>
       </Head>
       <main className='my-4 mx-auto mb-16 max-w-prose p-4 md:mt-8'>
-        <h1 className='text-secondary mb-4 text-3xl lg:hidden'>Blog</h1>
-        <ul className='grid gap-4'>
-          {allBlogPostProperties.map(({ properties }: { properties: BlogProperties }) => {
-            return (
-              <li className='border-secondary rounded-md border-2' key={properties.title}>
-                <Link
-                  href={`/blog/${getSlugFromProperties(properties)}`}
-                  className='flex flex-col gap-y-2 p-8 no-underline'
-                >
-                  <h2 className='text-xl font-bold'>{properties.title}</h2>
-                  <p className='text-sm'>{properties.excerpt}</p>
-                  <div className='flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-8'>
-                    <div className='[&>p]:m-0 flex gap-4'>
-                      <p>{getHumanReadableDate(properties.published)}</p>
-                      <PageViews slug={getSlugFromProperties(properties)} />
-                    </div>
-                    {properties.tags.length > 0 ? (
-                      <ul className='flex list-none gap-2'>
-                        {properties.tags.map((tag: NotionTag) => (
-                          <li
-                            className='rounded-full bg-gray-200 px-4 py-2 text-xs text-gray-800 no-underline'
-                            key={tag.name}
-                          >
-                            {tag.name}
-                          </li>
-                        ))}
-                      </ul>
-                    ) : null}
-                  </div>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+        <h1 className='text-secondary mb-8 text-3xl font-bold'>latest posts</h1>
+        <BlogPostList blogPostProperties={allBlogPostProperties} />
       </main>
     </>
   );
