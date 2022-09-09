@@ -2,15 +2,16 @@ const { withPlausibleProxy } = require('next-plausible');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = withPlausibleProxy()({
+  swcMinify: true,
   reactStrictMode: true,
   experimental: {
     newNextLinkBehavior: true,
-    images: {
-      allowFutureImage: true,
-    },
   },
   images: {
-    domains: ['res.cloudinary.com', 'unsplash.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'res.cloudinary.com' },
+      { protocol: 'https', hostname: 'unsplash.com' },
+    ],
   },
 });
 
