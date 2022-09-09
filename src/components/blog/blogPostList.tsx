@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import PageViews from '@/components/page-view';
+import PageViews from '@/components/blog/pageViews';
 import { getSlugFromProperties } from '@/utils/getSlug';
 import { getHumanReadableDate } from '@/utils/date';
 

@@ -1,6 +1,6 @@
+import PageLikes from '@/components/blog/pageLikes';
 import { getSlugFromProperties } from '@/utils/getSlug';
 import type { BlogProperties } from 'src/types/notion';
-import PageLikes from '../likes-view';
 
 export default function BlogFooter({
   blogProperties,
