@@ -80,7 +80,7 @@ function BigScreenNav({ router }: { router: NextRouter }) {
         </ul>
       </nav>
       <div className='navbar-end'>
-        <Link href='/rss.xml'>
+        <Link href='/rss.xml' title='RSS' aria-label='RSS'>
           <BiRss size='2rem' />
         </Link>
       </div>
