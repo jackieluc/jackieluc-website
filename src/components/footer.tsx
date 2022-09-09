@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { SITE_PAGES } from '@/config/constants';
 
 export default function Footer() {
   return (
@@ -12,12 +13,11 @@ export default function Footer() {
                   <Link className='hover:text-primary no-underline transition' href='/'>
                     home
                   </Link>
-                  <Link className='hover:text-primary no-underline transition' href='/blog'>
-                    blog
-                  </Link>
-                  <Link className='hover:text-primary no-underline transition' href='/uses'>
-                    uses
-                  </Link>
+                  {SITE_PAGES.map(({ title, url }) => (
+                    <Link className='hover:text-primary no-underline transition' href={url} key={title}>
+                      {title}
+                    </Link>
+                  ))}
                   <Link className='hover:text-primary no-underline transition' href='/rss.xml'>
                     rss
                   </Link>

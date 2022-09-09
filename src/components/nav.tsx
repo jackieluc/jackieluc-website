@@ -1,14 +1,10 @@
 import Link from 'next/link';
-import useMediaQuery from '@/utils/layout/useMediaQuery';
-import { BiRss } from 'react-icons/bi';
 import { useRouter } from 'next/router';
+import { BiRss } from 'react-icons/bi';
+import useMediaQuery from '@/utils/layout/useMediaQuery';
+import { SITE_PAGES } from '@/config/constants';
 
 import type { NextRouter } from 'next/router';
-
-const SITE_LINKS = [
-  ['about', '/about'],
-  ['blog', '/blog'],
-];
 
 export default function Nav() {
   const isSmallScreen = useMediaQuery(768); // tablet
@@ -31,7 +27,7 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
             jackie luc
           </Link>
         </li>
-        {SITE_LINKS.map(([title, url]) => (
+        {SITE_PAGES.map(({ title, url }) => (
           <li className='w-full' key={title}>
             <Link
               href={url}
@@ -65,7 +61,7 @@ function BigScreenNav({ router }: { router: NextRouter }) {
       </div>
       <nav className='navbar-center flex'>
         <ul className='menu menu-horizontal gap-4 p-0'>
-          {SITE_LINKS.map(([title, url]) => (
+          {SITE_PAGES.map(({ title, url }) => (
             <li className='w-full' tabIndex={0} key={title}>
               <Link
                 href={url}

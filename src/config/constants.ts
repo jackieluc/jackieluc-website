@@ -8,3 +8,17 @@ export const SITE_KEYWORDS =
 export const SITE_IMAGE = '/default-seo-image.jpg';
 export const SITE_IMAGE_ALT =
   "A mesh gradient background with two lines of text for jackieluc.com and the site's description.";
+export const SITE_PAGES = [
+  // {
+  //   title: 'about',
+  //   url: '/about',
+  // },
+  {
+    title: 'blog',
+    url: '/blog',
+  },
+  {
+    title: 'uses',
+    url: '/uses',
+  },
+];
