@@ -14,7 +14,7 @@ export default function BlogHeader({
 }) {
   const { properties } = blogProperties;
   return (
-    <section className='my-8'>
+    <header className='my-8'>
       <h1 className='mb-2'>{properties.title}</h1>
       <div className='flex flex-col items-start gap-2 md:flex-row md:items-center md:gap-8'>
         <div className='[&>p]:m-0 flex gap-4'>
@@ -36,6 +36,6 @@ export default function BlogHeader({
           </ul>
         ) : null}
       </div>
-    </section>
+    </header>
   );
 }
