@@ -100,7 +100,11 @@ const _renderParagraph = (block: any) => {
     }
 
     if (code) {
-      return <code key={index}>{rich_text.plain_text}</code>;
+      return (
+        <code className='text-accent rounded-lg bg-gray-200' key={index}>
+          {rich_text.plain_text}
+        </code>
+      );
     }
 
     return (

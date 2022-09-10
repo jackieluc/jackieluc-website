@@ -33,7 +33,7 @@ export default function BlogPostList({
                     <ul className='flex list-none flex-wrap gap-2'>
                       {properties.tags.map((tag: NotionTag) => (
                         <li
-                          className='text-secondary min-w-fit rounded-full bg-gray-200 px-4 py-2 text-xs no-underline'
+                          className='text-secondary bg-neutral min-w-fit rounded-full px-4 py-2 text-xs no-underline'
                           key={tag.name}
                         >
                           {tag.name}

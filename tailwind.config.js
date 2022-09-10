@@ -31,6 +31,7 @@ module.exports = {
             strong: {
               color: theme('colors.primary'),
             },
+            // code block, not inline
             code: {
               backgroundColor: theme('colors.gray.200'),
               color: theme('colors.secondary'),
@@ -65,8 +66,9 @@ module.exports = {
           secondary: '#065f46', // emerald.800
           'secondary-focus': '#4d8072',
           accent: '#6C70AD',
-          neutral: '#C1C7D1',
+          neutral: '#ffd9b4',
           'base-100': '#FFF3E7', // daisyui default blank background
+          'base-200': '#ffd9b4', // monochromatic
           '.btn': {
             'text-transform': 'none', // remove all-caps on buttons
           },
