@@ -1,4 +1,4 @@
-export const NAME = 'Jackie Luc';
+export const NAME = 'jackie luc';
 export const DOMAIN = 'jackieluc.com';
 export const SITE_URL = `https://${DOMAIN}`;
 export const SITE_DESCRIPTION =
