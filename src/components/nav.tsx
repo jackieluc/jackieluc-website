@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BiRss } from 'react-icons/bi';
 import useMediaQuery from '@/utils/layout/useMediaQuery';
-import { SITE_PAGES } from '@/config/constants';
+import { NAME, SITE_PAGES } from '@/config/constants';
 
 import type { NextRouter } from 'next/router';
 
@@ -24,7 +24,7 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
               getActiveRoute('/', router) ? `bg-secondary underline` : `no-underline`
             }`}
           >
-            jackie luc
+            {NAME}
           </Link>
         </li>
         {SITE_PAGES.map(({ title, url }) => (
@@ -56,7 +56,7 @@ function BigScreenNav({ router }: { router: NextRouter }) {
               : `no-underline`
           }`}
         >
-          jackie luc
+          {NAME}
         </Link>
       </div>
       <nav className='navbar-center flex'>
