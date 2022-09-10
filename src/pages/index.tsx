@@ -16,7 +16,7 @@ export default function Home({
 }) {
   return (
     <main className='mx-auto py-16 md:grid'>
-      <div className='prose mx-auto px-8'>
+      <header className='prose mx-auto px-8'>
         <div className='flex flex-col items-center gap-8 md:flex-row'>
           <div className='md:w-1/2'>
             <Image
@@ -49,7 +49,7 @@ export default function Home({
             </Link>
           </div>
         </div>
-      </div>
+      </header>
       <div className='mt-8 flex max-w-prose flex-col gap-8 px-4 md:mx-auto md:p-8'>
         <h2 className='text-secondary text-2xl font-bold'>latest posts</h2>
         <BlogPostList blogPostProperties={recentBlogPostProperties} />
