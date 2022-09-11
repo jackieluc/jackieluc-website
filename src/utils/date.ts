@@ -1,8 +1,8 @@
-export function getHumanReadableDate(dateAsString: string) {
-  const date = new Date(dateAsString);
+export function getHumanReadableDate(dateInput: string) {
+  const date = new Date(dateInput);
   const dateTimeFormat = new Intl.DateTimeFormat('en', {
     year: 'numeric',
-    month: 'long',
+    month: 'short',
     day: 'numeric',
   });
 

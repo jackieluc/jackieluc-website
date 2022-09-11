@@ -104,13 +104,18 @@ export const getStaticPaths = async () => {
 
   return {
     paths,
-    fallback: false, // false: 404s if can't find blog post
+    // run getStaticProps if path cannot be found, this means we don't need to redeploy the site
+    // when we publish a new blog post
+    fallback: 'blocking',
   };
 };
 
 /**
  * Gets the specific blog post properties and content from all published blog post IDs and properties
  * and then filters down based on the slug from getStaticPaths.
+ *
+ * With getStaticPath's fallback prop, if we can't find the blog post in Notion, we will return 404 not found.
+ *
  * @param slug - slug of the blog post from getStaticPaths
  * @returns
  */
@@ -143,12 +148,16 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
   }
 
   if (pageIdIndex === -1) {
-    throw Error(`Can't find page index that matches slug`);
+    return {
+      notFound: true,
+    };
   }
 
   const pageId = pageIds[pageIdIndex];
 
   const [properties, content] = await Promise.all([getBlogPostProperties({ pageId }), getBlogPostContent(pageId)]);
+
+  const publishedDate = properties[0].properties.published;
 
   return {
     props: {
@@ -156,6 +165,7 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
       blogProperties: properties,
       content,
     },
-    revalidate: 1, // TODO write a function to get a revalidate time based on when the blog post was published. eg. recently published: revalidate every hour for a day, blog posts > 7 days old, revalidate weekly/monthly
+    // This generates a static value that will be refreshed after every deployment
+    revalidate: getRevalidateTime(publishedDate),
   };
 };

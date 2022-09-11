@@ -2,9 +2,10 @@ import Head from 'next/head';
 import BlogPostList from '@/components/blog/blogPostList';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import generateRSS from '@/utils/rss/generate';
+import { NAME } from '@/config/constants';
+import { DAY_AS_SECONDS } from '@/utils/blog/revalidate';
 
 import { InferGetStaticPropsType } from 'next';
-import { NAME } from '@/config/constants';
 
 export default function Blog({ allBlogPostProperties }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
@@ -29,6 +30,6 @@ export async function getStaticProps() {
     props: {
       allBlogPostProperties,
     },
-    // TODO: add revalidate for every day
+    revalidate: DAY_AS_SECONDS,
   };
 }

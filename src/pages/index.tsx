@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 import { CgArrowRight } from 'react-icons/cg';
 import BlogPostList from '@/components/blog/blogPostList';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
+import { DAY_AS_SECONDS } from '@/utils/blog/revalidate';
 
 import { InferGetStaticPropsType } from 'next';
 
@@ -64,6 +65,6 @@ export async function getStaticProps() {
     props: {
       recentBlogPostProperties,
     },
-    // TODO: add revalidate for every day
+    revalidate: DAY_AS_SECONDS,
   };
 }
