@@ -5,15 +5,9 @@ import { CgArrowRight } from 'react-icons/cg';
 import BlogPostList from '@/components/blog/blogPostList';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 
-import { BlogProperties } from 'src/types/notion';
+import { InferGetStaticPropsType } from 'next';
 
-export default function Home({
-  recentBlogPostProperties,
-}: {
-  recentBlogPostProperties: {
-    properties: BlogProperties;
-  }[];
-}) {
+export default function Home({ recentBlogPostProperties }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <main className='mx-auto py-16 md:grid'>
       <header className='prose mx-auto px-8'>

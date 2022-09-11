@@ -12,18 +12,10 @@ import { getBlogPostUrl } from '@/utils/url';
 import getSeoImage from '@/utils/seo/image';
 
 import type { BlogProperties } from 'src/types/notion';
-import type { SlugParams } from 'src/types/next';
-import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import type { SlugParams, BlogPostParams } from 'src/types/next';
+import getRevalidateTime from '@/utils/blog/revalidate';
 
-export default function Post({
-  slug,
-  blogProperties,
-  content,
-}: {
-  slug: string;
-  blogProperties: { properties: BlogProperties }[];
-  content: BlockObjectResponse[];
-}) {
+export default function Post({ slug, blogProperties, content }: BlogPostParams) {
   useEffect(() => {
     const registerView = async () => {
       await fetch(`/api/views/${slug}`, {

@@ -3,16 +3,10 @@ import BlogPostList from '@/components/blog/blogPostList';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import generateRSS from '@/utils/rss/generate';
 
-import type { BlogProperties } from 'src/types/notion';
+import { InferGetStaticPropsType } from 'next';
 import { NAME } from '@/config/constants';
 
-export default function Blog({
-  allBlogPostProperties,
-}: {
-  allBlogPostProperties: {
-    properties: BlogProperties;
-  }[];
-}) {
+export default function Blog({ allBlogPostProperties }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
       <Head>
