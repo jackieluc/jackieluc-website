@@ -15,7 +15,7 @@ const notion = new Client({
 
 export default notion;
 
-const DATABASE_ID = process.env.NOTION_DATABASE_ID as string;
+const BLOG_DATABASE_ID = process.env.NOTION_BLOG_DATABASE_ID as string;
 
 export async function getPage(page_id: string): Promise<GetPageResponse> {
   const pages = await notion.pages.retrieve({ page_id });
@@ -48,7 +48,7 @@ export async function getBlocks(block_id: string, start_cursor?: string): Promis
 
 export async function getAllPublishedBlogPosts(): Promise<Database> {
   const database = await notion.databases.query({
-    database_id: DATABASE_ID,
+    database_id: BLOG_DATABASE_ID,
     page_size: 50,
     filter: {
       property: BlogPropertyKeys.Published,
@@ -75,7 +75,7 @@ export async function getAllPublishedBlogPosts(): Promise<Database> {
 
 export async function getAllBlogPostTags(): Promise<Database> {
   const database = await notion.databases.query({
-    database_id: DATABASE_ID,
+    database_id: BLOG_DATABASE_ID,
     page_size: 50,
     filter: {
       and: [
