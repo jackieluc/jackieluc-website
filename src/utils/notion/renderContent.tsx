@@ -50,7 +50,7 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
       return (
         <figure className='flex flex-col items-center'>
           <Image src={src} alt={caption} width={825} height={500} />
-          {caption && <figcaption className='italic'>{caption}</figcaption>}
+          {/* {caption && <figcaption className='italic'>{caption}</figcaption>} */}
         </figure>
       );
     case 'divider':
