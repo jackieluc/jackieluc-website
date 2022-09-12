@@ -39,11 +39,14 @@ export async function getStaticPaths() {
 
   pageIds.forEach((_, index) => {
     let [tags] = metadata[index];
+    const parsedTags: NotionTag[] = JSON.parse(parseProperty(tags));
 
-    paths.push({
-      params: {
-        tag: parseProperty(tags),
-      },
+    parsedTags.forEach((tag) => {
+      paths.push({
+        params: {
+          tag: tag.name,
+        },
+      });
     });
   });
 
