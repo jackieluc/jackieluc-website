@@ -3,7 +3,9 @@ import slugify from 'slugify';
 import type { BlogProperties } from 'src/types/notion';
 
 export function getSlug(string: string) {
-  return slugify(string.trim().toLowerCase());
+  return slugify(string.trim().toLowerCase(), {
+    remove: /[*+~.()'"!:@,?]/g,
+  });
 }
 
 export function getSlugFromProperties(properties: BlogProperties) {
