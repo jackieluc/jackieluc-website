@@ -1,4 +1,5 @@
 import { Client } from '@notionhq/client';
+import { BlogPropertyKeys } from 'src/types/notion';
 
 import type {
   PageObjectResponse,
@@ -48,16 +49,16 @@ export async function getBlocks(block_id: string, start_cursor?: string): Promis
 export async function getAllPublishedBlogPosts(): Promise<Database> {
   const database = await notion.databases.query({
     database_id: DATABASE_ID,
-    page_size: 10,
+    page_size: 50,
     filter: {
-      property: 'Published',
+      property: BlogPropertyKeys.Published,
       date: {
         is_not_empty: true,
       },
     },
     sorts: [
       {
-        property: 'Published',
+        property: BlogPropertyKeys.Published,
         direction: 'descending',
       },
     ],
