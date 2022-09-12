@@ -24,7 +24,7 @@ export default function Home({ recentBlogPostProperties }: InferGetStaticPropsTy
             />
           </div>
           <h1 className='text-secondary mb-0 px-4 text-center md:px-0 md:text-left lg:px-6'>
-            software engineer, learn-it-all, punthusiest.
+            software engineer, learn-it-all, punthusiast.
           </h1>
         </div>
         <div className='md:px-8 lg:px-16'>
