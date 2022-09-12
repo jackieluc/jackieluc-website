@@ -128,7 +128,7 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
     })
   );
 
-  let pageIdIndex: number = -1;
+  let foundPageIdIndex: number = -1;
 
   for (let i = 0; i < pageIds.length; i++) {
     let [title, pathoverride] = metadata[i];
@@ -139,21 +139,21 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
     };
 
     if (mappedProperties.pathoverride && getSlug(mappedProperties.pathoverride) === slug) {
-      pageIdIndex = i;
+      foundPageIdIndex = i;
       break;
     } else if (getSlug(mappedProperties.title) === slug) {
-      pageIdIndex = i;
+      foundPageIdIndex = i;
       break;
     }
   }
 
-  if (pageIdIndex === -1) {
+  if (foundPageIdIndex === -1) {
     return {
       notFound: true,
     };
   }
 
-  const pageId = pageIds[pageIdIndex];
+  const pageId = pageIds[foundPageIdIndex];
 
   const [properties, content] = await Promise.all([getBlogPostProperties({ pageId }), getBlogPostContent(pageId)]);
 
