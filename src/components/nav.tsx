@@ -15,7 +15,7 @@ export default function Nav() {
 
 function SmallScreenNav({ router }: { router: NextRouter }) {
   return (
-    <nav className='fixed bottom-0 w-full'>
+    <nav className='fixed bottom-0 z-50 w-full'>
       <ul className='menu menu-horizontal bg-primary flex justify-evenly divide-x-2'>
         <li className='w-full'>
           <Link
@@ -46,7 +46,7 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
 
 function BigScreenNav({ router }: { router: NextRouter }) {
   return (
-    <header className='navbar bg-beige sticky top-0 py-0 px-8'>
+    <header className='navbar bg-beige sticky top-0 z-50 py-0 px-8'>
       <div className='navbar-start'>
         <Link
           href='/'
