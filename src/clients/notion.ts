@@ -73,44 +73,39 @@ export async function getAllPublishedBlogPosts(): Promise<Database> {
   };
 }
 
-export async function getHighestViewedBlogPosts(): Promise<any> {
+export async function getAllBlogPostTags(): Promise<Database> {
   const database = await notion.databases.query({
     database_id: DATABASE_ID,
-    page_size: 10,
+    page_size: 50,
     filter: {
-      property: 'Published',
-      date: {
-        is_not_empty: true,
-      },
+      and: [
+        {
+          property: BlogPropertyKeys.Published,
+          date: {
+            is_not_empty: true,
+          },
+        },
+        {
+          property: BlogPropertyKeys.Tags,
+          multi_select: {
+            is_not_empty: true,
+          },
+        },
+      ],
     },
     sorts: [
       {
-        property: 'Views',
+        property: BlogPropertyKeys.Published,
         direction: 'descending',
       },
     ],
   });
 
-  // TODO implement
-}
+  const pageIds: string[] = database.results.map((result: any) => result.id);
+  const properties = (database.results[0] as PageObjectResponse).properties as NotionBlogProperties;
 
-export async function getHighestUpvotedBlogPosts(): Promise<any> {
-  const database = await notion.databases.query({
-    database_id: DATABASE_ID,
-    page_size: 10,
-    filter: {
-      property: 'Published',
-      date: {
-        is_not_empty: true,
-      },
-    },
-    sorts: [
-      {
-        property: 'Likes',
-        direction: 'descending',
-      },
-    ],
-  });
-
-  // TODO implement
+  return {
+    pageIds,
+    properties,
+  };
 }

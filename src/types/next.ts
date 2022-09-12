@@ -6,6 +6,12 @@ export interface SlugParams {
   };
 }
 
+export interface TagParams {
+  params: {
+    tag: string;
+  };
+}
+
 export interface BlogPostParams {
   slug: string;
   blogProperties: {
