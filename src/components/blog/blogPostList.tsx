@@ -4,6 +4,7 @@ import { getSlugFromProperties } from '@/utils/getSlug';
 import { getHumanReadableDate } from '@/utils/date';
 
 import type { BlogProperties, NotionTag } from 'src/types/notion';
+import PageLikes from './pageLikes';
 
 export default function BlogPostList({
   blogPostProperties,
@@ -28,6 +29,7 @@ export default function BlogPostList({
                   <div className='[&>p]:m-0 text-secondary flex gap-4 text-sm'>
                     <p>{getHumanReadableDate(properties.published)}</p>
                     <PageViews slug={getSlugFromProperties(properties)} />
+                    <PageLikes slug={getSlugFromProperties(properties)} />
                   </div>
                   {properties.tags.length > 0 ? (
                     <ul className='flex list-none flex-wrap gap-2'>

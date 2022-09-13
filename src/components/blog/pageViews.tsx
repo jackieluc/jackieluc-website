@@ -14,7 +14,9 @@ const PageViews: FC<PageViewsProps> = ({ slug }) => {
   const { data } = useSWR(`/api/views/${slug}`, fetcher);
   const views = Number(data?.views);
 
-  return <>{`${views > -1 ? views.toLocaleString() : '---'} views`}</>;
+  const formattedViews = new Intl.NumberFormat('en', { notation: 'compact' }).format(views);
+
+  return <p>{`${views > -1 ? formattedViews.toLocaleString() : '---'} views`}</p>;
 };
 
 export default PageViews;

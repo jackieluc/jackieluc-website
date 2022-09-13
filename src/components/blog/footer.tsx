@@ -1,4 +1,4 @@
-import PageLikes from '@/components/blog/pageLikes';
+import LikeButton from '@/components/blog/likeButton';
 import { getSlugFromProperties } from '@/utils/getSlug';
 import type { BlogProperties } from 'src/types/notion';
 
@@ -12,7 +12,7 @@ export default function BlogFooter({
   const { properties } = blogProperties;
   return (
     <section className='my-8'>
-      <PageLikes slug={getSlugFromProperties(properties)} />
+      <LikeButton slug={getSlugFromProperties(properties)} />
     </section>
   );
 }
