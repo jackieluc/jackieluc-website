@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import SupabaseAdmin from '@/clients/supabase-admin';
+import isProduction from '@/utils/env';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method !== 'POST' && req.method !== 'GET') {
@@ -10,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   if (req.method === 'POST') {
     // Call our stored procedure with the page_slug set by the request params slug
-    if (process.env.NODE_ENV === 'production') {
+    if (isProduction()) {
       await SupabaseAdmin.rpc('increment_page_view', { page_slug: req.query.slug });
     }
     return res.status(200).end();
