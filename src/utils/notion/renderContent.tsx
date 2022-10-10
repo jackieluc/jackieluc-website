@@ -2,6 +2,8 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/future/image';
 import Callout from '@/components/blog/callout';
+import { getSlug } from '../getSlug';
+import { FaLink } from 'react-icons/fa';
 
 import type { ReactNode } from 'react';
 import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
@@ -15,11 +17,32 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
     case 'paragraph':
       return <p>{value}</p>;
     case 'heading_1':
-      return <h1>{value}</h1>;
+      return (
+        <h1 id={getSlug(value)} className='flex scroll-mt-24 items-center gap-3'>
+          {value}
+          <Link href={`#${getSlug(value)}`}>
+            <FaLink size='1.15rem' />
+          </Link>
+        </h1>
+      );
     case 'heading_2':
-      return <h2>{value}</h2>;
+      return (
+        <h2 id={getSlug(value)} className='flex scroll-mt-24 items-center gap-3'>
+          {value}
+          <Link href={`#${getSlug(value)}`}>
+            <FaLink size='1.15rem' />
+          </Link>
+        </h2>
+      );
     case 'heading_3':
-      return <h3>{value}</h3>;
+      return (
+        <h3 id={getSlug(value)} className='flex scroll-mt-24 items-center gap-3'>
+          {value}
+          <Link href={`#${getSlug(value)}`}>
+            <FaLink size='1.15rem' />
+          </Link>
+        </h3>
+      );
     case 'bulleted_list_item':
     case 'numbered_list_item':
       if (!index || typeof content === 'undefined') {
