@@ -12,6 +12,7 @@ module.exports = {
             color: theme('colors.primary'),
             a: {
               color: theme('colors.secondary'),
+              fontWeight: '400',
               '&:hover': {
                 color: '#4d8072',
               },

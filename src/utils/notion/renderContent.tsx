@@ -108,7 +108,7 @@ const _renderParagraph = (block: any) => {
     }
 
     return (
-      <span className={`${bold ? 'font-bold' : null} ${italic ? 'italic' : null}`} key={index}>
+      <span className={`${bold ? 'text-secondary font-bold' : ''}${italic ? 'italic' : ''}`} key={index}>
         {rich_text.plain_text}
       </span>
     );

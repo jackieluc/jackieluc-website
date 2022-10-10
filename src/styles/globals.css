@@ -75,7 +75,7 @@
 @layer base {
   a {
     @apply text-secondary;
-    @apply font-medium;
+    @apply font-normal;
     text-decoration: underline;
 
   }
