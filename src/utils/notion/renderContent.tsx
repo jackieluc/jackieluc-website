@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/future/image';
+import Callout from '@/components/blog/callout';
 
 import type { ReactNode } from 'react';
 import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
@@ -72,7 +73,8 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
       );
     case 'child_page':
       return; // ignore child pages (ie. outlines, drafts)
-    // TODO: Add callout
+    case 'callout':
+      return <Callout block={block} renderedText={value} />;
     default:
       return `❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`;
   }
@@ -127,6 +129,7 @@ function _getRenderValue(block: any) {
     case 'child_page':
     case 'file':
       return block[type];
+    case 'callout':
     case 'bulleted_list_item':
     case 'numbered_list_item':
     case 'paragraph':
