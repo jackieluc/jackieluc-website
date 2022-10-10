@@ -20,7 +20,7 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
         <li className='w-full'>
           <Link
             href='/'
-            className={`hover:bg-secondary w-full justify-center p-4 text-white hover:text-white ${
+            className={`hover:bg-secondary w-full justify-center p-4 font-medium text-white hover:text-white ${
               getActiveRoute('/', router) ? `bg-secondary underline` : `no-underline`
             }`}
           >
@@ -50,7 +50,7 @@ function BigScreenNav({ router }: { router: NextRouter }) {
       <div className='navbar-start'>
         <Link
           href='/'
-          className={`btn btn-ghost text-xl normal-case ${
+          className={`btn btn-ghost text-xl font-medium normal-case ${
             getActiveRoute('/', router)
               ? `bg-secondary hover:bg-secondary text-white underline hover:text-white`
               : `no-underline`
