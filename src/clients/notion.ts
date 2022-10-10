@@ -53,10 +53,20 @@ export async function getAllPublishedBlogPosts(): Promise<Database> {
     database_id: BLOG_DATABASE_ID,
     page_size: 50,
     filter: {
-      property: BlogPropertyKeys.Published,
-      date: {
-        is_not_empty: true,
-      },
+      and: [
+        {
+          property: BlogPropertyKeys.Published,
+          date: {
+            is_not_empty: true,
+          },
+        },
+        {
+          property: BlogPropertyKeys.Published,
+          date: {
+            on_or_before: new Date().toISOString(),
+          },
+        },
+      ],
     },
     sorts: [
       {
