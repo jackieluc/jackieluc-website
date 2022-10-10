@@ -6,8 +6,10 @@ import type {
   GetPageResponse,
   GetPagePropertyResponse,
   ListBlockChildrenResponse,
+  QueryDatabaseParameters,
 } from '@notionhq/client/build/src/api-endpoints';
 import type { NotionBlogProperties, Database } from 'src/types/notion';
+import isProduction from '@/utils/env';
 
 const notion = new Client({
   auth: process.env.NOTION_AUTH_TOKEN,
@@ -47,7 +49,7 @@ export async function getBlocks(block_id: string, start_cursor?: string): Promis
 }
 
 export async function getAllPublishedBlogPosts(): Promise<Database> {
-  const database = await notion.databases.query({
+  const prodOptions: QueryDatabaseParameters = {
     database_id: BLOG_DATABASE_ID,
     page_size: 50,
     filter: {
@@ -62,7 +64,22 @@ export async function getAllPublishedBlogPosts(): Promise<Database> {
         direction: 'descending',
       },
     ],
-  });
+  };
+
+  const devOptions: QueryDatabaseParameters = {
+    database_id: BLOG_DATABASE_ID,
+    page_size: 50,
+    sorts: [
+      {
+        property: BlogPropertyKeys.Updated,
+        direction: 'descending',
+      },
+    ],
+  };
+
+  const options = isProduction() ? prodOptions : devOptions;
+
+  const database = await notion.databases.query(options);
 
   const pageIds: string[] = database.results.map((result: any) => result.id);
   const properties = (database.results[0] as PageObjectResponse).properties as NotionBlogProperties;
