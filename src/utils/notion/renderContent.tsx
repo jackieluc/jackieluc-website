@@ -65,13 +65,14 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
       const lastElementInArray = splitSourceArray[splitSourceArray.length - 1];
       const caption_file = value.caption ? value.caption[0]?.plain_text : '';
       return (
-        <figure>
+        <figure className='m-0'>
           <Link href={src_file}>📎 {lastElementInArray.split('?')[0]}</Link>
           {caption_file && <figcaption>{caption_file}</figcaption>}
         </figure>
       );
+    case 'child_page':
+      return; // ignore child pages (ie. outlines, drafts)
     // TODO: Add callout
-    // TODO: Add child_page
     default:
       return `❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`;
   }
@@ -123,6 +124,8 @@ function _getRenderValue(block: any) {
   switch (type) {
     case 'divider':
     case 'image':
+    case 'child_page':
+    case 'file':
       return block[type];
     case 'bulleted_list_item':
     case 'numbered_list_item':
