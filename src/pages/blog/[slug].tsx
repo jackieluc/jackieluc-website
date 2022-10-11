@@ -6,6 +6,7 @@ import { getSlug } from '@/utils/getSlug';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import BlogHeader from '@/components/blog/header';
 import BlogFooter from '@/components/blog/footer';
+import buildAllAnchorLinks from '@/utils/notion/buildAllAnchorLinks';
 import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
 import parseProperty from '@/utils/notion/parseProperty';
 import { getBlogPostUrl } from '@/utils/url';
@@ -154,9 +155,8 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
   }
 
   const pageId = pageIds[foundPageIdIndex];
-
-  const [properties, content] = await Promise.all([getBlogPostProperties({ pageId }), getBlogPostContent(pageId)]);
-
+  const [properties, blogContent] = await Promise.all([getBlogPostProperties({ pageId }), getBlogPostContent(pageId)]);
+  const content = await buildAllAnchorLinks(blogContent);
   const publishedDate = properties[0].properties.published;
 
   return {

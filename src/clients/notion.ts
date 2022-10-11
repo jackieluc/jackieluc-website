@@ -38,6 +38,14 @@ export async function getPageProperties(page_id: string, propertyIds: string[]):
   return pageProperties;
 }
 
+export async function getBlock(block_id: string) {
+  const block = await notion.blocks.retrieve({
+    block_id,
+  });
+
+  return block;
+}
+
 export async function getBlocks(block_id: string, start_cursor?: string): Promise<ListBlockChildrenResponse> {
   const blocks = await notion.blocks.children.list({
     block_id,

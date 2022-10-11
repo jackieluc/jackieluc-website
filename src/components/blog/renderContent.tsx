@@ -113,8 +113,10 @@ const _renderParagraph = (block: any) => {
 
   const renderedText = rich_text_list.map((rich_text: any, index: number) => {
     if (rich_text.href) {
+      const isAnchorLink: boolean = rich_text.href.startsWith('#');
+
       return (
-        <Link href={rich_text.href} key={index} target='_blank'>
+        <Link href={rich_text.href} key={index} target={isAnchorLink ? undefined : '_blank'}>
           {rich_text.plain_text}
         </Link>
       );
