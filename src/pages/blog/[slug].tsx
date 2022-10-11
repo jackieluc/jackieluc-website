@@ -36,21 +36,21 @@ export default function Post({ slug, blogProperties, content }: BlogPostParams) 
   return (
     <>
       <Head>
-        <link rel='canonical' href={blogPostUrl} />
-        <title>{title}</title>
-        <meta name='description' content={excerpt} />
-        {seokeywords ? <meta name='keywords' content={seokeywords} /> : null}
-        <meta name='image' content={seoimage} />
-        <meta name='author' content='Jackie Luc' />
-        <meta property='og:type' content='article' />
-        <meta property='og:url' content={blogPostUrl} />
-        <meta property='og:title' content={title} />
-        <meta property='og:description' content={excerpt} />
-        <meta property='og:image' content={seoimage} />
-        <meta property='og:image:alt' content={seoimagealt} />
-        <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:site' content='@jackiesthinking' />
-        <meta name='twitter:creator' content='@jackiesthinking' />
+        <link rel='canonical' href={blogPostUrl} key='canonical' />
+        <title key='title'>{title}</title>
+        <meta name='description' content={excerpt} key='description' />
+        {seokeywords ? <meta name='keywords' content={seokeywords} key='keywords' /> : null}
+        <meta name='image' content={seoimage} key='image' />
+        <meta name='author' content='Jackie Luc' key='author' />
+        <meta property='og:type' content='article' key='og:type' />
+        <meta property='og:url' content={blogPostUrl} key='og:url' />
+        <meta property='og:title' content={title} key='og:title' />
+        <meta property='og:description' content={excerpt} key='og:description' />
+        <meta property='og:image' content={seoimage} key='og:image' />
+        <meta property='og:image:alt' content={seoimagealt} key='og:image:alt' />
+        <meta name='twitter:card' content='summary_large_image' key='twitter:card' />
+        <meta name='twitter:site' content='@jackiesthinking' key='twitter:site' />
+        <meta name='twitter:creator' content='@jackiesthinking' key='twitter:creator' />
       </Head>
       <main className='my-4 mb-16 grid place-items-center px-4 lg:mt-8'>
         <article className='prose'>

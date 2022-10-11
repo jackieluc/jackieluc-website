@@ -19,20 +19,20 @@ export default function MyApp({ Component, pageProps }: AppProps) {
   return (
     <PlausibleProvider domain={DOMAIN} trackOutboundLinks>
       <Head>
-        <link rel='icon' href='/favicon.png' />
-        <title>{NAME}</title>
-        <meta name='description' content={SITE_DESCRIPTION} />
-        <meta name='keywords' content={SITE_KEYWORDS} />
-        <meta name='image' content={SITE_IMAGE} />
-        <meta property='og:type' content='website' />
-        <meta property='og:url' content={SITE_URL} />
-        <meta property='og:title' content={NAME} />
-        <meta property='og:description' content={SITE_DESCRIPTION} />
-        <meta property='og:image' content={SITE_IMAGE} />
-        <meta property='og:image:alt' content={SITE_IMAGE_ALT} />
-        <meta name='twitter:card' content='summary_large_image' />
-        <meta name='twitter:site' content='@jackiesthinking' />
-        <meta name='twitter:creator' content='@jackiesthinking' />
+        <link rel='icon' href='/favicon.png' key='favicon' />
+        <title key='title'>{NAME}</title>
+        <meta name='description' content={SITE_DESCRIPTION} key='description' />
+        <meta name='keywords' content={SITE_KEYWORDS} key='keywords' />
+        <meta name='image' content={SITE_IMAGE} key='image' />
+        <meta property='og:type' content='website' key='og:type' />
+        <meta property='og:url' content={SITE_URL} key='og:url' />
+        <meta property='og:title' content={NAME} key='og:title' />
+        <meta property='og:description' content={SITE_DESCRIPTION} key='og:description' />
+        <meta property='og:image' content={SITE_IMAGE} key='og:image' />
+        <meta property='og:image:alt' content={SITE_IMAGE_ALT} key='og:image:alt' />
+        <meta name='twitter:card' content='summary_large_image' key='twitter:card' />
+        <meta name='twitter:site' content='@jackiesthinking' key='twitter:site' />
+        <meta name='twitter:creator' content='@jackiesthinking' key='twitter:creator' />
       </Head>
       <Nav />
       <Component {...pageProps} />
