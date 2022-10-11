@@ -2,7 +2,7 @@ import { Fragment } from 'react';
 import Link from 'next/link';
 import Image from 'next/future/image';
 import Callout from '@/components/blog/callout';
-import { getSlug } from '../getSlug';
+import { getSlug } from '../../utils/getSlug';
 import { FaLink } from 'react-icons/fa';
 
 import type { ReactNode } from 'react';
