@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { Fragment, useEffect } from 'react';
 import { getAllPublishedBlogPosts, getPageProperties } from '@/clients/notion';
-import { renderContent } from '@/utils/notion/renderContent';
+import { renderContent } from '@/components/blog/renderContent';
 import { getSlug } from '@/utils/getSlug';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import BlogHeader from '@/components/blog/header';
