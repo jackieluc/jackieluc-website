@@ -22,8 +22,7 @@ export default async function buildAllAnchorLinks(content: BlockObjectResponse[]
         if (textItem?.href?.startsWith('/') && textItem.href.includes('#')) {
           const blockId = textItem.href.split('#')[1];
           const anchorBlock = (await getBlock(blockId)) as any;
-          const res = `#${getSlug(anchorBlock[anchorBlock.type]?.rich_text[0].plain_text)}`;
-          block.paragraph.rich_text[i].href = res;
+          block.paragraph.rich_text[i].href = `#${getSlug(anchorBlock[anchorBlock.type]?.rich_text[0].plain_text)}`;
         }
       }
 
