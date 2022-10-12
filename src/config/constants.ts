@@ -43,12 +43,12 @@ export const USES = [
         description: `My 2S was going strong for almost 5 years. My biggest complaint with the 2S was that the clicks were too loud. The 3S has 90% less click noise. Like the trackpad, I also created custom gestures/shortcuts for my workflow. This mouse is a huge productivity booster. It's a big W in my books.`,
       },
       {
-        title: 'Apple AirPods Pro (1st Gen)',
-        description: `One of my favourite gadgets. Extremely comfortable and noise cancellation is a must. Seamlessly switches between my iPhone and my MacBook as well. My only complaint is that there's no way to modify volume.`,
+        title: 'Apple AirPods Pro (2st Gen)',
+        description: `One of my favourite gadgets. Extremely comfortable and the active noise cancellation is a must. Seamlessly switches between my iPhone and my MacBook as well. Replaced my 1st gen AirPods Pro because I wanted the better noise cancellation and volume controls.`,
       },
       {
-        title: 'Bose QuietComfort 35 II Wireless Bluetooth Headphones',
-        description: `Another one of my favourite gadgets. It's been going strong for 5 years and desperately needs a battery replacement. Extremely comfortable and an essential for long sessions and long-haul flights.`,
+        title: 'Sony WH-1000XM5 Wireless Headphones',
+        description: `Replaced my Bose QC 35 II after 5 years. This was a great upgrade with better active noise cancellation. It's extremely comfortable and an essential for long sessions and long-haul flights.`,
       },
       {
         title: 'Dual LG 27” 4K Monitor',
