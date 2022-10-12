@@ -1,32 +1,10 @@
-import { expect, test } from 'vitest';
-import { render, screen, within } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Home from '@/pages/index';
+import { blogProperties } from './mocks';
 
-const blogPropertiesFixture = [
-  {
-    properties: {
-      title: 'abc',
-      excerpt: 'abc',
-      category: 'abc',
-      tags: [
-        {
-          id: 'abc',
-          name: 'abc',
-          color: 'name',
-        },
-      ],
-      published: 'Fri Sep 09 2022 01:46:01 GMT-0700 ',
-      seoimage: 'abc',
-      seoimagealt: 'abc',
-      seokeywords: 'abc',
-    },
-  },
-];
-
-test('home', () => {
-  render(<Home recentBlogPostProperties={blogPropertiesFixture} />);
-  const main = within(screen.getByRole('main'));
-  expect(
-    main.getByRole('heading', { level: 1, name: /software engineer, learn-it-all, punthusiest\./i })
-  ).toBeDefined();
+describe('home', () => {
+  it('renders home page', () => {
+    render(<Home recentBlogPostProperties={blogProperties} />);
+    expect(screen.getByText(/software engineer, learn-it-all, punthusiast\./i)).toBeDefined();
+  });
 });

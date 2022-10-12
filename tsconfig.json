@@ -22,7 +22,8 @@
       "@/pages/*": ["src/pages/*"],
       "@/utils/*": ["src/utils/*"],
       "@/styles/*": ["src/styles/*"],
-    }
+    },
+    "types": ["vitest/globals"],
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules"]
