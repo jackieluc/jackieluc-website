@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { getBlogPostUrl } from '@/utils/url';
 
 describe('url utils', () => {

@@ -1,4 +1,3 @@
-import { describe, it, expect } from 'vitest';
 import { getHumanReadableDate } from '@/utils/date';
 
 describe('date utils', () => {

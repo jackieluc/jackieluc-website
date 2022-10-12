@@ -1,5 +1,5 @@
-import { DAY_AS_SECONDS, WEEK_AS_SECONDS, MONTH_AS_SECONDS } from './../../../src/utils/blog/revalidate';
-import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest';
+import { DAY_AS_SECONDS, WEEK_AS_SECONDS, MONTH_AS_SECONDS } from '@/utils/blog/revalidate';
+import { vi } from 'vitest';
 import getRevalidateTime from '@/utils/blog/revalidate';
 
 describe('revalidate utils', () => {
