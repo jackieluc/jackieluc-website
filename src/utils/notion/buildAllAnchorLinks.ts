@@ -3,8 +3,8 @@ import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import { getSlug } from '../getSlug';
 
 /**
- * Given a paragraph block in Notion with an in-page anchor link (ie. <a href="#this-links-to-a-heading">some text</a>),
- * convert Notion's' "link to block" into a web page anchor link.
+ * Given a paragraph block in Notion, convert Notion's' "link to block"
+ * into a web page anchor link (ie. <a href="#this-links-to-a-heading">some text</a>)
  *
  * @param content blog content from notion
  * @returns full blog content with modified anchor links
