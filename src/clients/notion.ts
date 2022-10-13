@@ -7,6 +7,7 @@ import type {
   GetPagePropertyResponse,
   ListBlockChildrenResponse,
   QueryDatabaseParameters,
+  GetBlockResponse,
 } from '@notionhq/client/build/src/api-endpoints';
 import type { NotionBlogProperties, Database } from 'src/types/notion';
 import isProduction from '@/utils/env';
@@ -38,7 +39,7 @@ export async function getPageProperties(page_id: string, propertyIds: string[]):
   return pageProperties;
 }
 
-export async function getBlock(block_id: string) {
+export async function getBlock(block_id: string): Promise<GetBlockResponse> {
   const block = await notion.blocks.retrieve({
     block_id,
   });
