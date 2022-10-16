@@ -52,23 +52,6 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
 
       const list = _renderList(block, index, content);
       return list;
-    case BlockType.ToDo:
-      return (
-        <div>
-          <label htmlFor={id}>
-            {<input type='checkbox' id={id} defaultChecked={value.checked} />} {value}
-          </label>
-        </div>
-      );
-    case BlockType.Toggle:
-      return (
-        <details>
-          <summary>{value}</summary>
-          {value.children?.map((block: any) => (
-            <Fragment key={block.id}>{renderContent(block)}</Fragment>
-          ))}
-        </details>
-      );
     case BlockType.Image:
       const src = value.type === 'external' ? value.external.url : value.file.url;
       const caption = value.caption ? value.caption[0]?.plain_text : '';
@@ -77,6 +60,19 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           <Image src={src} alt={caption} width={825} height={500} />
           {/* {caption && <figcaption className='italic'>{caption}</figcaption>} */}
         </figure>
+      );
+    case BlockType.ChildPage:
+      return; // ignore child pages (ie. outlines, drafts)
+    case BlockType.Callout:
+      return <Callout block={block} renderedText={value} />;
+    case BlockType.Toggle:
+      return (
+        <details>
+          <summary>{value}</summary>
+          {value.children?.map((block: any) => (
+            <Fragment key={block.id}>{renderContent(block)}</Fragment>
+          ))}
+        </details>
       );
     case BlockType.Divider:
       return <hr />;
@@ -95,10 +91,14 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           {caption_file && <figcaption>{caption_file}</figcaption>}
         </figure>
       );
-    case BlockType.ChildPage:
-      return; // ignore child pages (ie. outlines, drafts)
-    case BlockType.Callout:
-      return <Callout block={block} renderedText={value} />;
+    case BlockType.ToDo:
+      return (
+        <div>
+          <label htmlFor={id}>
+            {<input type='checkbox' id={id} defaultChecked={value.checked} />} {value}
+          </label>
+        </div>
+      );
     default:
       return `❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`;
   }
