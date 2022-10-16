@@ -7,6 +7,7 @@ import { FaLink } from 'react-icons/fa';
 
 import type { ReactNode } from 'react';
 import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { BlockType } from 'src/types/notion';
 
 export const renderContent = (block: any, index?: number, content?: BlockObjectResponse[]) => {
   const { type, id } = block;
@@ -14,9 +15,9 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
   const value = _getRenderValue(block);
 
   switch (type) {
-    case 'paragraph':
+    case BlockType.Paragraph:
       return <p>{value}</p>;
-    case 'heading_1':
+    case BlockType.Heading1:
       return (
         <h1 id={getSlug(value)} className='flex scroll-mt-24 items-center gap-3'>
           {value}
@@ -25,7 +26,7 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           </Link>
         </h1>
       );
-    case 'heading_2':
+    case BlockType.Heading2:
       return (
         <h2 id={getSlug(value)} className='flex scroll-mt-24 items-center gap-3'>
           {value}
@@ -34,7 +35,7 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           </Link>
         </h2>
       );
-    case 'heading_3':
+    case BlockType.Heading3:
       return (
         <h3 id={getSlug(value)} className='flex scroll-mt-24 items-center gap-3'>
           {value}
@@ -43,15 +44,15 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           </Link>
         </h3>
       );
-    case 'bulleted_list_item':
-    case 'numbered_list_item':
+    case BlockType.BulletedListItem:
+    case BlockType.NumberedListItem:
       if (!index || typeof content === 'undefined') {
         return;
       }
 
       const list = _renderList(block, index, content);
       return list;
-    case 'to_do':
+    case BlockType.ToDo:
       return (
         <div>
           <label htmlFor={id}>
@@ -59,7 +60,7 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           </label>
         </div>
       );
-    case 'toggle':
+    case BlockType.Toggle:
       return (
         <details>
           <summary>{value}</summary>
@@ -68,7 +69,7 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           ))}
         </details>
       );
-    case 'image':
+    case BlockType.Image:
       const src = value.type === 'external' ? value.external.url : value.file.url;
       const caption = value.caption ? value.caption[0]?.plain_text : '';
       return (
@@ -77,13 +78,13 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           {/* {caption && <figcaption className='italic'>{caption}</figcaption>} */}
         </figure>
       );
-    case 'divider':
+    case BlockType.Divider:
       return <hr />;
-    case 'quote':
+    case BlockType.Quote:
       return <blockquote>{value}</blockquote>;
-    case 'code':
+    case BlockType.Code:
       return <pre className='language-js'>{value}</pre>;
-    case 'file':
+    case BlockType.File:
       const src_file = value.type === 'external' ? value.external.url : value.file.url;
       const splitSourceArray = src_file.split('/');
       const lastElementInArray = splitSourceArray[splitSourceArray.length - 1];
@@ -94,9 +95,9 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
           {caption_file && <figcaption>{caption_file}</figcaption>}
         </figure>
       );
-    case 'child_page':
+    case BlockType.ChildPage:
       return; // ignore child pages (ie. outlines, drafts)
-    case 'callout':
+    case BlockType.Callout:
       return <Callout block={block} renderedText={value} />;
     default:
       return `❌ Unsupported block (${type === 'unsupported' ? 'unsupported by Notion API' : type})`;
@@ -149,15 +150,15 @@ function _getRenderValue(block: any) {
   const { type } = block;
 
   switch (type) {
-    case 'divider':
-    case 'image':
-    case 'child_page':
-    case 'file':
+    case BlockType.Divider:
+    case BlockType.Image:
+    case BlockType.ChildPage:
+    case BlockType.File:
       return block[type];
-    case 'callout':
-    case 'bulleted_list_item':
-    case 'numbered_list_item':
-    case 'paragraph':
+    case BlockType.Callout:
+    case BlockType.BulletedListItem:
+    case BlockType.NumberedListItem:
+    case BlockType.Paragraph:
       return _renderParagraph(block);
     default:
       return block[type].rich_text[0]?.plain_text;
@@ -181,5 +182,5 @@ function _renderList(block: any, index: number, content: BlockObjectResponse[]) 
     index++;
   }
 
-  return block.type === 'bulleted_list_item' ? <ul key={block.id}>{list}</ul> : <ol>{list}</ol>;
+  return block.type === BlockType.BulletedListItem ? <ul key={block.id}>{list}</ul> : <ol>{list}</ol>;
 }

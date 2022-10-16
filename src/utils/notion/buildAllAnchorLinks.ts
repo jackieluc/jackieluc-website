@@ -1,6 +1,8 @@
 import { getBlock } from '@/clients/notion';
-import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import { getSlug } from '../getSlug';
+
+import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { BlockType } from 'src/types/notion';
 
 /**
  * Given a paragraph block in Notion, convert Notion's' "link to block"
@@ -12,7 +14,7 @@ import { getSlug } from '../getSlug';
 export default async function buildAllAnchorLinks(content: BlockObjectResponse[]): Promise<BlockObjectResponse[]> {
   const modifiedContent: BlockObjectResponse[] = await Promise.all(
     content.map(async (block) => {
-      if (block.type !== 'paragraph') {
+      if (block.type !== BlockType.Paragraph) {
         return block;
       }
 

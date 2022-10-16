@@ -45,3 +45,23 @@ export interface FilterBlogPostProperties {
   pageId?: string;
   length?: number;
 }
+
+export enum BlockType {
+  Paragraph = 'paragraph',
+  Heading1 = 'heading_1',
+  Heading2 = 'heading_2',
+  Heading3 = 'heading_3',
+  Callout = 'callout',
+  Quote = 'quote',
+  BulletedListItem = 'bulleted_list_item',
+  NumberedListItem = 'numbered_list_item',
+  ToDo = 'to_do',
+  Toggle = 'toggle',
+  Code = 'code',
+  Image = 'image',
+  Video = 'video',
+  ChildPage = 'child_page',
+  File = 'file',
+  Pdf = 'pdf',
+  Divider = 'divider',
+}
