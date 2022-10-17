@@ -4,6 +4,8 @@ import { getAllPublishedBlogPosts, getPageProperties } from '@/clients/notion';
 import { renderContent } from '@/components/blog/renderContent';
 import { getSlug } from '@/utils/getSlug';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
+import buildTableOfContents from '@/utils/notion/buildTableOfContents';
+import TableOfContents from '@/components/blog/tableOfContents';
 import BlogHeader from '@/components/blog/header';
 import BlogFooter from '@/components/blog/footer';
 import buildAllAnchorLinks from '@/utils/notion/buildAllAnchorLinks';
@@ -16,7 +18,7 @@ import type { BlogProperties } from 'src/types/notion';
 import type { SlugParams, BlogPostParams } from 'src/types/next';
 import getRevalidateTime from '@/utils/blog/revalidate';
 
-export default function Post({ slug, blogProperties, content }: BlogPostParams) {
+export default function Post({ slug, blogProperties, tableOfContents, content }: BlogPostParams) {
   useEffect(() => {
     const registerView = async () => {
       await fetch(`/api/views/${slug}`, {
@@ -56,6 +58,7 @@ export default function Post({ slug, blogProperties, content }: BlogPostParams) 
       <main className='my-4 mb-16 grid place-items-center px-4 lg:mt-8'>
         <article className='prose'>
           <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
+          <TableOfContents tableOfContents={tableOfContents} />
           <section>
             {content.map((block, index) => (
               <Fragment key={block.id}>{renderContent(block, index, content)}</Fragment>
@@ -117,6 +120,9 @@ export const getStaticPaths = async () => {
  *
  * With getStaticPath's fallback prop, if we can't find the blog post in Notion, we will return 404 not found.
  *
+ * - Build Table of Contents for the page
+ * - Build any internal anchor links
+ *
  * @param slug - slug of the blog post from getStaticPaths
  * @returns
  */
@@ -156,6 +162,7 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
 
   const pageId = pageIds[foundPageIdIndex];
   const [properties, blogContent] = await Promise.all([getBlogPostProperties({ pageId }), getBlogPostContent(pageId)]);
+  const tableOfContents = buildTableOfContents(blogContent);
   const content = await buildAllAnchorLinks(blogContent);
   const publishedDate = properties[0].properties.published;
 
@@ -163,6 +170,7 @@ export const getStaticProps = async ({ params: { slug } }: SlugParams) => {
     props: {
       slug,
       blogProperties: properties,
+      tableOfContents,
       content,
     },
     // This generates a static value that will be refreshed after every deployment
