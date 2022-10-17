@@ -6,14 +6,14 @@ export default function TableOfConents({ tableOfContents }: { tableOfContents: T
   return (
     <section className='my-8'>
       <h3>Table of Contents</h3>
-      <ul className='[&>li]:m-0 [&>li]:list-none pl-2'>
+      <ul className='pl-0'>
         {tableOfContents.map((toc) => (
-          <li key={toc.title}>
+          <li className='m-0 list-none pl-2' key={toc.title}>
             <Link href={toc.url}>{toc.title}</Link>
             {toc.children && (
-              <ul className='[&>li]:m-0 [&>li]:list-none m-0 pl-2'>
+              <ul className='m-0 pl-0'>
                 {toc.children.map((child) => (
-                  <li key={child.title}>
+                  <li className='m-0 list-none pl-4' key={child.title}>
                     <Link href={child.url}>{child.title}</Link>
                   </li>
                 ))}
