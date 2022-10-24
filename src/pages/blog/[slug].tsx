@@ -8,11 +8,13 @@ import buildTableOfContents from '@/utils/notion/buildTableOfContents';
 import TableOfContents from '@/components/blog/tableOfContents';
 import BlogHeader from '@/components/blog/header';
 import BlogFooter from '@/components/blog/footer';
+import LikeButton from '@/components/blog/likeButton';
 import buildAllAnchorLinks from '@/utils/notion/buildAllAnchorLinks';
 import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
 import parseProperty from '@/utils/notion/parseProperty';
 import { getBlogPostUrl } from '@/utils/url';
 import getSeoImage from '@/utils/seo/image';
+import useMediaQuery from '@/utils/layout/useMediaQuery';
 
 import type { BlogProperties } from 'src/types/notion';
 import type { SlugParams, BlogPostParams } from 'src/types/next';
@@ -31,6 +33,8 @@ export default function Post({ slug, blogProperties, tableOfContents, content }:
   if (!content) {
     return null;
   }
+
+  const isSmallScreen = useMediaQuery(1280); // around xl
 
   const { title, excerpt, seokeywords } = blogProperties[0].properties;
   const blogPostUrl = getBlogPostUrl(slug);
@@ -55,16 +59,27 @@ export default function Post({ slug, blogProperties, tableOfContents, content }:
         <meta name='twitter:site' content='@jackiesthinking' key='twitter:site' />
         <meta name='twitter:creator' content='@jackiesthinking' key='twitter:creator' />
       </Head>
-      <main className='my-4 mb-16 grid place-items-center px-4 lg:mt-8'>
+      <div className='prose my-4 mx-auto mb-8 max-w-5xl justify-center px-4 lg:px-24 xl:px-4'>
+        <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
+      </div>
+      <main className='my-4 mb-16 flex flex-col items-center justify-center px-4 lg:mt-8 xl:flex-row-reverse xl:items-start'>
+        {isSmallScreen ? (
+          <aside className='mb-8 w-full max-w-[65ch]'>
+            <TableOfContents tableOfContents={tableOfContents} isSmallScreen={true} />
+          </aside>
+        ) : (
+          <aside className='sticky top-36 flex flex-col gap-4 pl-8 text-sm'>
+            <TableOfContents tableOfContents={tableOfContents} />
+            <LikeButton slug={getSlug(slug)} />
+          </aside>
+        )}
         <article className='prose'>
-          <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
-          <TableOfContents tableOfContents={tableOfContents} />
           <section>
             {content.map((block, index) => (
               <Fragment key={block.id}>{renderContent(block, index, content)}</Fragment>
             ))}
           </section>
-          <BlogFooter blogProperties={blogProperties[0]} />
+          {isSmallScreen ? <BlogFooter blogProperties={blogProperties[0]} /> : null}
         </article>
       </main>
     </>

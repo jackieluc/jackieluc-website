@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@formkit/auto-animate': 1.0.0-beta.3
   '@notionhq/client': ^2.1.0
   '@supabase/supabase-js': ^1.35.6
   '@tailwindcss/typography': ^0.5.4
@@ -29,6 +30,7 @@ specifiers:
   vitest: 0.19.0
 
 dependencies:
+  '@formkit/auto-animate': 1.0.0-beta.3
   '@notionhq/client': 2.1.0
   '@supabase/supabase-js': 1.35.6
   daisyui: 2.20.0_ugi4xkrfysqkt4c4y6hkyfj344
@@ -335,6 +337,10 @@ packages:
   /@cush/relative/1.0.0:
     resolution: {integrity: sha512-RpfLEtTlyIxeNPGKcokS+p3BZII/Q3bYxryFRglh5H3A3T8q9fsLYm72VYAMEOOIBLEa8o93kFLiBDUWKrwXZA==}
     dev: true
+
+  /@formkit/auto-animate/1.0.0-beta.3:
+    resolution: {integrity: sha512-glsi+ytwQpxT/Ctr9GtcIfVr4dO6mJ04mQbNU8MFSdCdqMopHtyfU5Fib0+9lNFIeR0luY4/0NW95/2R5pKsag==}
+    dev: false
 
   /@jridgewell/gen-mapping/0.1.1:
     resolution: {integrity: sha512-sQXCasFk+U8lWYEe66WxRDOE9PjVz4vSM51fTu3Hw+ClTpUSQb718772vH3pyS5pShp6lvQM7SxgIDXXXmOX7w==}

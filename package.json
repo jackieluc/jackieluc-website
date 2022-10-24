@@ -9,6 +9,7 @@
     "coverage": "vitest run --coverage"
   },
   "dependencies": {
+    "@formkit/auto-animate": "1.0.0-beta.3",
     "@notionhq/client": "^2.1.0",
     "@supabase/supabase-js": "^1.35.6",
     "daisyui": "^2.20.0",
