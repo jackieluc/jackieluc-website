@@ -56,7 +56,7 @@ export const renderContent = (block: any, index?: number, content?: BlockObjectR
       const src = value.type === 'external' ? value.external.url : value.file.url;
       const caption = value.caption ? value.caption[0]?.plain_text : '';
       return (
-        <figure className='flex flex-col items-center'>
+        <figure className='mt-0 flex flex-col items-center'>
           <Image src={src} alt={caption} width={825} height={500} />
           {/* {caption && <figcaption className='italic'>{caption}</figcaption>} */}
         </figure>
