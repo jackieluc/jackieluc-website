@@ -27,7 +27,7 @@ export default function BlogHeader({
               <li key={tag.name}>
                 <Link
                   href={`/tags/${getSlug(tag.name)}`}
-                  className='hover:text-secondary rounded-full bg-gray-200 px-4 py-2 text-xs text-gray-800 no-underline hover:bg-gray-300'
+                  className='bg-neutral text-secondary rounded-full px-4 py-2 text-xs no-underline'
                 >
                   {tag.name}
                 </Link>
