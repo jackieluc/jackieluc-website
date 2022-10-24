@@ -29,8 +29,9 @@ export default function Home({ recentBlogPostProperties }: InferGetStaticPropsTy
         </div>
         <div className='md:px-8 lg:px-16'>
           <p>
-            I'm Jackie, a software engineer and a life-long learner based in Seattle. I enjoy building solutions that
-            magnify the impact of other people. Let's be a little nicer to each other, we're all just trying our best.
+            I'm Jackie, a software engineer and a life-long learner currently based in Seattle. I enjoy being curious
+            about the world and building solutions that magnify the impact of other people. Let's be a little nicer to
+            each other, we're all just trying our best.
           </p>
           <div className='flex gap-4'>
             <Link href='https://github.com/jackieluc' target='_blank' title='GitHub' aria-label='GitHub'>
