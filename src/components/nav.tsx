@@ -46,39 +46,41 @@ function SmallScreenNav({ router }: { router: NextRouter }) {
 
 function BigScreenNav({ router }: { router: NextRouter }) {
   return (
-    <header className='navbar bg-beige sticky top-0 z-50 py-0 px-8'>
-      <div className='navbar-start'>
-        <Link
-          href='/'
-          className={`btn btn-ghost text-xl font-medium normal-case ${
-            getActiveRoute('/', router)
-              ? `bg-secondary hover:bg-secondary text-white underline hover:text-white`
-              : `no-underline`
-          }`}
-        >
-          {NAME}
-        </Link>
-      </div>
-      <nav className='navbar-center flex'>
-        <ul className='menu menu-horizontal gap-4 p-0'>
-          {SITE_PAGES.map(({ title, url }) => (
-            <li className='w-full' tabIndex={0} key={title}>
-              <Link
-                href={url}
-                className={`active:bg-secondary w-full justify-center rounded-md py-3 px-6 active:text-white ${
-                  getActiveRoute(url, router) ? `bg-secondary text-white underline hover:text-white` : `no-underline`
-                }`}
-              >
-                {title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <div className='navbar-end'>
-        <Link href='/rss.xml' title='RSS' aria-label='RSS'>
-          <BiRss size='2rem' />
-        </Link>
+    <header className='bg-beige sticky top-0 z-50 mt-4 w-full py-0'>
+      <div className='navbar mx-auto max-w-4xl px-8'>
+        <div className='navbar-start'>
+          <Link
+            href='/'
+            className={`btn btn-ghost text-xl font-medium normal-case ${
+              getActiveRoute('/', router)
+                ? `bg-secondary hover:bg-secondary text-white underline hover:text-white`
+                : `no-underline`
+            }`}
+          >
+            {NAME}
+          </Link>
+        </div>
+        <nav className='navbar-center flex'>
+          <ul className='menu menu-horizontal gap-4 p-0'>
+            {SITE_PAGES.map(({ title, url }) => (
+              <li className='w-full' tabIndex={0} key={title}>
+                <Link
+                  href={url}
+                  className={`active:bg-secondary w-full justify-center rounded-md py-3 px-6 active:text-white ${
+                    getActiveRoute(url, router) ? `bg-secondary text-white underline hover:text-white` : `no-underline`
+                  }`}
+                >
+                  {title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className='navbar-end'>
+          <Link href='/rss.xml' title='RSS' aria-label='RSS'>
+            <BiRss size='2rem' />
+          </Link>
+        </div>
       </div>
     </header>
   );
