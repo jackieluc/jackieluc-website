@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import { Fragment, useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { getAllPublishedBlogPosts, getPageProperties } from '@/clients/notion';
 import { renderContent } from '@/components/blog/renderContent';
 import { getSlug } from '@/utils/getSlug';
@@ -15,10 +15,12 @@ import parseProperty from '@/utils/notion/parseProperty';
 import { getBlogPostUrl } from '@/utils/url';
 import getSeoImage from '@/utils/seo/image';
 import useMediaQuery from '@/utils/layout/useMediaQuery';
+import { BREAKPOINTS } from '@/config/constants';
 
 import type { BlogProperties } from 'src/types/notion';
 import type { SlugParams, BlogPostParams } from 'src/types/next';
 import getRevalidateTime from '@/utils/blog/revalidate';
+import { FaCheckCircle } from 'react-icons/fa';
 
 export default function Post({ slug, blogProperties, tableOfContents, content }: BlogPostParams) {
   useEffect(() => {
@@ -34,8 +36,8 @@ export default function Post({ slug, blogProperties, tableOfContents, content }:
     return null;
   }
 
-  const isSmallScreen = useMediaQuery(1200); // xl
-
+  const [showAlert, setShowAlert] = useState(false);
+  const isSmallScreen = useMediaQuery(BREAKPOINTS.xl); // xl
   const { title, excerpt, seokeywords } = blogProperties[0].properties;
   const blogPostUrl = getBlogPostUrl(slug);
   const { seoimage, seoimagealt } = getSeoImage(blogProperties[0].properties);
@@ -59,10 +61,25 @@ export default function Post({ slug, blogProperties, tableOfContents, content }:
         <meta name='twitter:site' content='@jackiesthinking' key='twitter:site' />
         <meta name='twitter:creator' content='@jackiesthinking' key='twitter:creator' />
       </Head>
-      <div className='prose my-4 mx-auto mb-8 max-w-5xl justify-center px-4 lg:px-24 xl:px-4'>
+      {/* Relative element to anchor alert notifications */}
+      <div className='pointer-events-none fixed inset-4 top-8 z-50 lg:top-24'>
+        {showAlert ? (
+          <div
+            className={`bg-primary mx-auto max-w-fit rounded-xl p-4 text-white transition-opacity ease-out ${
+              showAlert ? 'animate-fade-in-and-out' : ''
+            }`}
+            onAnimationEnd={() => setShowAlert(false)}
+          >
+            <p className='flex items-center gap-2'>
+              <FaCheckCircle size='1.5rem' /> copied to clipboard
+            </p>
+          </div>
+        ) : null}
+      </div>
+      <div className='prose my-4 mx-auto mb-8 max-w-5xl justify-center px-4 md:px-8 lg:px-24 xl:px-4'>
         <BlogHeader blogProperties={blogProperties[0]} /> {/* For this slug, we only have one blog properties */}
       </div>
-      <main className='my-4 mb-16 flex flex-col items-center justify-center px-4 lg:mt-8 xl:flex-row-reverse xl:items-start'>
+      <main className='my-4 mb-16 flex flex-col items-center justify-center px-4 md:px-8 lg:mt-8 xl:flex-row-reverse xl:items-start'>
         {isSmallScreen ? (
           <aside className='mb-8 w-full max-w-[65ch]'>
             <TableOfContents tableOfContents={tableOfContents} isSmallScreen={true} />
@@ -70,7 +87,7 @@ export default function Post({ slug, blogProperties, tableOfContents, content }:
         ) : (
           <aside className='sticky top-36 flex flex-col gap-4 pl-8 text-sm'>
             <TableOfContents tableOfContents={tableOfContents} />
-            <LikeButton slug={getSlug(slug)} />
+            <BlogFooter blogProperties={blogProperties[0]} showAlertFunc={setShowAlert} />
           </aside>
         )}
         <article className='prose'>
@@ -79,7 +96,7 @@ export default function Post({ slug, blogProperties, tableOfContents, content }:
               <Fragment key={block.id}>{renderContent(block, index, content)}</Fragment>
             ))}
           </section>
-          {isSmallScreen ? <BlogFooter blogProperties={blogProperties[0]} /> : null}
+          {isSmallScreen ? <BlogFooter blogProperties={blogProperties[0]} showAlertFunc={setShowAlert} /> : null}
         </article>
       </main>
     </>

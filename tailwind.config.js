@@ -6,6 +6,29 @@ module.exports = {
       colors: {
         beige: '#FFF3E7',
       },
+      animation: {
+        'fade-in-and-out': 'fadeInAndOut 2s linear 1 forwards',
+      },
+      keyframes: {
+        fadeInAndOut: {
+          '0%': {
+            opacity: 0,
+            transform: 'translateY(-20px)',
+          },
+          '20%': {
+            opacity: 1,
+            transform: 'translateY(0)',
+          },
+          '80%': {
+            opacity: 1,
+            transform: 'translateY(0)',
+          },
+          '100%': {
+            opacity: 0,
+            transform: 'translateY(-20px)',
+          },
+        },
+      },
       typography: ({ theme }) => ({
         DEFAULT: {
           css: {
