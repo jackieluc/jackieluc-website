@@ -34,7 +34,7 @@ export default function Post({ slug, blogProperties, tableOfContents, content }:
     return null;
   }
 
-  const isSmallScreen = useMediaQuery(1280); // around xl
+  const isSmallScreen = useMediaQuery(1200); // xl
 
   const { title, excerpt, seokeywords } = blogProperties[0].properties;
   const blogPostUrl = getBlogPostUrl(slug);
