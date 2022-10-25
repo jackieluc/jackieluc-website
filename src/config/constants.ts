@@ -22,6 +22,18 @@ export const SITE_PAGES = [
     url: '/uses',
   },
 ];
+export const BREAKPOINTS = {
+  sm: 640,
+  // => @media (min-width: 640px) { ... }
+  md: 768,
+  // => @media (min-width: 768px) { ... }
+  lg: 1024,
+  // => @media (min-width: 1024px) { ... }
+  xl: 1200,
+  // => @media (min-width: 1200px) { ... }
+  '2xl': 1536,
+  // => @media (min-width: 1536px) { ... }
+};
 export const USES = [
   {
     title: 'workstation',

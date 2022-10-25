@@ -2,12 +2,12 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { BiRss } from 'react-icons/bi';
 import useMediaQuery from '@/utils/layout/useMediaQuery';
-import { NAME, SITE_PAGES } from '@/config/constants';
+import { BREAKPOINTS, NAME, SITE_PAGES } from '@/config/constants';
 
 import type { NextRouter } from 'next/router';
 
 export default function Nav() {
-  const isSmallScreen = useMediaQuery(768); // tablet
+  const isSmallScreen = useMediaQuery(BREAKPOINTS.md); // tablet
   const router = useRouter();
 
   return isSmallScreen ? <SmallScreenNav router={router} /> : <BigScreenNav router={router} />;
