@@ -12,6 +12,7 @@ import {
   SITE_URL,
   SITE_IMAGE_ALT,
 } from '@/config/constants';
+import { Analytics } from '@vercel/analytics/react';
 
 import type { AppProps } from 'next/app';
 
@@ -37,6 +38,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
       <Nav />
       <Component {...pageProps} />
       <Footer />
+      <Analytics />
     </PlausibleProvider>
   );
 }
