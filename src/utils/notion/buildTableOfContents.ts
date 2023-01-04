@@ -23,25 +23,22 @@ export default function buildTableOfContents(content: BlockObjectResponse[]) {
   let index = 0;
   while (index < headingBlocks.length && headingBlocks[index]?.type) {
     const headingBlock = headingBlocks[index];
-    const nextHeadingBlock = headingBlocks[index + 1];
 
-    if (BlockType.Heading2 in headingBlock) {
+    if (headingBlock?.type === BlockType.Heading2) {
       const title = headingBlock[headingBlock.type].rich_text[0].plain_text;
 
       let tocItem: TableOfContent = {
         title,
         url: `#${getSlug(title)}`,
       };
-
       // if next block is an h2, skip
-      if (nextHeadingBlock && BlockType.Heading2 in nextHeadingBlock) {
+      if (headingBlocks[index + 1]?.type === BlockType.Heading2) {
         index++;
       } else {
         // for each h3, add as children to h2
         const childrenHeadings = [];
-        while (nextHeadingBlock && BlockType.Heading3 in nextHeadingBlock) {
-          const headingBlock = nextHeadingBlock;
-
+        while (headingBlocks[index + 1]?.type === BlockType.Heading3) {
+          const headingBlock = headingBlocks[index + 1] as Heading3BlockObjectResponse;
           const title = headingBlock[headingBlock.type].rich_text[0].plain_text;
           let tocItem: TableOfContent = {
             title,
