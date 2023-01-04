@@ -22,12 +22,15 @@ export default function Uses() {
         </div>
         <div>
           {USES.map((section) => (
-            <section className='md:border-l-primary mt-8 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-0 md:border-l-2 md:pl-4'>
+            <section
+              className='md:border-l-primary mt-8 grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-0 md:border-l-2 md:pl-4'
+              key={section.title}
+            >
               <h2 className='text-secondary m-0 text-2xl font-bold md:text-lg'>{section.title}</h2>
               <div className='col-span-3'>
                 <ul className='[&>li]:m-0 [&>li]:p-0 m-0 list-none p-0'>
                   {section.uses.map((use: { title: string; description?: string; link?: string }) => (
-                    <li>
+                    <li key={use.title}>
                       <h3 className='m-0 text-base font-medium'>
                         {use?.link ? (
                           <Link href={use.link} title={use.title} target='_blank'>
