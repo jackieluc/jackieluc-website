@@ -1,8 +1,8 @@
-import { TableOfContent } from './../../types/next';
 import { getSlug } from '../getSlug';
 
+import type { TableOfContent } from './../../types/next';
 import { BlockType } from './../../types/notion';
-import {
+import type {
   BlockObjectResponse,
   Heading2BlockObjectResponse,
   Heading3BlockObjectResponse,
@@ -34,12 +34,12 @@ export default function buildTableOfContents(content: BlockObjectResponse[]) {
       };
 
       // if next block is an h2, skip
-      if (BlockType.Heading2 in nextHeadingBlock) {
+      if (nextHeadingBlock && BlockType.Heading2 in nextHeadingBlock) {
         index++;
       } else {
         // for each h3, add as children to h2
         const childrenHeadings = [];
-        while (BlockType.Heading3 in nextHeadingBlock) {
+        while (nextHeadingBlock && BlockType.Heading3 in nextHeadingBlock) {
           const headingBlock = nextHeadingBlock;
 
           const title = headingBlock[headingBlock.type].rich_text[0].plain_text;
