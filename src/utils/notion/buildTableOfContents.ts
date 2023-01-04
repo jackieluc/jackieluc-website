@@ -2,7 +2,11 @@ import { TableOfContent } from './../../types/next';
 import { getSlug } from '../getSlug';
 
 import { BlockType } from './../../types/notion';
-import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import {
+  BlockObjectResponse,
+  Heading2BlockObjectResponse,
+  Heading3BlockObjectResponse,
+} from '@notionhq/client/build/src/api-endpoints';
 
 /**
  * Given blog content, find all the headings in the page and return the slug
@@ -13,28 +17,31 @@ import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 export default function buildTableOfContents(content: BlockObjectResponse[]) {
   const headingBlocks = content.filter((block) =>
     [BlockType.Heading2, BlockType.Heading3].includes(block.type as BlockType)
-  ) as any;
+  ) as (Heading2BlockObjectResponse | Heading3BlockObjectResponse)[];
 
   const tableOfContents: TableOfContent[] = [];
   let index = 0;
   while (index < headingBlocks.length && headingBlocks[index]?.type) {
     const headingBlock = headingBlocks[index];
-    const title = headingBlock[headingBlock.type].rich_text[0].plain_text;
+    const nextHeadingBlock = headingBlocks[index + 1];
 
-    let tocItem: TableOfContent = {
-      title,
-      url: `#${getSlug(title)}`,
-    };
+    if (BlockType.Heading2 in headingBlock) {
+      const title = headingBlock[headingBlock.type].rich_text[0].plain_text;
 
-    if (headingBlock?.type === BlockType.Heading2) {
-      // if next block is not h3
-      if (headingBlocks[index + 1]?.type !== BlockType.Heading3) {
+      let tocItem: TableOfContent = {
+        title,
+        url: `#${getSlug(title)}`,
+      };
+
+      // if next block is an h2, skip
+      if (BlockType.Heading2 in nextHeadingBlock) {
         index++;
       } else {
-        // add h3 children to h2
+        // for each h3, add as children to h2
         const childrenHeadings = [];
-        while (headingBlocks[index + 1]?.type === BlockType.Heading3) {
-          const headingBlock = headingBlocks[index + 1];
+        while (BlockType.Heading3 in nextHeadingBlock) {
+          const headingBlock = nextHeadingBlock;
+
           const title = headingBlock[headingBlock.type].rich_text[0].plain_text;
           let tocItem: TableOfContent = {
             title,

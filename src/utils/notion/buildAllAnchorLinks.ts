@@ -1,7 +1,7 @@
 import { getBlock } from '@/clients/notion';
 import { getSlug } from '../getSlug';
 
-import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { BlockObjectResponse, ParagraphBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import { BlockType } from 'src/types/notion';
 
 /**
@@ -23,7 +23,7 @@ export default async function buildAllAnchorLinks(content: BlockObjectResponse[]
 
         if (textItem?.href?.startsWith('/') && textItem.href.includes('#')) {
           const blockId = textItem.href.split('#')[1];
-          const anchorBlock = (await getBlock(blockId)) as any;
+          const anchorBlock = (await getBlock(blockId)) as ParagraphBlockObjectResponse;
           textItem.href = `#${getSlug(anchorBlock[anchorBlock.type]?.rich_text[0].plain_text)}`;
         }
       }
