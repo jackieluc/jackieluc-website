@@ -5,7 +5,7 @@ import generateRSS from '@/utils/rss/generate';
 import { NAME } from '@/config/constants';
 import { DAY_AS_SECONDS } from '@/utils/blog/revalidate';
 
-import { InferGetStaticPropsType } from 'next';
+import type { InferGetStaticPropsType } from 'next';
 
 export default function Blog({ allBlogPostProperties }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (

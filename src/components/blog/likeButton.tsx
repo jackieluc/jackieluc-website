@@ -1,6 +1,8 @@
 import useSWR from 'swr';
-import { FC, useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaHeart } from 'react-icons/fa';
+
+import type { FC } from 'react';
 
 interface LikeButtonProps {
   slug: string;

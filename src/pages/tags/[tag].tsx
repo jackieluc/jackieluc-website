@@ -4,11 +4,11 @@ import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import { getAllBlogPostTags, getPageProperties } from '@/clients/notion';
 import { NAME } from '@/config/constants';
 import { DAY_AS_SECONDS } from '@/utils/blog/revalidate';
-
-import { InferGetStaticPropsType } from 'next';
-import { TagParams } from 'src/types/next';
 import parseProperty from '@/utils/notion/parseProperty';
-import { NotionTag } from 'src/types/notion';
+
+import type { InferGetStaticPropsType } from 'next';
+import type { TagParams } from 'src/types/next';
+import type { NotionTag } from 'src/types/notion';
 
 export default function Tag({ tag, blogPostProperties }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (

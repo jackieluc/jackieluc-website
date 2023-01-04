@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import autoAnimate from '@formkit/auto-animate';
 import { FaChevronUp, FaChevronDown } from 'react-icons/fa';
 
-import { TableOfContent } from 'src/types/next';
+import type { TableOfContent } from 'src/types/next';
 
 export default function TableOfConents({
   tableOfContents,
@@ -12,7 +12,7 @@ export default function TableOfConents({
   tableOfContents: TableOfContent[];
   isSmallScreen?: boolean;
 }) {
-  return !!isSmallScreen ? (
+  return isSmallScreen ? (
     <SmallScreenTableOfContents tableOfContents={tableOfContents} />
   ) : (
     <BigScreenTableOfContents tableOfContents={tableOfContents} />

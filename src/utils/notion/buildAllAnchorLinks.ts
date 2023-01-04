@@ -1,7 +1,7 @@
 import { getBlock } from '@/clients/notion';
 import { getSlug } from '../getSlug';
 
-import { BlockObjectResponse, ParagraphBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import type { BlockObjectResponse, ParagraphBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 import { BlockType } from 'src/types/notion';
 
 /**

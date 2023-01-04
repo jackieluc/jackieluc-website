@@ -1,5 +1,5 @@
-import { BlogProperties } from 'src/types/notion';
-import { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import type { BlogProperties } from 'src/types/notion';
+import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 export interface SlugParams {
   params: {

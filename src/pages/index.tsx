@@ -6,7 +6,7 @@ import BlogPostList from '@/components/blog/blogPostList';
 import getBlogPostProperties from '@/utils/notion/getBlogPostProperties';
 import { DAY_AS_SECONDS } from '@/utils/blog/revalidate';
 
-import { InferGetStaticPropsType } from 'next';
+import type { InferGetStaticPropsType } from 'next';
 
 export default function Home({ recentBlogPostProperties }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (

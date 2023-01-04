@@ -1,5 +1,6 @@
 import { SITE_IMAGE, SITE_IMAGE_ALT } from '@/config/constants';
-import { BlogProperties } from 'src/types/notion';
+
+import type { BlogProperties } from 'src/types/notion';
 
 export default function getSeoImage(prop: BlogProperties): { seoimage: string; seoimagealt: string } {
   let seoimage = prop.seoimage;

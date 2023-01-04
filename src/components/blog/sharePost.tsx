@@ -1,9 +1,9 @@
 import Link from 'next/link';
 import { SITE_URL } from '@/config/constants';
 import { getSlugFromProperties } from '@/utils/getSlug';
-import { FaFacebook, FaHeart, FaLink, FaLinkedin, FaReddit, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaHeart, FaLink, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-import { BlogProperties } from 'src/types/notion';
+import type { BlogProperties } from 'src/types/notion';
 
 export default function SharePost({
   properties,
