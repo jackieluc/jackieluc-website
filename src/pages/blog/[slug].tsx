@@ -8,7 +8,6 @@ import buildTableOfContents from '@/utils/notion/buildTableOfContents';
 import TableOfContents from '@/components/blog/tableOfContents';
 import BlogHeader from '@/components/blog/header';
 import BlogFooter from '@/components/blog/footer';
-import LikeButton from '@/components/blog/likeButton';
 import buildAllAnchorLinks from '@/utils/notion/buildAllAnchorLinks';
 import { getBlogPostContent } from '@/utils/notion/getBlogPostContent';
 import parseProperty from '@/utils/notion/parseProperty';
@@ -32,12 +31,13 @@ export default function Post({ slug, blogProperties, tableOfContents, content }:
     registerView();
   }, [slug]);
 
+  const [showAlert, setShowAlert] = useState(false);
+  const isSmallScreen = useMediaQuery(BREAKPOINTS.xl); // xl
+
   if (!content) {
     return null;
   }
 
-  const [showAlert, setShowAlert] = useState(false);
-  const isSmallScreen = useMediaQuery(BREAKPOINTS.xl); // xl
   const { title, excerpt, seokeywords } = blogProperties[0].properties;
   const blogPostUrl = getBlogPostUrl(slug);
   const { seoimage, seoimagealt } = getSeoImage(blogProperties[0].properties);
