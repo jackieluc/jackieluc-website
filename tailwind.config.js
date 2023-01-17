@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        beige: '#FFF3E7',
+        beige: '#fffbf2',
       },
       animation: {
         'fade-in-and-out': 'fadeInAndOut 2s linear 1 forwards',
@@ -91,7 +91,7 @@ module.exports = {
           'secondary-focus': '#4d8072',
           accent: '#6C70AD',
           neutral: '#ffd9b4',
-          'base-100': '#FFF3E7', // daisyui default blank background
+          'base-100': '#fffbf2', // daisyui default blank background
           'base-200': '#ffd9b4', // monochromatic
           '.btn': {
             'text-transform': 'none', // remove all-caps on buttons
