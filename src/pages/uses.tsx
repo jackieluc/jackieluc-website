@@ -18,7 +18,7 @@ export default function Uses() {
           </p>
         </header>
         <div className='text-accent m-0 mx-auto max-w-fit rounded-full bg-gray-200 py-1 px-2.5 text-sm'>
-          last updated: Oct 11, 2022
+          last updated: Sep 13, 2023
         </div>
         <div>
           {USES.map((section) => (

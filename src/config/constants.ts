@@ -40,15 +40,15 @@ export const USES = [
     uses: [
       {
         title: '14" MacBook Pro, M1, 32GB RAM (2021)',
-        description: `This beast of a machine has everything I ever wanted in a MacBook: jet engines don't turn on, longer battery life, better keyboard, mag safe charging cable, physical escape key, and the left and right arrow keys are not stretched in height.`,
+        description: `This beast of a machine has everything I ever wanted in a MacBook: jet engines don't turn on, longer battery life, better keyboard, mag safe charging cable, physical escape key, and I'm less prone to fat-finger the left and right arrow keys because they aren't stretched in height.`,
       },
       {
         title: 'GMMK Pro 75% Keyboard',
-        description: `Got this when I was exploring the mechanical keyboard hobby during the pandemic. It's a great entry point into the hobby. It's rocking Apalca V2 linear switches and Geekark BoW PBT keycaps with light blue accents.`,
+        description: `Got this when I was exploring the mechanical keyboard hobby during the pandemic. It's a great entry point into the hobby. It's rocking Apalca V2 linear switches and GMK Botanical 2 keycaps and a HyperX x Maplestory Orange Mushroom keycap on the escape key.`,
       },
       {
         title: 'Apple Magic Trackpad',
-        description: `My workflow consists of using gestures a lot. This is basically extending the MacBook's world class trackpad into my stationary setup. Let's be honest, there's no other trackpads that can compare.`,
+        description: `My workflow consists of using gestures a lot. This is basically extending the MacBook's world-class trackpad into my stationary setup. Let's be honest, there's no other trackpads that can compare.`,
       },
       {
         title: 'Logitech MX Master 3S Mouse',
@@ -60,7 +60,7 @@ export const USES = [
       },
       {
         title: 'Sony WH-1000XM5 Wireless Headphones',
-        description: `Replaced my Bose QC 35 II after 5 years. This was a great upgrade with better active noise cancellation. It's extremely comfortable and an essential for long sessions and long-haul flights.`,
+        description: `Replaced my Bose QC 35 II after 5 years. This was a great upgrade with better active noise cancellation. It's extremely comfortable and essential for long sessions and long-haul flights.`,
       },
       {
         title: 'Dual LG 27” 4K Monitor',
@@ -72,19 +72,19 @@ export const USES = [
       },
       {
         title: `Fully's Jarvis Standing Desk`,
-        description: `With my move to the US, I didn't want to buy another Ikea desk setup and I wanted to invest in my space that I will spend the majority of my time. This is a great quality standing desk with a 1-button click to change the height. I have no complaints and a lot of people have complimented my setup.`,
+        description: `With my move to the US, I didn't want to buy another Ikea desk setup and I wanted to invest more into the space where I spend the majority of my time. This is a great quality standing desk with a 1-button click to change the height. I have no complaints and a lot of people have complimented my setup.`,
       },
       {
         title: `Herman Miller Aeron Office Chair`,
-        description: `This is the chair I have yet to with me to the US. It's a comfortable chair and hold it's value over time. I'm temporarily using a random Costco office chair from my girlfriend.`,
+        description: `This is the chair I have yet to with me to the US. It's a comfortable chair and it holds its value over time. I'm temporarily using a random Costco office chair from my girlfriend.`,
       },
       {
         title: `Roller Blade Wheels for Office Chair`,
-        description: `Highly, highly recommended must buy, if you're using your office chair on a hard surface. You will not regret it. If you have an Ikea office chair, get 10mm ones, otherwise get 11mm.`,
+        description: `Highly, highly recommended must buy if you're using your office chair on a hard surface. You will not regret it. If you have an Ikea office chair, get 10mm ones, otherwise get 11mm.`,
       },
       {
         title: 'BenQ ScreenBar Monitor Light',
-        description: `Gives me much more flexability and usability with my space because it makes my eyes feel less strained. It also doubles as a good reading lamp because it removes the shadow of my head from the room light on my book.`,
+        description: `Gives me much more flexibility and usability with my space because it makes my eyes feel less strained. It also doubles as a good reading lamp because it removes the shadow of my head from the room light on my book.`,
       },
       {
         title: 'More to come...',
